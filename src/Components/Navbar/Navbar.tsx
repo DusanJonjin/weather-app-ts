@@ -22,7 +22,7 @@ const Navbar = (props: NavbarProps) => {
 
     return(
         <nav id='navbar'>
-            <p><img src={"../../../Images/icon.png"} alt='weather_app_icon'/>
+            <p><img src={"Images/icon.png"} alt='weather_app_icon'/>
                 Weather Forecast
             </p>
             <form onSubmit={e => handleSearchSubmit(e, inputRef)} 
