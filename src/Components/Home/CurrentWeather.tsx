@@ -46,7 +46,7 @@ const CurrentWeather = ({ city, country, timezone, currently, currHourForecast }
             </p>
             <div className='current-wrapper'>
                 <div className='image-wrapper'>
-                    <Image imgSrc={`Images/${icon}.png`}
+                    <Image imgSrc={`/Images/${icon}.png`}
                         imgAlt={icon} 
                     />
                 </div>
