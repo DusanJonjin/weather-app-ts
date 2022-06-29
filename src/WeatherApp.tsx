@@ -13,6 +13,7 @@ export function WeatherApp() {
     const { 
         loading,
         searching,
+        badHomeSearch,
         badUrlSearch,
         networkError,
         minLetters
@@ -108,7 +109,7 @@ export function WeatherApp() {
                                 path='/' 
                                 element={
                                     <Home weatherData={weatherData} 
-                                        message={message}
+                                        message={badHomeSearch}
                                     />
                                 } 
                             />

@@ -9,7 +9,9 @@ const DailyForecast = ({ weatherData }: { weatherData: WeatherData | null }) => 
     const { badHomeSearch, networkError, badDate } = messages;
 
     if (weatherData === null) return (
-        <p>{badHomeSearch}</p>
+        <div className={`message sad`}>
+            <p>{badHomeSearch}</p>
+        </div>
     );
 
     const { city, country, timezone, hourly, daily } = weatherData;
@@ -34,7 +36,7 @@ const DailyForecast = ({ weatherData }: { weatherData: WeatherData | null }) => 
     );
 
     if (!clickedDate || !allDailyDatesArr.includes(clickedDate)) return (
-        <p className='message'>
+        <p className='message sad'>
             {badDate}
         </p>
     );

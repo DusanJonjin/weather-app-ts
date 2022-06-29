@@ -5,7 +5,11 @@ import { dayDate } from '../Utilities/helperFunctions';
 
 const Home = ({ weatherData, message }: { weatherData: WeatherData | null, message: string}) => {
 
-    if (weatherData === null) return <p>No weather data for selected city</p>
+    if (weatherData === null) return (
+        <div className={`message sad`}>
+            <p>{message}</p>
+        </div>
+    );
 
     const { 
         city,
@@ -21,8 +25,8 @@ const Home = ({ weatherData, message }: { weatherData: WeatherData | null, messa
     );
 
     const dailyData = daily.data.filter((dailyFcast: DayData) => 
-    dayDate(dailyFcast.time, {timeZone: timezone}) !== dayDate(currently.time, {timeZone: timezone})
-);
+        dayDate(dailyFcast.time, {timeZone: timezone}) !== dayDate(currently.time, {timeZone: timezone})
+    );
     
     return (
         <div id='weather-home'>
