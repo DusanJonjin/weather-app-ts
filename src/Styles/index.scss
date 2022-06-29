@@ -1,0 +1,98 @@
+@use './variables.scss' as var;
+@use './Navbar.scss';
+@use './Home.scss';
+@use './DailyForecast.scss';
+
+
+%msg-image-props {
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: 185px;
+}
+
+body {
+    background: hsl(240, 26%, 13%);
+    color: var.$main-font;
+    margin: 0;
+}
+
+
+#weather-app {
+    margin: var.$center-margin;
+    width: calc(1000px + 20%);
+    max-width: var.$max;
+}
+
+
+.one-day-card {
+    background: rgb(36, 76, 119);
+    background-image: linear-gradient(to bottom,hsl(211, 68%, 26%), hsl(240, 20%, 22%));
+    width: 142px;
+    margin: 10px 0;
+    border-radius: 8px;
+    position: relative;
+    bottom: 0;
+    right: 0;
+    transition: .2s ease-in-out;
+    .link {
+        text-decoration: none;
+    }
+}
+
+.link {
+    text-decoration: none;
+    outline: 0;
+}
+
+
+.one-day-card:hover { 
+    bottom: 9px;
+    right: 3px;
+}
+
+
+#low {
+    color: rgb(164, 212, 252);
+}
+
+#high {
+    color: rgb(240, 124, 124);
+}
+
+footer {
+    font-family: 'Lobster', sans-serif;
+    font-size: 19px;
+    color: hsl(206, 16%, 85%);
+    text-align: center;
+    max-width: 325px;
+    padding: .7em 0;
+    margin: 1.3em auto 1.3em auto;
+    box-shadow: 0 0 0 2px hsl(240, 20%, 25%);
+}
+
+.message {
+    font-size: 24px;
+    font-family: var.$roboto-font;
+    width: 700px;
+    height: 375px;
+    max-width: 100%;
+    text-align: center;
+    margin: 0 auto 2.5em auto;
+    padding: 1.5em 0 .1em 0;
+    line-height: 1.5em;
+    color: rgb(230, 230, 230);
+
+    p {
+        margin: 0 12px;
+    }
+}
+
+.happy {
+    background-image: url('../Background\ Images/smiling-sun.png');
+    @extend %msg-image-props;
+}
+
+.sad { 
+    background-image: url('../Background\ Images/sad-sun.png');
+    @extend %msg-image-props;
+}

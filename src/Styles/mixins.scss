@@ -1,0 +1,84 @@
+@use './variables.scss' as var;
+
+@mixin hourly-forecast {
+
+    width: 94%;
+    margin: 0 auto;
+        
+    h3 {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 1.3rem;
+        font-weight: 00;
+        color: var.$subtitle-color;
+        text-decoration: underline;
+        margin: 30px 0 12px 0;
+    }  
+
+    .table-wrap {
+        overflow-x: auto;
+
+        table {
+            width: 100%;
+            margin: 0;
+            text-align: center;
+            background: rgb(36, 76, 119);
+            background-image: linear-gradient(to bottom,rgb(23, 61, 102), rgb(67, 67, 82));
+            border-radius: 5px;
+            border-collapse: collapse;
+
+            tbody {
+
+                td {
+                    font-size: 18px;
+                    padding: 5px 10px;              
+                }
+
+                .td-hour {
+                    border-top: var.$t-border;
+                    border-right: var.$t-border;
+                    border-left: var.$t-border;
+                }
+
+                .td-icon {
+                    border-right: var.$t-border;
+                    border-left: var.$t-border;
+
+                    img {
+                        width: 26px;  
+                        height: 26px; 
+                        padding: 0 1em;                    
+                    }
+                }
+
+                .td-temperature {
+                    border-bottom: var.$t-border;
+                    border-right: var.$t-border;
+                    border-left: var.$t-border;
+                }
+            }
+        }
+    }
+}
+
+.table-wrap::-webkit-scrollbar {
+    height: 4px;
+    background-color: hsl(240, 26%, 20%);
+}
+
+.table-wrap::-webkit-scrollbar-thumb {
+    background-color: hsl(240, 15%, 47%);
+}
+
+.table-wrap::-webkit-button {
+    background-color: bisque;
+}
+
+
+@mixin other-details-wrapper {
+    font-size: 1.4em;
+    width: 275px;
+    margin: 0 10px;
+    p {
+        margin: 18px 0
+    }
+}

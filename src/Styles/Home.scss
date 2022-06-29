@@ -1,0 +1,229 @@
+@use './variables.scss' as var;
+@use './mixins.scss' as mixin;
+
+#weather-home {
+    font-family: var.$roboto-font;
+    padding-top: 25px;
+
+    .current-weather {
+        padding: 2px 0 35px 0;
+        font-family: var.$roboto-font;
+
+        .city-country {           
+            font-family: 'Open Sans', sans-serif;              
+            font-size: 1.6rem;
+            color: var.$title-color;
+            background-color: hsl(240, 26%, 22%);
+            text-align: center;
+            padding: .6em .5em;
+            margin: 0;             
+        }
+
+        .date-and-year {
+            font-size: 1.2rem;
+            text-align: center;
+            line-height: 1.5em;
+            padding: .7em 0;
+            margin: 0 10px;
+            :last-child {
+                color: var.$title-color;
+            }
+
+        }
+
+        .current-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding-top: 25px;
+
+            .temp-summary-wrapper {
+                width: 315px;
+                margin: 0 20px;
+
+                #temp-now {
+                    color: rgb(248, 248, 158);
+                    font-size: 7em;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 10px 0 5px 0;
+                    sup {
+                        font-size: .6em;
+                    }
+                } 
+
+                .current-summary {
+                    font-size: 1.3em;
+                    text-align: center;
+                    color: var.$title-color;
+                    background-color: hsl(240, 26%, 19%);
+                    padding: .4em .7em;
+                    margin: 0;
+                    border-radius: 8px;
+                }
+            }
+                
+            .image-wrapper { 
+                width: 275px;
+                text-align: center;
+                margin: 0 10px;
+                img {
+                    width: 180px;
+                    height: 180px;
+                    align-self: center;
+                }
+            }
+
+            .other-details-wrapper {
+                @include mixin.other-details-wrapper;
+
+            }
+        }
+        
+        .hourly-forecast {
+        @include mixin.hourly-forecast; 
+        }
+    }
+
+    .seven-day-forecast{
+        padding: 20px 0 5px 0;
+        font-family: var.$roboto-font;
+        border-top: 2px solid hsl(240, 18%, 26%);;
+
+        h3 {
+            font-size: 1.6em;
+            margin: 0;
+            color: var.$subtitle-color;
+            text-decoration: underline;
+            text-align: center;
+        }
+
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            list-style-type: none; /* no dots on list */
+            padding: 0; /* removes default left padding*/
+            margin-top: 10px auto;
+            
+            li {
+                margin: 0 12px;
+                display: inline-block;    
+                text-align: center;
+                
+                .link {
+
+                    #day-date{
+                        padding: 5px 5px 0 5px;
+                        margin: 10px 0;
+                        font-size: 17px;
+                        font-family: 'Roboto', sans-serif;
+                        line-height: 1.3em;
+                        height: 60px;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;  
+                        align-items: center;
+                        color: rgb(241, 241, 175);
+
+                        span {
+                            display: block;
+                        }
+                    }
+
+                    img {                           
+                        width: 70px;
+                        position: relative;
+                        bottom: 0;
+                        transition: .3s ease;
+                    }
+                    
+                    .temp-lowhigh {
+
+                        p {
+                            display: inline-block;
+                            padding: 0 6px;
+                            margin: 15px 0 10px 0;
+
+                            span {
+                                font-size: 1.1rem;
+
+                                sup {
+                                    font-size: .7rem;
+                                }
+                            }
+                        }
+                    }        
+                }       
+            }
+        }
+    }
+}
+
+
+@media only screen and (max-width: 920px) {
+
+    #weather-home {
+
+        .current-weather {
+
+            .city-country {
+                font-size: 22px;
+            }
+
+            .date-and-year {
+                font-size: 1.1rem;
+                padding: .8em 0 0 0;
+            }
+
+            .current-wrapper {
+
+                margin-top: 15px;
+    
+                .temp-summary-wrapper {
+    
+                    #temp-now {
+                        font-size: 5em;
+                        font-weight: bold;
+                        text-align: center;
+                        margin: 5px 0 10px 0;
+                        sup {
+                            font-size: .5em;
+                        }
+                    } 
+    
+                    .current-summary {
+                        font-size: 1.3em;
+                        text-align: center;
+                        padding: .5em .7em;
+                    }
+                }
+                    
+                .image-wrapper { 
+                    margin: 5px 0 10px 0;
+                    img {
+                        width: 150px;
+                        height: 150px;
+                    }
+                }
+    
+                .other-details-wrapper {
+                    font-size: 1.2em;
+                    text-align: center;
+                    padding-top: 30px;
+                    p {
+                        margin: 18px 0
+                    }
+    
+                }
+            }
+        }
+
+        .seven-day-forecast {
+
+            h3 {
+            font-size: 24px;
+            }
+        }
+    }
+}

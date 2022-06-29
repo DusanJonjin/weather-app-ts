@@ -1,0 +1,151 @@
+@use './variables.scss' as var;
+@use './mixins.scss' as mixin;
+
+#day-hour-forecast {
+    font-family: var.$open-sans-font;
+    padding: 25px 0 30px 0;
+
+    .city-country {         
+        font-size: 26px;
+        text-align: center;
+        margin: 0;             
+        color: var.$title-color;
+    }
+
+    .date-and-year {
+        font-size: 18px;
+        text-align: center;
+        margin: 15px 0 25px 0;
+    }
+
+    #summary {
+        font-size: 20px;
+        color: hsl(261, 95%, 89%);
+        text-align: center;
+        background-color: hsl(240, 26%, 22%);
+        padding: 1.1em 0;
+        margin: 0 0 20px 0;
+    }
+
+    .day-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+        padding-top: 25px;
+
+        .image-wrapper {
+            width: 275px;
+            align-self: center;
+            text-align: center;
+            img {
+                width: 190px;
+                height: 190px;
+                align-self: center;
+            }
+        }
+
+        .temp-lowhigh {
+            text-align: center;
+            width: 350px;
+            color: hsl(207, 9%, 79%);
+            background-color: hsl(240, 26%, 19%);
+            border-radius: 7px;
+            margin: 0 2em;
+
+            p {
+                
+                font-size: 1.4rem;
+                font-family: var.$roboto-font;
+                padding: 0 15px;
+                margin: 15px 0;
+                
+                span {
+                    display: block;
+                    font-size: 4.5rem;
+                    font-weight: bold;
+                   
+                    sup {
+                        font-size: 2.5rem;
+
+                    }
+                }
+                
+            }
+        }
+
+        .other-details-wrapper {
+            @include mixin.other-details-wrapper;
+        }
+    }
+    .hourly-forecast {
+        @include mixin.hourly-forecast;
+    }
+}
+
+
+@media only screen and (max-width: 920px) {
+
+    #day-hour-forecast {
+    
+        .city-country {          
+            font-size: 23px;
+            margin: 0 15px;
+        }
+    
+        .date-and-year {
+            font-size: 17px;
+            margin: 15px 15px 25px 15px;
+        }
+
+        #summary {
+            font-size: 19px;
+            color: rgb(197, 168, 250);
+            padding: 1.2em 1em;
+            margin: 0 0 10px 0;
+        }
+
+        .day-wrapper {
+            padding-top: 20px;
+    
+            .image-wrapper {
+
+                img {
+                    width: 170px;
+                    height: 170px;
+                    align-self: center;
+                }
+            }
+    
+            .temp-lowhigh {
+                display: flex;
+                justify-content: center;
+                margin: 2em 1em;
+                border-radius: 7px;
+    
+                p {
+                    font-size: 1.1rem;
+                    
+                    span {
+                        font-size: 2.5rem;
+                       
+                        sup {
+                            font-size: 1.5rem;
+    
+                        }
+                    }                
+                }
+            }
+    
+            .other-details-wrapper {
+                font-size: 1.2em;
+                text-align: center;
+                padding-top: 5px;
+                p {
+                    margin: 18px 0
+                }
+            }
+        }
+    }
+
+}
