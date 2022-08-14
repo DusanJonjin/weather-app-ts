@@ -14,7 +14,7 @@ const SevenDayForecast = ({ city, timezone, dailyData }: SevenDayForecastProps) 
     return (
         <section className='seven-day-forecast'>
             <h3>
-                7-day forecast
+                7 days forecast
             </h3>
             <ul>
                 {dailyData.map(dayData => 

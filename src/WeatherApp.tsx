@@ -126,7 +126,7 @@ export function WeatherApp() {
                         </Routes>
                     </main>
             }[status]}
-            <footer>Weather Foreast App by D.J. &copy; {new Date().getFullYear()}</footer>
+            <footer>Weather Forecast App by D.J. &copy; {new Date().getFullYear()}</footer>
         </>
     );
 }
