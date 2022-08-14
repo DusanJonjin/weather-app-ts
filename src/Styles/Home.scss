@@ -218,12 +218,18 @@
     
                 }
             }
+
+            .hourly-forecast {
+                h3{
+                    font-size: 1.2em;
+                }
+            }
         }
 
         .seven-day-forecast {
 
             h3 {
-            font-size: 24px;
+                font-size: 1.3em;
             }
         }
     }
