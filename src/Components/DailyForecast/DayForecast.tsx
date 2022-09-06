@@ -24,10 +24,7 @@ const DayForecast = ({ chosenDay, city, country, timezone }: DayForecastProps) =
             icon,
             temperatureMin,
             temperatureMax,
-            pressure,
-            humidity,
-            windSpeed,
-            uvIndex
+            ...otherDetails
     } = chosenDay;
 
     const {day, date, year} = dateObj(time, timezone);
@@ -54,11 +51,7 @@ const DayForecast = ({ chosenDay, city, country, timezone }: DayForecastProps) =
                     tempHigh={temperatureMax.toFixed(1)}
                     dayPage={true}
                 />
-                <OtherWeatherDetails pressure={pressure} 
-                    humidity={humidity} 
-                    windSpeed={windSpeed} 
-                    uvIndex={uvIndex}
-                />
+                <OtherWeatherDetails { ...otherDetails } />
             </div>
         </section>
     );

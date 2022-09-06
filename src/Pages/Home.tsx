@@ -1,9 +1,27 @@
+import { useMemo } from 'react';
 import CurrentWeather from '../Components/Home/CurrentWeather';
 import SevenDayForecast from '../Components/Home/SevenDayForecast';
 import { WeatherData, HourData, DayData } from '../Models/weather.data.models';
+import { CityNameID } from '../Hooks/useBookmarks';
 import { dayDate } from '../Utilities/helperFunctions';
 
-const Home = ({ weatherData, message }: { weatherData: WeatherData | null, message: string}) => {
+interface HomeProps {
+    weatherData: WeatherData | null;
+    message: string;
+    toggleCity: (name: string, id:string) => void;
+    bookmarks: CityNameID[];
+    openAsideMenu: () => void;
+}
+
+const Home = (props: HomeProps) => {
+    
+    const { 
+        weatherData, 
+        message, 
+        toggleCity, 
+        bookmarks,
+        openAsideMenu
+    } = props;
 
     if (weatherData === null) return (
         <div className={`message sad`}>
@@ -12,6 +30,7 @@ const Home = ({ weatherData, message }: { weatherData: WeatherData | null, messa
     );
 
     const { 
+        cityID,
         city,
         country,
         timezone,
@@ -20,29 +39,39 @@ const Home = ({ weatherData, message }: { weatherData: WeatherData | null, messa
         daily
     } = weatherData;
 
-    const currHourForecast = hourly.data.filter((hourFcast: HourData) => 
-        dayDate(hourFcast.time, {timeZone: timezone}) === dayDate(currently.time, {timeZone: timezone})
+    const currentDate: string = dayDate(currently.time, {timeZone: timezone});
+
+    const currHourForecast: HourData[] = useMemo(() => 
+        hourly.data.filter((hourFcast: HourData) => 
+            dayDate(hourFcast.time, {timeZone: timezone}) === currentDate), 
+        [currentDate]
     );
 
-    const dailyData = daily.data.filter((dailyFcast: DayData) => 
-        dayDate(dailyFcast.time, {timeZone: timezone}) !== dayDate(currently.time, {timeZone: timezone})
+    const dailyData: DayData[] = useMemo(() => 
+        daily.data.filter((dailyFcast: DayData) => 
+            dayDate(dailyFcast.time, {timeZone: timezone}) !== currentDate), 
+        [currentDate]
     );
     
     return (
-        <div id='weather-home'>
-            <CurrentWeather 
-                city={city}
-                country={country}
-                timezone={timezone}
-                currently={currently}
-                currHourForecast={currHourForecast} 
-            />
-            <SevenDayForecast 
-                city={city}
-                timezone={timezone}
-                dailyData={dailyData} 
-            />
-        </div>
+        <article id='weather-forecast-home'>
+            <div className='forecast-wrapper'>
+                <CurrentWeather cityID={cityID}
+                    city={city}
+                    country={country}
+                    timezone={timezone}
+                    currently={currently}
+                    currHourForecast={currHourForecast} 
+                    toggleCity={toggleCity}
+                    bookmarks={bookmarks}
+                    openAsideMenu={openAsideMenu}
+                />
+                <SevenDayForecast city={city}
+                    timezone={timezone}
+                    dailyData={dailyData} 
+                />
+            </div>
+        </article>
     );
 }
 

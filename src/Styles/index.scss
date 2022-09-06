@@ -1,7 +1,8 @@
 @use './variables.scss' as var;
-@use './Navbar.scss';
+@use './Header.scss';
 @use './Home.scss';
 @use './DailyForecast.scss';
+@use './AsideMenu.scss';
 
 
 %msg-image-props {
@@ -16,43 +17,28 @@ body {
     margin: 0;
 }
 
-
-#weather-app {
-    margin: var.$center-margin;
-    width: calc(1000px + 20%);
-    max-width: var.$max;
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 
-.one-day-card {
-    background: rgb(36, 76, 119);
-    background-image: linear-gradient(to bottom,hsl(211, 68%, 26%), hsl(240, 20%, 22%));
-    width: 142px;
-    margin: 10px 0;
-    border-radius: 8px;
-    position: relative;
-    bottom: 0;
-    right: 0;
-    transition: .2s ease-in-out;
-    h4 {
-        font-weight: 500;
-    }
-    .link {
-        text-decoration: none;
-    }
+#weather-app {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+}
+
+.forecast-wrapper {
+    max-width: calc(400px + 50%);
+    margin: 0 auto;
 }
 
 .link {
     text-decoration: none;
     outline: 0;
 }
-
-
-.one-day-card:hover { 
-    bottom: 9px;
-    right: 3px;
-}
-
 
 #low {
     color: rgb(164, 212, 252);
@@ -63,14 +49,30 @@ body {
 }
 
 footer {
-    font-family: 'Lobster', sans-serif;
-    font-size: 19px;
+    font-family: var.$open-sans-font;
+    font-size: 17px;
+    font-weight: 500;
     color: hsl(206, 16%, 85%);
-    text-align: center;
-    max-width: 325px;
-    padding: .7em 0;
-    margin: 1.3em auto 1.3em auto;
-    box-shadow: 0 0 0 2px hsl(240, 20%, 25%);
+    background-color: rgb(137, 153, 206);
+    background-image: linear-gradient(to bottom,hsl(229, 92%, 32%), hsl(212, 88%, 35%));
+    padding: 1.6em 0;
+    margin: 0 auto 0 auto;
+    display: flex;
+    justify-content: space-around; 
+    width: 100%;
+
+    p {
+        margin: 0;
+    }
+    :nth-child(2){
+        font-style: italic;
+        span {
+            font-size: 19px;
+            font-family: 'Lobster', sans-serif;
+            letter-spacing: 0.02em;
+        }
+    }
+    
 }
 
 .message {
@@ -87,6 +89,7 @@ footer {
 
     p {
         margin: 0 12px;
+        white-space: pre-line;
     }
 }
 
@@ -98,4 +101,40 @@ footer {
 .sad { 
     background-image: url('../Background\ Images/sad-sun.png');
     @extend %msg-image-props;
+}
+
+.expand-triangle {
+    width: 0;
+    height: 0;
+    border-left: 19px solid transparent;
+	border-right: 19px solid transparent;
+	border-top: 11px solid hsl(217, 43%, 36%);
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: 0.4s ease;
+}
+
+.expand-triangle:hover{
+    border-top: 11px solid hsl(217, 43%, 40%);
+}
+
+.is-expanded {
+    transform: rotateZ(180deg) translateY(115%);
+}
+
+@media only screen and (max-width: 920px) {
+    footer {
+        font-size: 15px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+        :nth-child(2) {
+            margin-top: 1em;
+            span{
+                font-size: 18px;
+            }
+        }
+    }
 }

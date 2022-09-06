@@ -7,11 +7,10 @@
         
     h3 {
         font-family: 'Open Sans', sans-serif;
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         font-weight: 600;
         color: var.$subtitle-color;
-        text-decoration: underline;
-        margin: 30px 0 12px 0;
+        margin: 25px 0 12px 0;
     }  
 
     .table-wrap {
@@ -29,7 +28,7 @@
             tbody {
 
                 td {
-                    font-size: 18px;
+                    font-size: 16px;
                     padding: 5px 10px;              
                 }
 
@@ -40,6 +39,7 @@
                 }
 
                 .td-icon {
+                    padding: 3px 8px;
                     border-right: var.$t-border;
                     border-left: var.$t-border;
 
@@ -73,12 +73,35 @@
     background-color: bisque;
 }
 
-
-@mixin other-details-wrapper {
-    font-size: 1.4em;
-    width: 275px;
+@mixin image-wrapper {
+    width: 230px;
+    text-align: center;
     margin: 0 10px;
-    p {
-        margin: 18px 0
+    img {
+        width: 165px;
+        height: 165px;
+        align-self: center;
     }
+}
+
+@mixin other-details {
+    box-sizing: border-box;
+    width: 230px;
+    height: 175px;
+    overflow-y: hidden;
+    margin: 0 10px;
+    padding-left: 10px;
+    border-bottom: 2px solid hsl(240, 18%, 26%);
+    transition: 0.4s ease;
+    p {
+        margin: 18px 0;
+
+        span {
+            color: hsl(60, 90%, 88%);
+        }
+    }
+}
+
+@mixin show-details {
+    height: 340px;
 }

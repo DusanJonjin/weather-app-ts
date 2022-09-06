@@ -5,9 +5,9 @@ interface CityCountryProps {
 
 const CityCountry = ({ city, country='' }: CityCountryProps) => {
     return (
-        <h1 className='city-country'>
-            {city}{country && `, ${country}`}
-        </h1>
+        <h2 className='city-country'>
+            {city}, {country ? `${country}` : ''}
+        </h2>
     );
 }
 

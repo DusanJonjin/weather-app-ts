@@ -1,0 +1,100 @@
+@use './variables.scss' as var;
+
+.aside {
+    position: relative;
+    overflow-y: auto;
+    width: 25%;
+    background-color: hsl(240, 26%, 16%);
+    scrollbar-width: none;
+
+     > div {
+        width: 90%;
+        position: absolute;
+        top: 0;
+        left: 5%;
+
+        h2 {
+            font-family: var.$open-sans-font;
+            font-size: 18px;
+            font-weight: 600;
+            color: var.$subtitle-color
+        }
+
+    }
+}
+
+.bookmarked-cities {
+    margin: 1.7em 0;
+
+    .bm-cities-wrap {
+        padding-bottom: .3em;
+        border-bottom: 2px solid hsl(240, 18%, 26%);
+    }
+}
+
+.popular-cities {
+
+    .cities-ul {
+        box-sizing: border-box;
+        font-family: var.$roboto-font;
+        overflow-y: hidden;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: .4em 2.5em;
+        padding: 0 0 2em 0;
+        margin: 0;
+        height: 293px;
+        list-style-type: none;
+        transition: .3s ease;
+        border-bottom: 2px solid hsl(240, 18%, 26%);
+        
+        li {
+            font-size: 15px;
+            margin: 0;
+            padding: .4em 0;
+            cursor: pointer;
+            transition: .3s ease;
+
+            .link {
+                color: hsl(120, 27%, 83%);
+            }
+        }
+
+        p:hover {
+            background-color: hsl(240, 26%, 21%);
+            color: hsl(120, 27%, 90%);
+        }
+
+    }
+
+    .all-cities-ul {
+        height: 733px;
+    }
+}
+
+.aside::-webkit-scrollbar {
+    width: 5px
+}
+
+@media only screen and (max-width:1250px){
+    .aside {
+        position: absolute;
+        z-index: 1;
+        width: 60%;
+        height: 100vh;
+        transform: translate3d(0, 0, -1px);
+        transition: .3s ease;
+    }
+
+    .hide-aside {
+        transform: translate3d(-100%, 0, -1px);
+    }
+
+}
+
+@media only screen and (max-width:899px) {
+
+    .aside {
+        width: 100%;
+    }
+}

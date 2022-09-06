@@ -1,0 +1,239 @@
+@use './variables.scss' as var;
+
+#header { 
+    background-color: rgb(137, 153, 206);
+    background-image: linear-gradient(to top,hsl(229, 92%, 34%), hsl(212, 88%, 37%));
+    text-align: left;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 5px 0 5px 0;
+
+    h1 {
+        font-family: 'Lobster', sans-serif;
+        font-size: 28px;
+        font-weight: 500;
+        margin: 5px 10px 5px 15px;
+        letter-spacing: 0.1em;
+        color: hsl(208, 71%, 96%);
+        
+        img {
+            width: 35px;
+            height: 35px;
+            vertical-align: bottom;
+            padding-right: 14px;
+        }
+
+    }
+
+    form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: var.$nav-elements-width;
+        padding: 8px 0;
+        position: relative;
+
+        :focus {
+            box-shadow: 0px 0px 2px 1px rgb(175, 253, 253);
+            background-color:hsl(240, 10%, 90%);
+            outline: none;
+        }
+
+        input[type=search] {
+            font-size: 17px;
+            margin: 0 5px;
+            width: 185px;
+            height: 28px;
+            padding-left: 12px;
+            border-radius: 15px;
+            background-color:hsl(240, 10%, 87%);
+            border: none;
+            transition: .3s ease;
+        }
+
+        input[placeholder] {
+            color:hsl(240, 5%, 10%);
+            
+        }
+
+        ::-webkit-input-placeholder {
+            color: rgb(78, 78, 80);
+        }
+
+        div {
+            position: absolute;
+            top: 90%;
+            left: 8%;
+            background-color:hsl(240, 10%, 90%);
+            width: 182px;
+            z-index: 2;
+
+            button {  
+                font-size: 17px;
+                display: block;
+                text-align: left;
+                padding: 8px 7px;
+                margin:  0;
+                color: hsl(220, 3%, 17%);
+                border: none;
+                width: 100%
+            }
+
+            button:hover {
+                background-color: hsl(240, 10%, 84%);
+                cursor: pointer;
+            }
+        }
+
+        #search-button {
+            font-size: 15px;
+            font-family: var.$roboto-font;
+            border: none; 
+            border-radius: 4px;
+            width: 67px;
+            height: 23px;
+            margin-left: 4px;
+            background-color:hsl(214, 86%, 58%);
+            box-shadow: 0 0 0 2px hsl(197, 48%, 83%);
+            color: hsl(240, 20%, 95%);
+            transition: .3s ease;
+        }
+
+        #search-button:hover {
+            cursor: pointer;
+            background-color:hsl(214, 86%, 67%);
+            color: hsl(220, 4%, 12%);
+            box-shadow: 0 0 0 1px rgb(200, 237, 252);
+        }
+    }
+    
+    .back {
+        width: var.$nav-elements-width;
+        font-size: 17px;
+        font-family: 'Tahoma', sans-serif;
+        padding: 8px 0;
+        text-align: center;  
+        transition: .3s ease; 
+
+        .link {
+            color: var.$link-color;
+        }
+        
+        .link:hover {
+            color: rgb(236, 255, 236)
+        }   
+    }  
+
+    .hide {
+        display: none
+    }
+
+    .hamburger-wrap {
+        height: 30px;
+        width: 30px;
+        margin: 0 .8em 0 0;
+        display: none;
+    }
+    
+    .hamburger, 
+    .hamburger::after, 
+    .hamburger::before {
+        width: 26px;
+        height: 2px;
+        background-color: hsl(208, 71%, 96%);
+        transition: .2s ease;
+        border-radius: 25px;
+    }
+
+    .hamburger {
+        position: relative;
+        top: 50%;
+        left: 0;
+        display: flex;
+        margin: 0 auto;
+        justify-content: center;
+    }
+    
+    .hamburger::after {
+        content: '';
+        top: 8px;
+        position: absolute;
+    }
+    
+    .hamburger::before {
+        content: '';
+        top: -8px;
+        position: absolute;
+    }
+    
+    .hamb-open {
+        width: 0;
+    }
+    
+    .hamb-open::after {
+        top: 0;
+        transform: rotate(225deg);
+        
+    }
+    
+    .hamb-open::before {
+        top: 0;
+        transform: rotate(-225deg);
+    }
+    
+}
+
+@media only screen and (max-width: 1250px) {
+    #header {
+        justify-content: space-between;
+
+        .hamburger-wrap {
+            display: block;
+        }
+    }
+
+}
+
+@media only screen and (max-width: 653px) {
+
+    #header {
+        padding: 3px 0 8px 0;
+        
+        h1 {
+            font-size: 23px;
+            margin: 5px 10px 5px 10px;
+            
+            img {
+                width: 28px;
+                height: 28px;
+            }
+        }
+
+        form {
+            padding: 9px 0 6px 0;
+            order: 2;
+            margin: 0 auto;
+            
+
+            input[type=search] {
+                font-size: 15px;
+                height: 26px;
+            }
+
+            #button {
+                font-size: 14px;
+                width: 62px;
+            }
+        }
+
+        .back {
+            font-size: 17px;
+            order: 2;
+            flex: 0 0 100%;
+        }
+    }
+}

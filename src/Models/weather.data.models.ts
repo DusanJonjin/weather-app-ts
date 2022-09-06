@@ -1,54 +1,57 @@
 interface SharedData {
-    time: number,
-    summary: string,
-    icon: string,
-    humidity: number,
-    pressure: number,
-    windSpeed: number,
-    uvIndex: number,
+    time: number;
+    summary: string;
+    icon: string;
+    humidity: number;
+    pressure: number;
+    windSpeed: number;
+    uvIndex: number;
+    visibility: number;
+    ozone: number;
+    cloudCover: number;
+    windBearing: number;
 }
 
 interface HourlyDaily {
-    summary: string,
-    icon: string,
+    summary: string;
+    icon: string;
 }
 
 export interface Currently extends SharedData {
-    temperature: number,
+    temperature: number;
     summary: string;
-    [key: string]: number | string
+    [key: string]: number | string;
 }
 
 export interface DayData extends SharedData {
-    temperatureMin: number,
-    temperatureMax: number,
-    [key: string]: number | string,
+    temperatureMin: number;
+    temperatureMax: number;
+    [key: string]: number | string;
 }
 
 export interface Daily extends HourlyDaily {
-    data: DayData[],
+    data: DayData[];
 }
 
 export interface HourData {
-    time: number,
-    icon: string,
-    temperature: number,
-    [key: string]: number | string | undefined,
+    time: number;
+    icon: string;
+    temperature: number;
+    [key: string]: number | string | undefined;
 }
 
 export interface Hourly extends HourlyDaily {
-    data: HourData[],
+    data: HourData[];
 }
 
 export interface WeatherData {
-    city: string,
-    country: string,
-    latitude: number
-    longitude: number,
-    timezone: string,
-    currently: Currently,
-    hourly: Hourly,
-    daily: Daily,
+    cityID: string;
+    city: string;
+    country: string;
+    latitude: number;
+    longitude: number;
+    timezone: string;
+    currently: Currently;
+    hourly: Hourly;
+    daily: Daily;
 }
-
-

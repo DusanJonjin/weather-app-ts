@@ -1,150 +1,287 @@
 @use './variables.scss' as var;
 @use './mixins.scss' as mixin;
 
-#day-hour-forecast {
+#daily-forecast {
+    font-family: var.$roboto-font;
+    padding: 25px 0 45px 0;
+    width: 75%;
+}
+
+.city-country {         
     font-family: var.$open-sans-font;
-    padding: 25px 0 30px 0;
+    font-size: 25px;
+    text-align: center;
+    margin: 0;             
+    color: var.$title-color;
+}
 
-    .city-country {         
-        font-size: 26px;
-        text-align: center;
-        margin: 0;             
-        color: var.$title-color;
+.date-and-year {
+    font-family: var.$open-sans-font;
+    font-size: 18px;
+    text-align: center;
+    margin: 15px 0 25px 0;
+}
+
+#summary {
+    font-size: 21px;
+    color: var.$summary-color;
+    text-align: center;
+    background-color: hsl(240, 26%, 22%);
+    padding: 1.1em 0;
+    margin: 0 0 20px 0;
+}
+
+.day-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 25px;
+
+    .image-wrapper {
+        @include mixin.image-wrapper;
     }
 
-    .date-and-year {
-        font-size: 18px;
+    .temp-lowhigh {
         text-align: center;
-        margin: 15px 0 25px 0;
-    }
+        width: 300px;
+        color: hsl(207, 9%, 79%);
+        background-color: hsl(240, 26%, 19%);
+        border-radius: 7px;
+        margin: 0 2em;
 
-    #summary {
-        font-size: 20px;
-        color: hsl(261, 95%, 89%);
-        text-align: center;
-        background-color: hsl(240, 26%, 22%);
-        padding: 1.1em 0;
-        margin: 0 0 20px 0;
-    }
+        p {        
+            font-size: 1.35rem;
+            font-family: var.$roboto-font;
+            padding: 0 15px;
+            margin: 15px 0;
+            
+            span {
+                display: block;
+                font-size: 4rem;
+                font-weight: 500;
+                
+                sup {
+                    font-size: 2.5rem;
 
-    .day-wrapper {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        align-items: center;
-        padding-top: 25px;
-
-        .image-wrapper {
-            width: 275px;
-            align-self: center;
-            text-align: center;
-            img {
-                width: 190px;
-                height: 190px;
-                align-self: center;
+                }
             }
+            
         }
+    }
 
-        .temp-lowhigh {
-            text-align: center;
-            width: 350px;
-            color: hsl(207, 9%, 79%);
-            background-color: hsl(240, 26%, 19%);
-            border-radius: 7px;
-            margin: 0 2em;
+    .other-details-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .other-details {
+            font-size: 1.25em;
+            @include mixin.other-details;
+            height: 190px;
+        }
+        .show-details {
+            @include mixin.show-details;
+            height: 365px;
+        }
+    }
+}
+
+.hourly-forecast {
+    @include mixin.hourly-forecast;
+        h3 {
+            margin: 35px 0 12px 0;
+        }
+}
+
+.pagination {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 3em;
+
+    .prev-next-button {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        color: var.$link-color;
+        border-radius: 9px;
+        user-select: none;
+
+        div {
+            background-color: hsl(218, 47%, 34%);
+            box-shadow: 0px 0px 2px 1px hsla(214, 100%, 84%, 0.85);
+            border-radius: 8px;
+            padding: 4px 0;
+            transition: .3s ease;
 
             p {
-                
-                font-size: 1.4rem;
-                font-family: var.$roboto-font;
-                padding: 0 15px;
-                margin: 15px 0;
-                
-                span {
-                    display: block;
-                    font-size: 4.5rem;
-                    font-weight: bold;
-                   
-                    sup {
-                        font-size: 2.5rem;
-
-                    }
-                }
-                
+                width: 105px;
+                font-family: var.$open-sans-font;
+                font-size: 14px;
+                margin: 0;
+                padding: 1px 5px;
             }
         }
 
-        .other-details-wrapper {
-            @include mixin.other-details-wrapper;
+        .lr-arrow {
+            font-size: 23px;
+            width: 20px;
+            margin: 0;
+            text-align: left;
+        }
+
+        .right-arrow {
+            border-right: none;
+            order: 2;
+            text-align: right;
         }
     }
-    .hourly-forecast {
-        @include mixin.hourly-forecast;
+}
+
+.prev-next-button:hover {
+
+    div {
+        background-color: hsl(218, 47%, 37%);
+        color: hsl(120, 100%, 96%);
+        box-shadow: 0px 0px 2px 1px hsla(214, 100%, 84%, 0.7);
+    }
+
+    .lr-arrow {
+        color: hsl(120, 100%, 96%);
     }
 }
 
 
-@media only screen and (max-width: 920px) {
 
-    #day-hour-forecast {
-    
-        .city-country {          
-            font-size: 23px;
-            margin: 0 15px;
-        }
-    
-        .date-and-year {
-            font-size: 17px;
-            margin: 15px 15px 25px 15px;
-        }
 
-        #summary {
-            font-size: 19px;
-            color: rgb(197, 168, 250);
-            padding: 1.2em 1em;
-            margin: 0 0 10px 0;
-        }
+@media only screen and (max-width:1250px) {
 
-        .day-wrapper {
-            padding-top: 20px;
+    #daily-forecast {
+        width: 100%;
+    }
     
-            .image-wrapper {
+    .city-country {          
+        font-size: 23px;
+        margin: 0 15px;
+    }
 
-                img {
-                    width: 170px;
-                    height: 170px;
-                    align-self: center;
-                }
-            }
-    
-            .temp-lowhigh {
-                display: flex;
-                justify-content: center;
-                margin: 2em 1em;
-                border-radius: 7px;
-    
-                p {
-                    font-size: 1.1rem;
+    .date-and-year {
+        font-size: 17px;
+        margin: 15px 15px 25px 15px;
+    }
+
+    #summary {
+        font-size: 19px;
+        padding: 1.2em 1em;
+        margin: 0 0 10px 0;
+    }
+
+    .day-wrapper {
+        padding-top: 20px;
+
+        .temp-lowhigh {
+            margin: 2em 1em;
+
+            p {
+                font-size: 1.2rem;
+                
+                span {
+                    font-size: 3.5rem;
                     
-                    span {
-                        font-size: 2.5rem;
-                       
-                        sup {
-                            font-size: 1.5rem;
-    
-                        }
-                    }                
-                }
+                    sup {
+                        font-size: 1.75rem;
+
+                    }
+                }                
             }
-    
-            .other-details-wrapper {
+        }
+
+        .other-details-wrapper {
+
+            .other-details {
                 font-size: 1.2em;
-                text-align: center;
-                padding-top: 5px;
+                height: 185px;
                 p {
                     margin: 18px 0
                 }
             }
+
+            .show-details {
+                height: 360px;
+            }
+        }
+    }
+
+    .hourly-forecast {
+
+        h3{
+            font-size: 1.2em;
+            margin: 25px 0 12px 0;
+        }
+    }
+}
+
+@media only screen and (max-width: 899px) {
+
+    .city-country {         
+        font-size: 24px;
+    }
+
+    .date-and-year {
+        font-size: 16px;
+    }
+
+    #summary {
+        font-size: 18px;
+    }
+
+    .day-wrapper {
+        padding-top: 20px;
+
+        .temp-lowhigh {
+            width: 320px;
+            max-width: 100%;
+            display: flex;
+            justify-content: center;
+            margin: 1.5em 1em 1.7em 1em;
+
+            p {
+                font-size: 1rem;
+                
+                span {
+                    font-size: 2.5rem;
+                    
+                    sup {
+                        font-size: 1.45rem;
+
+                    }
+                }                
+            }
+        }
+
+        .other-details-wrapper {
+
+            .other-details {
+                font-size: 1.1em;
+                text-align: center;
+                height: 175px;
+
+                p {
+                    margin: 18px 0
+                }
+            }
+
+            .show-details {
+                height: 340px;
+            }
+        }      
+    }
+
+    .hourly-forecast {
+        margin-bottom: 1.5em;
+
+        h3{
+            margin: 30px 0 12px 0;
         }
     }
 

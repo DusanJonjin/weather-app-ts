@@ -5,7 +5,7 @@ import Year from './Year';
 import Image  from './Image';
 import TempLowHigh  from './TempLowHigh';
 import OtherWeatherDetails from './OtherWeatherDetails';
-import  HourForecast  from './HourForecast';
+import HourForecast from './HourForecast';
 
 /* We import all of the joint components in this file, so that we can
 export them later in parent components together as needed. We do this
