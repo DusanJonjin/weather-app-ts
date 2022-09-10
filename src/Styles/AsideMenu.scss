@@ -1,13 +1,17 @@
 @use './variables.scss' as var;
 
 .aside {
-    position: relative;
+    background-color: hsl(240, 26%, 17%);
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100vh;
     overflow-y: auto;
-    width: 25%;
-    background-color: hsl(240, 26%, 16%);
     scrollbar-width: none;
+    transform: translate3d(0, 0, -1px);
+    transition: .3s ease;
 
-     > div {
+    > div {
         width: 90%;
         position: absolute;
         top: 0;
@@ -16,19 +20,69 @@
         h2 {
             font-family: var.$open-sans-font;
             font-size: 18px;
-            font-weight: 600;
-            color: var.$subtitle-color
+            font-weight: 500;
+            color: var.$subtitle-color;
+            text-decoration:underline;
+            
         }
-
     }
+
+}
+
+.hide-aside {
+    transform: translate3d(-100%, 0, -1px);
 }
 
 .bookmarked-cities {
     margin: 1.7em 0;
 
+    h2 {
+        margin: .5em 0;
+    }
+
     .bm-cities-wrap {
         padding-bottom: .3em;
         border-bottom: 2px solid hsl(240, 18%, 26%);
+    }
+}
+
+#bookmark {
+    font-family: var.$roboto-font;
+    display: flex;
+    align-items: center;
+    gap: 1.6em;
+
+    h3, p{
+        padding: 2px 0;
+    }
+
+    h3 {
+        font-size: 15px;
+        font-weight: 500;
+        margin: 5px 0;
+        flex: .6;
+        .link {
+            color: hsl(120, 27%, 83%);
+        }
+    }
+
+    p {
+        font-size: 14px;
+        padding: 1px 5px;
+        margin: 8px 0;
+        border-radius: 5px;
+    }
+
+    div{
+        display: flex;
+        justify-content: space-around;
+        flex: 1;
+
+        #remove {
+            color: hsla(0, 79%, 71%, 0.75);
+            box-shadow: 0px 0px 2px 1px hsla(0, 79%, 71%, 0.75);
+        }
+
     }
 }
 
@@ -52,11 +106,11 @@
             font-size: 15px;
             margin: 0;
             padding: .4em 0;
-            cursor: pointer;
             transition: .3s ease;
 
             .link {
                 color: hsl(120, 27%, 83%);
+                cursor: pointer;
             }
         }
 
@@ -72,29 +126,96 @@
     }
 }
 
+.settings {
+    padding-bottom: .5em;
+    margin-top: 1.3em;
+    margin-bottom: 12em;
+    border-bottom: 2px solid hsl(240, 18%, 26%);
+
+    h3 {
+        font-family: var.$open-sans-font;
+        font-size: 16px;
+        font-weight: 400;
+        color: var.$subtitle-color;
+
+    }
+
+    div {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: .4em 2.5em;
+        margin-bottom: 1.3em;
+
+        p {
+            font-family: var.$roboto-font;
+            font-size: 14px;
+            color: hsl(120, 27%, 83%);
+            margin: 0;
+
+            span {
+                padding: 4px 5px;
+                border-radius: 4px;
+            }
+        }
+    }
+}
+
 .aside::-webkit-scrollbar {
-    width: 5px
+    width: 0
 }
 
-@media only screen and (max-width:1250px){
+.default {
+    color: hsla(214, 100%, 80%, 0.7);
+    box-shadow: 0px 0px 2px 1px hsla(214, 100%, 80%, 0.7);
+}
+
+.checked {
+    color: hsla(214, 100%, 84%, 1);
+    box-shadow: 0px 0px 2px 2px hsla(214, 100%, 84%, .85);          
+}
+
+
+@media only screen and (min-width:899px) {
     .aside {
-        position: absolute;
-        z-index: 1;
         width: 60%;
-        height: 100vh;
-        transform: translate3d(0, 0, -1px);
-        transition: .3s ease;
     }
-
-    .hide-aside {
-        transform: translate3d(-100%, 0, -1px);
-    }
-
 }
 
-@media only screen and (max-width:899px) {
-
+@media only screen and (min-width:1250px){
     .aside {
-        width: 100%;
+        position: relative;
+        width: 25%;
+        height: auto;
+        transform: none;
     }
+
+    #bookmark {
+
+        p {
+            user-select: none;
+            cursor: pointer;
+        }
+
+        div {
+
+            #remove:hover {
+                color: hsla(0, 79%, 71%, 1);
+                box-shadow: 0px 0px 2px 1px hsla(0, 79%, 71%, 1);
+            }  
+        }
+    }
+
+    .settings {
+        margin-bottom: 3em;
+    }
+
+    .default:hover {
+        color: hsla(214, 100%, 84%, 1);
+        box-shadow: 0px 0px 2px 1px hsla(214, 100%, 84%, 1);
+    }
+
+    .checked {
+        pointer-events: none;
+    }
+
 }

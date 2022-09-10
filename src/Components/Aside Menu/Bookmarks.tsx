@@ -25,27 +25,34 @@ export const Bookmarks = (props: BookmarksProps) => {
         isHomeUrl
     } = props;
 
-    const { searchedCity } = defaultData;
+    const { id } = defaultData;
+
+    console.log(id)
 
     return (
         <section className='bookmarked-cities'>
             <h2>Bookmarked cities</h2>
             <div className='bm-cities-wrap'>
                 {bookmarks.map(bookmark =>
-                    <article key={bookmark.id}>
-                        <h3 onClick={() => handleNewCity(bookmark.name)}>
+                    <article key={bookmark.id} id="bookmark">
+                        <h3>
                             <Link to={`${isHomeUrl ? "/" : insertNewCityInUrl(bookmark.name, pathname)}`}
                                 className='link'
+                                onClick={() => handleNewCity(bookmark.name)}
                             >
                                 {bookmark.name}
                             </Link>
                         </h3>
-                        <p onClick={() => toggleNewValue("searchedCity", bookmark.name, bookmark.id)}>
-                            default
-                        </p>
-                        <p onClick={() => toggleCity(bookmark.name, bookmark.id)}>
-                            remove
-                        </p>
+                        <div>
+                            <p onClick={() => toggleNewValue("searchedCity", bookmark.name, bookmark.id)}
+                                className={`default ${bookmark.id === id ? "checked" : ""}`}>
+                                {'\u2713'}
+                            </p>
+                            <p onClick={() => toggleCity(bookmark.name, bookmark.id)}
+                                id="remove">
+                            {'\u2715'}
+                            </p>
+                        </div>
                     </article>
                 )}
             </div>

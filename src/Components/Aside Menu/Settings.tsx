@@ -1,4 +1,5 @@
 import { Key } from "../../Hooks/useDefaultData";
+import { BasicData } from "../../WeatherApp";
 
 const allLanguages = [
     {name: "English", code: "en"}, 
@@ -11,38 +12,46 @@ const allUnits = [
 ];
 
 interface SettingsProps {
+    defaultData: BasicData;
     toggleNewValue : (key: Key, value: string) => void;
     handleLangUnitsChange: (settingsName: string, newCode: string) => void;
 }
 
 export const Settings = (props: SettingsProps) => {
-    const { toggleNewValue, handleLangUnitsChange } = props;
+    const { defaultData, toggleNewValue, handleLangUnitsChange } = props;
+
+    const { units, language } = defaultData;
 
     return (
         <section className='settings'>
-            <h2>Language</h2>
+            <h2>Settings</h2>
+            <h3>Language</h3>
             <div>
                 {allLanguages.map(({ name, code }) => 
-                    <p key={code}
+                    <p key={code}>
+                        <span className={`default ${language === code ? "checked" : ""}`}
                         onClick={() => (
                             toggleNewValue("language", code), 
                             handleLangUnitsChange("language", code)
                         )}
-                    >
-                        {name}
+                        >
+                            {name}
+                        </span>
                     </p> 
                 )}
             </div>
-            <h2>Units</h2>
+            <h3>Units</h3>
             <div>
                 {allUnits.map(({ name, code }) => 
-                    <p key={code} 
-                        onClick={() => (
-                            toggleNewValue("units", code), 
-                            handleLangUnitsChange("units", code)
-                        )}
-                    >
-                        {name}
+                    <p key={code}>
+                        <span className={`default ${units === code ? "checked" : ""}`}
+                            onClick={() => (
+                                toggleNewValue("units", code), 
+                                handleLangUnitsChange("units", code)
+                            )}
+                        >
+                            {name}
+                        </span>
                     </p> 
                 )}
             </div>

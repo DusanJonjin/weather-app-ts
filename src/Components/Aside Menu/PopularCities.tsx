@@ -20,9 +20,10 @@ export const PopularCities = (props: PopularCitiesProps) => {
             <h2>Popular cities</h2>
             <ul className={`cities-ul ${showAllCities ? 'all-cities-ul' : ''}`}>
                 {popularCities.map(city => 
-                    <li key={city} onClick={() => handleNewCity(city)}>
+                    <li key={city} >
                         <Link to={`${isHomeUrl ? "/" : insertNewCityInUrl(city, pathname)}`}
                             className='link'
+                            onClick={() => handleNewCity(city)}
                         >
                             {city}
                         </Link>

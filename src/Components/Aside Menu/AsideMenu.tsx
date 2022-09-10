@@ -48,7 +48,8 @@ const AsideMenu = (props: AsideMenuProps) => {
                     isHomeUrl={isHomeUrl}
                     handleNewCity={handleNewCity}
                 />
-                <Settings toggleNewValue={toggleNewValue} 
+                <Settings defaultData={defaultData}
+                    toggleNewValue={toggleNewValue} 
                     handleLangUnitsChange={handleLangUnitsChange}
                 />
             </div>

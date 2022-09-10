@@ -38,7 +38,10 @@ export const useDefaultData = (basicData: BasicData, city: City) => {
 
     const isBmarkedAndDefault = defaultData.id !== "" && defaultData.id === city.id;
 
-    console.log(defaultData.id, id)
+    const initialCity = {
+        searchedCity: "Belgrade", 
+        id: "274920360"
+    };
 
     useLayoutEffect(() => {
         if (key && value) {
@@ -60,17 +63,12 @@ export const useDefaultData = (basicData: BasicData, city: City) => {
 
     useLayoutEffect(() => {
         if (city && isBmarkedAndDefault) {
-            const newData = {...defaultData, searchedCity: "Belgrade", id: ""};
+            const newData = {...defaultData, ...initialCity};
             const newDefaultData = JSON.stringify(newData);
             localStorage.setItem("default-data", newDefaultData)
-            setDefaultData(prevDefData => ({...prevDefData, searchedCity: "Belgrade", id: ""}));
+            setDefaultData(prevDefData => ({...prevDefData, ...initialCity}));
         }
     },[city.toggle])
 
-    return (
-        {
-            toggleNewValue,
-            defaultData
-        }
-    );
+    return ({ toggleNewValue, defaultData });
 }

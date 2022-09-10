@@ -45,9 +45,9 @@ const DailyForecast = ({ weatherData }: { weatherData: WeatherData | null }) => 
         </p>
     );
 
-    const chosenDay = daily.data.filter(
+    const chosenDay = useMemo(() => daily.data.filter(
         day => dayDate(day.time, {timeZone: timezone}) === clickedDate
-    )[0];
+    ), [clickedDate])[0];
 
     const chosenDayHours = useMemo(() => 
         hourly.data.filter(hour => 

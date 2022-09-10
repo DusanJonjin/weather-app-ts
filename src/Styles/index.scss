@@ -17,6 +17,10 @@ body {
     margin: 0;
 }
 
+.menu-open {
+    overflow-y: hidden;
+}
+
 #root {
     display: flex;
     flex-direction: column;
@@ -24,7 +28,7 @@ body {
 }
 
 
-#weather-app {
+.weather-app {
     flex: 1;
     display: flex;
     justify-content: space-between;
@@ -41,11 +45,11 @@ body {
 }
 
 #low {
-    color: rgb(164, 212, 252);
+    color: hsl(207, 94%, 82%);
 }
 
 #high {
-    color: rgb(240, 124, 124);
+    color: hsl(0, 79%, 71%);
 }
 
 footer {
@@ -65,7 +69,7 @@ footer {
         margin: 0;
     }
     :nth-child(2){
-        font-style: italic;
+        
         span {
             font-size: 19px;
             font-family: 'Lobster', sans-serif;
@@ -133,7 +137,7 @@ footer {
         :nth-child(2) {
             margin-top: 1em;
             span{
-                font-size: 18px;
+                font-size: 17px;
             }
         }
     }

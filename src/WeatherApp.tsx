@@ -43,6 +43,7 @@ export interface BasicData {
 }
 
 export function WeatherApp() {
+
     const { pathname } = useScrollToTop();
 
     const { bookmarks, city, toggleCity } = useBookmarks();
@@ -78,7 +79,7 @@ export function WeatherApp() {
         );
         setMessage(settingsChange);
         setShowAsideMenu(false);
-    }
+    };
 
     const handleNewCity = (newCity: string): void => {
         if (searchedCity === newCity) return;
@@ -116,13 +117,17 @@ export function WeatherApp() {
         )
     }, [searchedCity, units, language]);
 
+    useEffect(() => {
+        document.body.classList.toggle("menu-open", showAsideMenu);
+    }, [showAsideMenu])
+
     return (
         <>
             <Header handleSearchSubmit={handleSearchSubmit}
                 toggleAsideMenu={toggleAsideMenu}
                 showAsideMenu={showAsideMenu}
             />
-            <main id='weather-app'>
+            <main className={`weather-app`}>
                 <AsideMenu showAsideMenu={showAsideMenu}
                     handleNewCity={handleNewCity}
                     bookmarks={bookmarks}

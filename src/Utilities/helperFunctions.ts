@@ -54,6 +54,26 @@ export const dateObj = (time: number, timezone?: string): dateObj => {
 };
 
 
+/* With this function we return an hour of a day (converted to
+2-digit hours from miliseconds),based on parameter. We need to
+use regEx to get the wanted value: */
+export const getHour = (time: number, timezone: string): string => {
+    const dateHour = new Date(time * 1000).toLocaleDateString(
+        'en', {hour:'2-digit', hour12: false, timeZone: timezone}
+    );
+    const hourAll: string[] | null = dateHour.match(/(?<=, ).*/);
+    const justHour = hourAll !== null ? hourAll[0] : ''
+    if (justHour === '24') return '00';
+    return justHour;
+};
+
+/* We use this function to filter out hourly array
+(only PAIR hours of a day (24h) will be shown): 
+const filterPairHours = dayHours => (
+    dayHours.filter(h => !(getHours(h) % 2))
+);*/
+
+
 const requiredUrlPart = '/DailyForecast/';
 
 export const insertNewCityInUrl = (newCity: string, pathname: string) => {
@@ -94,7 +114,7 @@ export const findCityFromStorageOrUrl = (pathname: string): BasicData => {
     const storageString: string | null = localStorage.getItem("default-data");
     if (pathname === '/') {
         if (storageString === null) return (
-            {...initialData, searchedCity: "Belgrade"}
+            {...initialData, searchedCity: "Belgrade", id: "274920360"}
         );
         const storageBdata: BasicData = JSON.parse(storageString);
         return storageBdata;
