@@ -18,7 +18,7 @@ body {
 }
 
 .menu-open {
-    overflow-y: hidden;
+    overflow-y: visible;
 }
 
 #root {
@@ -129,7 +129,7 @@ footer {
 
 @media only screen and (max-width: 899px) {
     .menu-open {
-        overflow-y: visible;
+        overflow-y: hidden;
     }
 
     footer {
