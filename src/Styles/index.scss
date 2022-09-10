@@ -127,7 +127,11 @@ footer {
     transform: rotateZ(180deg) translateY(115%);
 }
 
-@media only screen and (max-width: 920px) {
+@media only screen and (max-width: 899px) {
+    .menu-open {
+        overflow-y: visible;
+    }
+
     footer {
         font-size: 15px;
         flex-direction: column;
