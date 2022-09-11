@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { otherDetails, unitsName } from "../../Fixtures/miscData";
+import { Languages, Units } from "../../Models/app.data.models";
 
 interface OtherWeatherDetailsProps {
     [key: string]: string | number;
@@ -10,6 +12,8 @@ interface OtherWeatherDetailsProps {
     ozone: number;
     cloudCover: number;
     windBearing: number;
+    language: Languages;
+    units: Units;
 }
 
 const OtherWeatherDetails = (props: OtherWeatherDetailsProps) => {
@@ -22,7 +26,20 @@ const OtherWeatherDetails = (props: OtherWeatherDetailsProps) => {
         ozone,
         cloudCover,
         windBearing,
+        language,
+        units
     } = props;
+
+    const {
+    pressureName,
+    humidityName,
+    windSpeedName,
+    uvIndexName,
+    visibilityName,
+    ozoneName,
+    cloudCoverName,
+    windDirectionName,
+    } = otherDetails;
 
     const [showAllOtherDetails, setShowAllOtherDetails] = useState<boolean>(false);
 
@@ -36,14 +53,14 @@ const OtherWeatherDetails = (props: OtherWeatherDetailsProps) => {
     return (
         <div className='other-details-wrapper'>
             <div className={`other-details ${showAllOtherDetails ? 'show-details' : ''}`}>
-                <p>Pressure:&ensp;<span>{rounded(pressure)} hPa</span></p>
-                <p>Humidity:&ensp;<span>{humidityPercentage}</span></p>
-                <p>Wind speed:&ensp;<span>{rounded(windSpeed)} km/h</span></p>
-                <p>UV index:&ensp;<span>{uvIndex}</span></p>
-                <p>Visibility:&ensp;<span>{rounded(visibility)} km</span></p>
-                <p>Ozone:&ensp;<span>{rounded(ozone)} ppb</span></p>
-                <p>Cloud cover:&ensp;<span>{rounded(cloudCover)} Oktas</span></p>
-                <p>Wind direction:&ensp;<span>{windBearing}°</span></p>
+                <p>{pressureName[language]}:&ensp;<span>{rounded(pressure)} hPa</span></p>
+                <p>{humidityName[language]}:&ensp;<span>{humidityPercentage}</span></p>
+                <p>{windSpeedName[language]}:&ensp;<span>{rounded(windSpeed)} {unitsName.speed[units]}</span></p>
+                <p>{uvIndexName[language]}:&ensp;<span>{uvIndex}</span></p>
+                <p>{visibilityName[language]}:&ensp;<span>{rounded(visibility)} {unitsName.distance[units]}</span></p>
+                <p>{ozoneName[language]}:&ensp;<span>{rounded(ozone)} ppb</span></p>
+                <p>{cloudCoverName[language]}:&ensp;<span>{rounded(cloudCover)} Oktas</span></p>
+                <p>{windDirectionName[language]}:&ensp;<span>{windBearing}°</span></p>
             </div>
             <div className={`expand-triangle ${showAllOtherDetails ? 'is-expanded' : ''}`} 
                 onClick={() => toggleDetails()}

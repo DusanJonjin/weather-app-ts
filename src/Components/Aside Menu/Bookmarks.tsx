@@ -1,5 +1,5 @@
 import { Key } from "../../Hooks/useDefaultData";
-import { BasicData } from "../../WeatherApp";
+import { BasicData } from "../../Models/app.data.models";
 import { insertNewCityInUrl } from '../../Utilities/helperFunctions';
 import { CityNameID } from '../../Hooks/useBookmarks';
 import { Link } from "react-router-dom";
@@ -12,6 +12,7 @@ interface BookmarksProps {
     handleNewCity: (newValue: string) => void;
     pathname: string;
     isHomeUrl: boolean;
+    bmarksHeading: string;
 }
 
 export const Bookmarks = (props: BookmarksProps) => {
@@ -22,16 +23,15 @@ export const Bookmarks = (props: BookmarksProps) => {
         toggleCity, 
         handleNewCity,
         pathname,
-        isHomeUrl
+        isHomeUrl,
+        bmarksHeading
     } = props;
 
     const { id } = defaultData;
 
-    console.log(id)
-
     return (
         <section className='bookmarked-cities'>
-            <h2>Bookmarked cities</h2>
+            <h2>{bmarksHeading}</h2>
             <div className='bm-cities-wrap'>
                 {bookmarks.map(bookmark =>
                     <article key={bookmark.id} id="bookmark">

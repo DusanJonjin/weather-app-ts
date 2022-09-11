@@ -2,8 +2,9 @@ import { useMemo } from 'react';
 import CurrentWeather from '../Components/Home/CurrentWeather';
 import SevenDayForecast from '../Components/Home/SevenDayForecast';
 import { WeatherData, HourData, DayData } from '../Models/weather.data.models';
+import { Languages, Units } from '../Models/app.data.models';
 import { CityNameID } from '../Hooks/useBookmarks';
-import { dayDate } from '../Utilities/helperFunctions';
+import { dayDate } from '../Utilities/dateFunctions';
 
 interface HomeProps {
     weatherData: WeatherData | null;
@@ -11,6 +12,8 @@ interface HomeProps {
     toggleCity: (name: string, id:string) => void;
     bookmarks: CityNameID[];
     openAsideMenu: () => void;
+    language: Languages;
+    units: Units;
 }
 
 const Home = (props: HomeProps) => {
@@ -20,7 +23,9 @@ const Home = (props: HomeProps) => {
         message, 
         toggleCity, 
         bookmarks,
-        openAsideMenu
+        openAsideMenu,
+        language,
+        units
     } = props;
 
     if (weatherData === null) return (
@@ -65,10 +70,14 @@ const Home = (props: HomeProps) => {
                     toggleCity={toggleCity}
                     bookmarks={bookmarks}
                     openAsideMenu={openAsideMenu}
+                    language={language}
+                    units={units}
                 />
                 <SevenDayForecast city={city}
                     timezone={timezone}
                     dailyData={dailyData} 
+                    language={language}
+                    units={units}
                 />
             </div>
         </article>

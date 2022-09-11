@@ -1,78 +1,4 @@
-import { BasicData } from "../WeatherApp";
-
-export const dayDate = (time: number, options: {[key:string]: string | boolean}): string => (
-    new Date(time * 1000).toLocaleDateString('en', options)
-);
-
-
-interface dateObj {
-    day: string,
-    date: string,
-    year: string,
-    localTime: string
-}
-
-export const dateObj = (time: number, timezone?: string): dateObj => {
-    const completeDateString: string = new Date(time * 1000).toLocaleDateString('en',
-        {
-            weekday: 'long',
-            year: 'numeric',
-            month: 'long',
-            day: '2-digit',
-            hour: '2-digit',
-            minute: '2-digit',
-            hour12: false,
-            timeZone: timezone
-        }
-    );
-
-   //Web browsers don't return the same Locale string for the date
-    const completeDateArr: string[] = completeDateString.split(', ');
-
-    const day = completeDateArr[0];
-    const dateUSA = completeDateArr[1];
-
-    const dateUSAarr: string[] = dateUSA.split(' ');
-    const date = `${dateUSAarr[1]} ${dateUSAarr[0]}`
-
-    let year: string;
-    let localTime: string;
-
-    if (completeDateArr.length < 4) {
-        const yearAndTimeArr: string[] = completeDateArr[2].split(' ');
-        year = yearAndTimeArr[0];
-        localTime = yearAndTimeArr[2];
-    }
-    else {
-        year = completeDateArr[2];
-        localTime = completeDateArr[3]
-    }
-
-    return {
-        day, date, year, localTime
-    }
-};
-
-
-/* With this function we return an hour of a day (converted to
-2-digit hours from miliseconds),based on parameter. We need to
-use regEx to get the wanted value: */
-export const getHour = (time: number, timezone: string): string => {
-    const dateHour = new Date(time * 1000).toLocaleDateString(
-        'en', {hour:'2-digit', hour12: false, timeZone: timezone}
-    );
-    const hourAll: string[] | null = dateHour.match(/(?<=, ).*/);
-    const justHour = hourAll !== null ? hourAll[0] : ''
-    if (justHour === '24') return '00';
-    return justHour;
-};
-
-/* We use this function to filter out hourly array
-(only PAIR hours of a day (24h) will be shown): 
-const filterPairHours = dayHours => (
-    dayHours.filter(h => !(getHours(h) % 2))
-);*/
-
+import { BasicData } from "../Models/app.data.models";
 
 const requiredUrlPart = '/DailyForecast/';
 
@@ -83,7 +9,6 @@ export const insertNewCityInUrl = (newCity: string, pathname: string) => {
     const newUrl = requiredUrlPart + newCity + underscoreDate;
     return newUrl;
 };
-
 
 const initialData: BasicData = {
     searchedCity: "",
@@ -107,7 +32,7 @@ const findCityFromUrl = (pathname: string, storageString: string | null): BasicD
 
     const storageBData: BasicData = JSON.parse(storageString);
     return {...storageBData, searchedCity: city};
-}
+};
 
 // Do this on first App mount and home URL or DailyForecast URL page refresh
 export const findCityFromStorageOrUrl = (pathname: string): BasicData => {

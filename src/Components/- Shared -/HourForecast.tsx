@@ -1,13 +1,18 @@
 import Image from './Image';
-import { getHour } from '../../Utilities/helperFunctions';
+import { getHour } from '../../Utilities/dateFunctions';
+import { hourlyFcast, unitsName } from '../../Fixtures/miscData';
 import { HourData } from "../../Models/weather.data.models";
+import { Languages, Units } from "../../Models/app.data.models";
 
 interface HourForecastProps {
-    chosenDayHours: HourData[],
-    timezone: string
+    chosenDayHours: HourData[];
+    timezone: string;
+    language: Languages;
+    units: Units;
 }
 
-const HourForecast = ({ chosenDayHours, timezone }: HourForecastProps) => {
+const HourForecast = (props: HourForecastProps) => {
+    const { chosenDayHours, timezone, language, units } = props;
 
     const tableRowLabels = ['hour', 'icon', 'temperature'];
 
@@ -21,7 +26,7 @@ const HourForecast = ({ chosenDayHours, timezone }: HourForecastProps) => {
                 />
             );
             case 'temperature': return (
-                hour?.temperature.toFixed(1) + '°C'
+                hour?.temperature.toFixed(1) + `${unitsName.temp[units]}`
             );
             default: //do nothing;
         }
@@ -29,7 +34,7 @@ const HourForecast = ({ chosenDayHours, timezone }: HourForecastProps) => {
 
     return (
         <section className='hourly-forecast'>
-            <h3>Hourly forecast</h3>
+            <h3>{hourlyFcast[language]}</h3>
             <div className='table-wrap'>
                 <table>
                     <tbody>

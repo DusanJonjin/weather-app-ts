@@ -189,19 +189,8 @@
 
 @media only screen and (max-width: 1250px) {
     #header {
-        justify-content: space-between;
-
-        .hamburger-wrap {
-            display: block;
-        }
-    }
-
-}
-
-@media only screen and (max-width: 653px) {
-
-    #header {
         padding: 3px 0 8px 0;
+        justify-content: space-between;
         
         h1 {
             font-size: 23px;
@@ -214,9 +203,8 @@
         }
 
         form {
-            padding: 9px 0 6px 0;
-            order: 2;
-            margin: 0 auto;
+            padding: 9px 25px 5px 25px;
+            
             
 
             input[type=search] {
@@ -235,5 +223,21 @@
             order: 2;
             flex: 0 0 100%;
         }
+
+        .hamburger-wrap {
+            display: block;
+            margin: 0 .8em 0 .5em;
+        }
     }
+}
+
+@media only screen and (max-width: 656px) {
+    #header {
+
+        form {
+            order: 2;
+            margin: 0 auto;
+        }
+    }
+
 }

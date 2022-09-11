@@ -8,8 +8,10 @@ import {
     HourForecast
 } from '../- Shared -/AllSharedComponents';
 import { Currently, HourData } from "../../Models/weather.data.models";
+import { Languages, Units } from '../../Models/app.data.models';
 import { CityNameID } from '../../Hooks/useBookmarks';
-import { dateObj } from '../../Utilities/helperFunctions';
+import { dateObj } from '../../Utilities/dateFunctions';
+import { unitsName } from "../../Fixtures/miscData";
 
 interface CurrentWeatherProps {
     cityID: string,
@@ -21,6 +23,8 @@ interface CurrentWeatherProps {
     toggleCity: (name: string, id:string) => void;
     bookmarks: CityNameID[];
     openAsideMenu: () => void;
+    language: Languages;
+    units: Units;
 }
 
 const CurrentWeather = (props: CurrentWeatherProps) => {
@@ -34,7 +38,9 @@ const CurrentWeather = (props: CurrentWeatherProps) => {
         currHourForecast, 
         toggleCity, 
         bookmarks ,
-        openAsideMenu
+        openAsideMenu,
+        language,
+        units
     } = props;
 
     const { 
@@ -45,7 +51,7 @@ const CurrentWeather = (props: CurrentWeatherProps) => {
         ...otherDetails
     } = currently;
 
-    const { day, date, year, localTime } = dateObj(time, timezone);
+    const { day, date, year, localTime } = dateObj(time, language, timezone);
 
     const isBookmarked: boolean = !!bookmarks.find(bookmark => bookmark.id === cityID);
 
@@ -63,7 +69,7 @@ const CurrentWeather = (props: CurrentWeatherProps) => {
             <p className='date-and-year'>
                 <Day day={day} />,&nbsp;
                 <FullDate fullDate={date} />&nbsp;
-                <Year year={year} /> at <span>{localTime + 'h'}</span>
+                <Year year={year} />&nbsp; - &nbsp;<span>{localTime + 'h'}</span>
             </p>
             <div className='current-wrapper'>
                 <div className='image-wrapper'>
@@ -73,13 +79,20 @@ const CurrentWeather = (props: CurrentWeatherProps) => {
                 </div>
                 <div className='temp-summary-wrapper'>
                     <p id='temp-now'>
-                        {temperature.toFixed(1)}<sup>°C</sup>
+                        {temperature.toFixed(1)}<sup>{unitsName.temp[units]}</sup>
                     </p>
                     <p className='current-summary'>{summary}</p>
                 </div>
-                <OtherWeatherDetails { ...otherDetails } />
+                <OtherWeatherDetails { ...otherDetails } 
+                    language={language}
+                    units={units}
+                />
             </div>
-            <HourForecast chosenDayHours={currHourForecast} timezone={timezone} />
+            <HourForecast chosenDayHours={currHourForecast} 
+                timezone={timezone} 
+                language={language}
+                units={units}
+            />
         </section>
     );
 }

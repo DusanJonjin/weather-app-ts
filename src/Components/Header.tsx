@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { popularCities } from '../Fixtures/miscData';
+import { popularCities, header } from '../Fixtures/miscData';
+import { Languages } from "../Models/app.data.models";
 
 interface HeaderProps {
     handleSearchSubmit: (
@@ -9,11 +10,16 @@ interface HeaderProps {
     ) => void
     toggleAsideMenu: () => void;
     showAsideMenu: boolean;
+    language: Languages;
 }
 
 const Header = (props: HeaderProps) => {
-
-    const { handleSearchSubmit, toggleAsideMenu, showAsideMenu } = props;
+    const { 
+        handleSearchSubmit,
+        toggleAsideMenu,
+        showAsideMenu,
+        language
+    } = props;
 
     const [inputValue, setInputValue] = useState<string>('');
 
@@ -49,7 +55,7 @@ const Header = (props: HeaderProps) => {
                   className={isHomeUrl ? '' : 'hide'}
             >
                 <input type='search'  
-                       placeholder='Enter a city name...'
+                       placeholder={`${header.input[language]}...`}
                        ref={inputRef}
                        onChange={e => handleInputChange(e)}
                        value={inputValue} 
@@ -57,11 +63,11 @@ const Header = (props: HeaderProps) => {
                 <div>
                     {showSuggestions ? searchSuggestions : <></>}
                 </div>
-                <button id="search-button" type='submit'>Search</button>
+                <button id="search-button" type='submit'>{header.button[language]}</button>
             </form>
             <div className={`back ${isHomeUrl ? 'hide' : ''}`}>
                 <Link to='/' className='link'>
-                    &#8618; ☼ Home page
+                    &#8618; ☼ {header.backLink[language]}
                 </Link>
             </div>
             <div className='hamburger-wrap' onClick={() => toggleAsideMenu()}>

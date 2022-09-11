@@ -2,9 +2,16 @@ import { Bookmarks } from './Bookmarks';
 import { PopularCities } from './PopularCities';
 import { Settings } from './Settings';
 import { useDefaultData } from '../../Hooks/useDefaultData';
-import { BasicData } from "../../WeatherApp";
+import { BasicData, Languages, languagesList ,Units, unitsList } from '../../Models/app.data.models';
 import { City, CityNameID } from '../../Hooks/useBookmarks';
+import { asideMenu } from '../../Fixtures/miscData';
 import { useLocation } from "react-router-dom";
+
+const { 
+    bmarks, 
+    popCities, 
+    ...allSettings
+} = asideMenu;
 
 interface AsideMenuProps {
     showAsideMenu: boolean;
@@ -12,7 +19,8 @@ interface AsideMenuProps {
     bookmarks: CityNameID[];
     toggleCity: (name: string, id: string) => void;
     basicData: BasicData;
-    handleLangUnitsChange: (settingsName: string, newCode: string) => void;
+    handleLanguageChange: (language: Languages) => void;
+    handleUnitsChange: (units: Units) => void;
     city: City;
 }
 
@@ -23,7 +31,8 @@ const AsideMenu = (props: AsideMenuProps) => {
         bookmarks,
         toggleCity,
         basicData,
-        handleLangUnitsChange,
+        handleLanguageChange,
+        handleUnitsChange,
         city
     } = props;
 
@@ -33,6 +42,14 @@ const AsideMenu = (props: AsideMenuProps) => {
 
     const { toggleNewValue, defaultData } = useDefaultData(basicData, city);
 
+    const { language, units } = basicData;
+
+    const lang = languagesList.includes(language) ? language : "en"; 
+
+    const bmarksHeading = bmarks[lang]; 
+
+    const popCitiesHeading = popCities[lang];
+    
     return (
         <aside className={`aside ${showAsideMenu ? '' : 'hide-aside'}`}>
             <div>
@@ -43,14 +60,19 @@ const AsideMenu = (props: AsideMenuProps) => {
                     handleNewCity={handleNewCity}
                     pathname={pathname}
                     isHomeUrl={isHomeUrl}
+                    bmarksHeading={bmarksHeading}
                 />
                 <PopularCities pathname={pathname}
                     isHomeUrl={isHomeUrl}
                     handleNewCity={handleNewCity}
+                    popCitiesHeading={popCitiesHeading}
                 />
                 <Settings defaultData={defaultData}
                     toggleNewValue={toggleNewValue} 
-                    handleLangUnitsChange={handleLangUnitsChange}
+                    handleLanguageChange={handleLanguageChange}
+                    handleUnitsChange={handleUnitsChange}
+                    allSettings={allSettings}
+                    lang={lang}
                 />
             </div>
         </aside>

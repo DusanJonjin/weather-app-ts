@@ -3,11 +3,20 @@ import DayForecast from '../Components/DailyForecast/DayForecast';
 import HourForecast from '../Components/- Shared -/HourForecast';
 import Pagination from '../Components/DailyForecast/Pagination';
 import { WeatherData } from '../Models/weather.data.models';
-import { dayDate, dateObj } from '../Utilities/helperFunctions';
+import { Languages, Units } from '../Models/app.data.models';
+import { dayDate, dateObj } from '../Utilities/dateFunctions';
 import { useLocation } from 'react-router-dom';
 import { messages } from '../Fixtures/miscData';
 
-const DailyForecast = ({ weatherData }: { weatherData: WeatherData | null }) => {
+interface DailyForecastProps {
+    weatherData: WeatherData | null;
+    language: Languages;
+    units: Units;
+}
+
+const DailyForecast = (props: DailyForecastProps) => {
+    const { weatherData, language, units } = props;
+
     const { badHomeSearch, networkError, badDate } = messages;
 
     if (weatherData === null) return (
@@ -35,7 +44,7 @@ const DailyForecast = ({ weatherData }: { weatherData: WeatherData | null }) => 
     //All dates from daily object in one array:
     const allDailyDatesArr = daily.data.map(day => {
         const fullDate = dayDate(day.time, {timeZone: timezone});
-        const dateObject = dateObj(day.time, timezone);
+        const dateObject = dateObj(day.time, language, timezone);
         return {...dateObject, fullDate}
     });
 
@@ -44,6 +53,8 @@ const DailyForecast = ({ weatherData }: { weatherData: WeatherData | null }) => 
             {badDate}
         </p>
     );
+
+    console.log(language)
 
     const chosenDay = useMemo(() => daily.data.filter(
         day => dayDate(day.time, {timeZone: timezone}) === clickedDate
@@ -61,10 +72,14 @@ const DailyForecast = ({ weatherData }: { weatherData: WeatherData | null }) => 
                 <DayForecast chosenDay={chosenDay}
                     city={city}
                     country={country}
-                    timezone={timezone}                      
+                    timezone={timezone} 
+                    language={language}
+                    units={units}                  
                 />
                 <HourForecast chosenDayHours={chosenDayHours}
                     timezone={timezone}
+                    language={language}
+                    units={units}
                 /> 
                 <Pagination clickedDate={clickedDate}
                     allDailyDatesArr={allDailyDatesArr}

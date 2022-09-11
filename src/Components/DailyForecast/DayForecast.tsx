@@ -8,16 +8,27 @@ import {
     OtherWeatherDetails
 } from '../- Shared -/AllSharedComponents';
 import { DayData } from '../../Models/weather.data.models';
-import { dateObj } from '../../Utilities/helperFunctions';
+import { Languages, Units } from '../../Models/app.data.models';
+import { dateObj } from '../../Utilities/dateFunctions';
 
 interface DayForecastProps {
-    chosenDay: DayData,
-    city: string,
-    country: string,
-    timezone: string,
+    chosenDay: DayData;
+    city: string;
+    country: string;
+    timezone: string;
+    language: Languages;
+    units: Units;
 }
 
-const DayForecast = ({ chosenDay, city, country, timezone }: DayForecastProps) => {
+const DayForecast = (props: DayForecastProps) => {
+    const { 
+        chosenDay,
+        city,
+        country,
+        timezone,
+        language,
+        units
+     } = props;
 
     const { time,
             summary,
@@ -27,7 +38,7 @@ const DayForecast = ({ chosenDay, city, country, timezone }: DayForecastProps) =
             ...otherDetails
     } = chosenDay;
 
-    const {day, date, year} = dateObj(time, timezone);
+    const {day, date, year} = dateObj(time, language, timezone);
 
 
     return (
@@ -50,8 +61,13 @@ const DayForecast = ({ chosenDay, city, country, timezone }: DayForecastProps) =
                 <TempLowHigh tempLow={temperatureMin.toFixed(1)}
                     tempHigh={temperatureMax.toFixed(1)}
                     dayPage={true}
+                    language={language}
+                    units={units}
                 />
-                <OtherWeatherDetails { ...otherDetails } />
+                <OtherWeatherDetails { ...otherDetails }
+                    language={language}
+                    units={units}
+                 />
             </div>
         </section>
     );

@@ -4,11 +4,13 @@ import Home from './Pages/Home';
 import DailyForecast from './Pages/DailyForecast';
 import AsideMenu from './Components/Aside Menu/AsideMenu';
 import { WeatherData } from './Models/weather.data.models';
+import { BasicData, Languages, Units } from './Models/app.data.models';
 import { getWeather } from './API/api';
 import { messages } from './Fixtures/miscData';
 import { useScrollToTop } from './Hooks/ScrollToTop';
 import { useBookmarks } from './Hooks/useBookmarks';
 import { findCityFromStorageOrUrl } from './Utilities/helperFunctions';
+import { useLocation } from 'react-router-dom';
 import { Routes, Route } from 'react-router-dom';
 
 const { 
@@ -35,16 +37,9 @@ const addMessageClass = (message: string): string => {
     }
 };
 
-export interface BasicData {
-    searchedCity: string,
-    id: string;
-    units: string;
-    language: string;
-}
-
 export function WeatherApp() {
 
-    const { pathname } = useScrollToTop();
+    const { pathname } = useLocation();
 
     const { bookmarks, city, toggleCity } = useBookmarks();
 
@@ -60,6 +55,8 @@ export function WeatherApp() {
     const [showAsideMenu, setShowAsideMenu] = useState<boolean>(false);
 
     const { searchedCity, units, language } = basicData;
+
+    useScrollToTop(pathname, showAsideMenu);
  
     const toggleAsideMenu = (): void => {
         setShowAsideMenu(prevAside => !prevAside);
@@ -69,17 +66,22 @@ export function WeatherApp() {
         setShowAsideMenu(true);
     }
 
-    const handleLangUnitsChange = (settingsName: string, newCode: string) => {
-        if (units === newCode || language === newCode) return;
+    const handleSettingsChange = () => {
         setStatus('isLoading');
         setWeatherData(null);
-        setBasicData(prevBData => settingsName === "units" 
-            ? ({...prevBData, units: newCode}) 
-            : ({...prevBData, language: newCode})
-        );
         setMessage(settingsChange);
         setShowAsideMenu(false);
     };
+
+    const handleLanguageChange = (language: Languages) => {
+        handleSettingsChange();
+        setBasicData(prevBData => ({...prevBData, language}));
+    };
+
+    const handleUnitsChange = (units: Units) => {
+        handleSettingsChange();
+        setBasicData(prevBData => ({...prevBData, units}));
+    }
 
     const handleNewCity = (newCity: string): void => {
         if (searchedCity === newCity) return;
@@ -126,6 +128,7 @@ export function WeatherApp() {
             <Header handleSearchSubmit={handleSearchSubmit}
                 toggleAsideMenu={toggleAsideMenu}
                 showAsideMenu={showAsideMenu}
+                language={language}
             />
             <main className={`weather-app`}>
                 <AsideMenu showAsideMenu={showAsideMenu}
@@ -133,7 +136,8 @@ export function WeatherApp() {
                     bookmarks={bookmarks}
                     toggleCity={toggleCity}
                     basicData={basicData}
-                    handleLangUnitsChange={handleLangUnitsChange}
+                    handleLanguageChange={handleLanguageChange}
+                    handleUnitsChange={handleUnitsChange}
                     city={city}
                 />
                 {{
@@ -156,13 +160,18 @@ export function WeatherApp() {
                                             toggleCity={toggleCity}
                                             bookmarks={bookmarks}
                                             openAsideMenu={openAsideMenu}
+                                            language={language}
+                                            units={units}
                                         />
                                     } 
                                 />
                                 <Route 
                                     path='/DailyForecast/*' 
                                     element={
-                                        <DailyForecast weatherData={weatherData} />
+                                        <DailyForecast weatherData={weatherData}
+                                            language={language}
+                                            units={units}
+                                         />
                                     } 
                                 />
                                 <Route 

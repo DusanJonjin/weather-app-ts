@@ -7,17 +7,17 @@ interface PopularCitiesProps {
     pathname: string;
     isHomeUrl: boolean;
     handleNewCity: (newValue: string) => void;
+    popCitiesHeading: string;
 }
 
 export const PopularCities = (props: PopularCitiesProps) => {
-    const { pathname, isHomeUrl, handleNewCity } = props;
+    const { pathname, isHomeUrl, handleNewCity, popCitiesHeading } = props;
 
     const [showAllCities, setShowAllCities] = useState<boolean>(false);
 
-
     return (
         <section className={`popular-cities`}>
-            <h2>Popular cities</h2>
+            <h2>{popCitiesHeading}</h2>
             <ul className={`cities-ul ${showAllCities ? 'all-cities-ul' : ''}`}>
                 {popularCities.map(city => 
                     <li key={city} >
