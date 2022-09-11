@@ -1,5 +1,5 @@
 import { useState, useLayoutEffect } from "react";
-import { BasicData } from "../WeatherApp";
+import { BasicData } from "../Models/app.data.models";
 import { City } from '../Hooks/useBookmarks';
 
 export type Key = "" | "searchedCity" | "language" | "units";

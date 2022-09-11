@@ -1,6 +1,6 @@
 import { WeatherData } from "../Models/weather.data.models";
 import { GeoLocationIq } from "../Models/location.data.models";
-import { BasicData } from "../WeatherApp";
+import { BasicData } from "../Models/app.data.models";
 
 interface LocatioIqFetchErr {
     error: string;
