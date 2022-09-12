@@ -6,7 +6,7 @@ interface LocatioIqFetchErr {
     error: string;
 }
 
-const BASE_DARKSKY_URL = "https://thingproxy.freeboard.io/fetch/https://api.darksky.net/forecast/";
+const BASE_DARKSKY_URL = "https://serene-basin-16003.herokuapp.com/https://api.darksky.net/forecast/";
 
 const GEODATA_KEY = import.meta.env.VITE_GEODATA_KEY;
 
