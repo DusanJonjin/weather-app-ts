@@ -44,14 +44,16 @@ export const Bookmarks = (props: BookmarksProps) => {
                             </Link>
                         </h3>
                         <div>
-                            <p onClick={() => toggleNewValue("searchedCity", bookmark.name, bookmark.id)}
+                            <button onClick={() => toggleNewValue("searchedCity", bookmark.name, bookmark.id)}
+                                title="Set as default"
                                 className={`default ${bookmark.id === id ? "checked" : ""}`}>
                                 {'\u2713'}
-                            </p>
-                            <p onClick={() => toggleCity(bookmark.name, bookmark.id)}
+                            </button>
+                            <button onClick={() => toggleCity(bookmark.name, bookmark.id)}
+                                title="Remove bookmark"
                                 id="remove">
                             {'\u2715'}
-                            </p>
+                            </button>
                         </div>
                     </article>
                 )}

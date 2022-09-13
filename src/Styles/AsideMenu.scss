@@ -66,11 +66,14 @@
         }
     }
 
-    p {
+    button {
         font-size: 14px;
+        background-color: transparent;
         padding: 1px 5px;
         margin: 8px 0;
+        border: none;
         border-radius: 5px;
+        outline: none;
     }
 
     div{
@@ -191,7 +194,7 @@
 
     #bookmark {
 
-        p {
+        button {
             user-select: none;
             cursor: pointer;
         }
@@ -207,6 +210,10 @@
 
     .settings {
         margin-bottom: 3em;
+
+        p {
+            cursor: pointer;
+        }
     }
 
     .default:hover {

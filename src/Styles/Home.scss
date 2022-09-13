@@ -143,8 +143,8 @@
                 outline: 0;
 
                 #day-date{
-                    font-size: 16px;
                     font-family: var.$roboto-font;
+                    color: hsla(60, 70%, 85%);
                     padding: 3px 7px 0 7px;
                     margin: 5px 0;
                     line-height: 1.3em;
@@ -153,10 +153,19 @@
                     flex-direction: column;
                     justify-content: center;  
                     align-items: center;
-                    color: rgb(241, 241, 175);
 
                     span {
+                        font-family: 'Open sans', sans-serif;
+                        font-size: 15px;
+                        font-weight: 500;
                         display: block;
+                    }
+
+                    span:last-child {
+                        font-family: var.$roboto-font;
+                        font-size: 14px;
+                        font-weight: 400;
+                        color: hsla(60, 70%, 85%, 0.85);
                     }
                 }
 
@@ -198,9 +207,6 @@
     bottom: 0;
     right: 0;
     transition: .2s ease-in-out;
-    h4 {
-        font-weight: 500;
-    }
 }
 
 .one-day-card:hover { 
@@ -222,7 +228,7 @@
         }
 
         .date-and-year {
-            font-size: 1.1rem;
+            font-size: 1rem;
             padding: .8em 0 0 0;
         }
 
