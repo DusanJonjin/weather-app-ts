@@ -27,7 +27,7 @@
     color: var.$summary-color;
     text-align: center;
     background-color: hsl(240, 26%, 22%);
-    padding: 1.1em 0;
+    padding: 1em 0;
     margin: 0 0 20px 0;
 }
 
@@ -47,22 +47,22 @@
         width: 300px;
         color: hsl(207, 9%, 79%);
         background-color: hsl(240, 26%, 19%);
-        border-radius: 7px;
+        border-radius: 10px;
         margin: 0 2em;
 
         p {        
             font-size: 1.35rem;
             font-family: var.$roboto-font;
             padding: 0 15px;
-            margin: 15px 0;
+            margin: 20px 0;
             
             span {
                 display: block;
-                font-size: 4rem;
+                font-size: 3.75rem;
                 font-weight: 500;
                 
                 sup {
-                    font-size: 2.5rem;
+                    font-size: 2rem;
 
                 }
             }
@@ -81,7 +81,7 @@
         }
         .show-details {
             @include mixin.show-details;
-            height: 365px;
+            height: 320px;
         }
     }
 }
@@ -207,7 +207,7 @@
             }
 
             .show-details {
-                height: 360px;
+                height: 310px;
             }
         }
     }
@@ -272,7 +272,7 @@
             }
 
             .show-details {
-                height: 340px;
+                height: 300px;
             }
         }      
     }

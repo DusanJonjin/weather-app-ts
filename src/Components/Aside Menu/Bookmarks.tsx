@@ -9,7 +9,7 @@ interface BookmarksProps {
     defaultData: BasicData;
     toggleNewValue: (key: Key, value: string, id: string) => void;
     toggleCity: (name: string, id:string) => void;
-    handleNewCity: (newValue: string) => void;
+    handleCityChange: (newValue: string) => void;
     pathname: string;
     isHomeUrl: boolean;
     bmarksHeading: string;
@@ -21,7 +21,7 @@ export const Bookmarks = (props: BookmarksProps) => {
         defaultData, 
         toggleNewValue, 
         toggleCity, 
-        handleNewCity,
+        handleCityChange,
         pathname,
         isHomeUrl,
         bmarksHeading
@@ -38,7 +38,7 @@ export const Bookmarks = (props: BookmarksProps) => {
                         <h3>
                             <Link to={`${isHomeUrl ? "/" : insertNewCityInUrl(bookmark.name, pathname)}`}
                                 className='link'
-                                onClick={() => handleNewCity(bookmark.name)}
+                                onClick={() => handleCityChange(bookmark.name)}
                             >
                                 {bookmark.name}
                             </Link>

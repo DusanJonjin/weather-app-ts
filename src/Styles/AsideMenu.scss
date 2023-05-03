@@ -22,8 +22,6 @@
             font-size: 18px;
             font-weight: 500;
             color: var.$subtitle-color;
-            text-decoration:underline;
-            
         }
     }
 
@@ -34,14 +32,14 @@
 }
 
 .bookmarked-cities {
-    margin: 1.7em 0;
+    margin: 1.75em 0;
 
     h2 {
         margin: .5em 0;
     }
 
     .bm-cities-wrap {
-        padding-bottom: .3em;
+        padding-bottom: .75em;
         border-bottom: 2px solid hsl(240, 18%, 26%);
     }
 }
@@ -100,7 +98,7 @@
         gap: .4em 2.5em;
         padding: 0 0 2em 0;
         margin: 0;
-        height: 293px;
+        height: 295px;
         list-style-type: none;
         transition: .3s ease;
         border-bottom: 2px solid hsl(240, 18%, 26%);
@@ -131,7 +129,7 @@
 
 .settings {
     padding-bottom: .5em;
-    margin-top: 1.3em;
+    margin-top: 1.5em;
     margin-bottom: 12em;
     border-bottom: 2px solid hsl(240, 18%, 26%);
 
@@ -139,8 +137,7 @@
         font-family: var.$open-sans-font;
         font-size: 16px;
         font-weight: 400;
-        color: var.$subtitle-color;
-
+        color: hsla(36, 100%, 88%, 0.9);;
     }
 
     div {
@@ -187,7 +184,8 @@
 @media only screen and (min-width:1250px){
     .aside {
         position: relative;
-        width: 25%;
+        width: 24%;
+        max-width: 430px;
         height: auto;
         transform: none;
     }

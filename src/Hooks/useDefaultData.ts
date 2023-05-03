@@ -1,6 +1,7 @@
 import { useState, useLayoutEffect } from "react";
 import { BasicData } from "../Models/app.data.models";
 import { City } from '../Hooks/useBookmarks';
+import { initialCity } from "../Utilities/helperFunctions";
 
 export type Key = "" | "searchedCity" | "language" | "units";
 
@@ -37,11 +38,6 @@ export const useDefaultData = (basicData: BasicData, city: City) => {
     const isDefault = key !== "" && defaultData[key] === value;
 
     const isBmarkedAndDefault = defaultData.id !== "" && defaultData.id === city.id;
-
-    const initialCity = {
-        searchedCity: "Belgrade", 
-        id: "274920360"
-    };
 
     useLayoutEffect(() => {
         if (key && value) {

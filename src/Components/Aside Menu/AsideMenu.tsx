@@ -15,7 +15,7 @@ const {
 
 interface AsideMenuProps {
     showAsideMenu: boolean;
-    handleNewCity: (newValue: string) => void;
+    handleCityChange: (newValue: string) => void;
     bookmarks: CityNameID[];
     toggleCity: (name: string, id: string) => void;
     basicData: BasicData;
@@ -27,7 +27,7 @@ interface AsideMenuProps {
 const AsideMenu = (props: AsideMenuProps) => {
     const { 
         showAsideMenu,
-        handleNewCity,
+        handleCityChange,
         bookmarks,
         toggleCity,
         basicData,
@@ -57,14 +57,14 @@ const AsideMenu = (props: AsideMenuProps) => {
                     defaultData={defaultData}
                     toggleNewValue={toggleNewValue}
                     toggleCity={toggleCity}
-                    handleNewCity={handleNewCity}
+                    handleCityChange={handleCityChange}
                     pathname={pathname}
                     isHomeUrl={isHomeUrl}
                     bmarksHeading={bmarksHeading}
                 />
                 <PopularCities pathname={pathname}
                     isHomeUrl={isHomeUrl}
-                    handleNewCity={handleNewCity}
+                    handleCityChange={handleCityChange}
                     popCitiesHeading={popCitiesHeading}
                 />
                 <Settings defaultData={defaultData}

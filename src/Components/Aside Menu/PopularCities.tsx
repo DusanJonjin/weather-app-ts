@@ -6,12 +6,12 @@ import { Link } from "react-router-dom";
 interface PopularCitiesProps {
     pathname: string;
     isHomeUrl: boolean;
-    handleNewCity: (newValue: string) => void;
+    handleCityChange: (newValue: string) => void;
     popCitiesHeading: string;
 }
 
 export const PopularCities = (props: PopularCitiesProps) => {
-    const { pathname, isHomeUrl, handleNewCity, popCitiesHeading } = props;
+    const { pathname, isHomeUrl, handleCityChange, popCitiesHeading } = props;
 
     const [showAllCities, setShowAllCities] = useState<boolean>(false);
 
@@ -23,7 +23,7 @@ export const PopularCities = (props: PopularCitiesProps) => {
                     <li key={city} >
                         <Link to={`${isHomeUrl ? "/" : insertNewCityInUrl(city, pathname)}`}
                             className='link'
-                            onClick={() => handleNewCity(city)}
+                            onClick={() => handleCityChange(city)}
                         >
                             {city}
                         </Link>

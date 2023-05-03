@@ -19,6 +19,8 @@ const DailyForecast = (props: DailyForecastProps) => {
 
     const { badHomeSearch, networkError, badDate } = messages;
 
+    const { pathname } =  useLocation();
+
     if (weatherData === null) return (
         <div className={`message sad`}>
             <p>{badHomeSearch}</p>
@@ -32,10 +34,6 @@ const DailyForecast = (props: DailyForecastProps) => {
             {networkError}
         </p>
     );
-
-    const location = useLocation();
-
-    const { pathname } = location;
 
     const clickedDateArray = pathname.match(/(?<=_).*/);
     //If there is a match, date exists:
@@ -53,8 +51,6 @@ const DailyForecast = (props: DailyForecastProps) => {
             {badDate}
         </p>
     );
-
-    console.log(language)
 
     const chosenDay = useMemo(() => daily.data.filter(
         day => dayDate(day.time, {timeZone: timezone}) === clickedDate

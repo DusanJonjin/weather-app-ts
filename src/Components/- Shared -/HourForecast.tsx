@@ -4,6 +4,8 @@ import { hourlyFcast, unitsName } from '../../Fixtures/miscData';
 import { HourData } from "../../Models/weather.data.models";
 import { Languages, Units } from "../../Models/app.data.models";
 
+const tableRowLabels = ['hour', 'icon', 'temperature'];
+
 interface HourForecastProps {
     chosenDayHours: HourData[];
     timezone: string;
@@ -13,8 +15,6 @@ interface HourForecastProps {
 
 const HourForecast = (props: HourForecastProps) => {
     const { chosenDayHours, timezone, language, units } = props;
-
-    const tableRowLabels = ['hour', 'icon', 'temperature'];
 
     const tableDataValue = (rowLabel: string, hour: HourData) => {
         switch (rowLabel) {

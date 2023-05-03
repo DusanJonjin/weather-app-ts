@@ -7,7 +7,7 @@ import { WeatherData } from './Models/weather.data.models';
 import { BasicData, Languages, Units } from './Models/app.data.models';
 import { getWeather } from './API/api';
 import { messages } from './Fixtures/miscData';
-import { useScrollToTop } from './Hooks/ScrollToTop';
+import { useScrollToTop } from './Hooks/useScrollToTop';
 import { useBookmarks } from './Hooks/useBookmarks';
 import { findCityFromStorageOrUrl } from './Utilities/helperFunctions';
 import { useLocation } from 'react-router-dom';
@@ -40,29 +40,23 @@ const addMessageClass = (message: string): string => {
 export function WeatherApp() {
 
     const { pathname } = useLocation();
-
     const { bookmarks, city, toggleCity } = useBookmarks();
 
     const [status, setStatus] = useState<'isLoading' | 'error' | 'isLoaded'>('isLoading');
-
     // Passed function to useState will be executed only on the initial render:
     const [basicData, setBasicData] = useState<BasicData>(() => findCityFromStorageOrUrl(pathname));
-
-    const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
-
-    const [message, setMessage] = useState<string>(loading);
-
-    const [showAsideMenu, setShowAsideMenu] = useState<boolean>(false);
-
     const { searchedCity, units, language } = basicData;
+    const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
+    const [message, setMessage] = useState<string>(loading);
+    const [showAsideMenu, setShowAsideMenu] = useState<boolean>(false);
 
     useScrollToTop(pathname, showAsideMenu);
  
-    const toggleAsideMenu = (): void => {
+    const toggleAsideMenu = () => {
         setShowAsideMenu(prevAside => !prevAside);
     };
 
-    const openAsideMenu = (): void => {
+    const openAsideMenu = () => {
         setShowAsideMenu(true);
     }
 
@@ -83,7 +77,7 @@ export function WeatherApp() {
         setBasicData(prevBData => ({...prevBData, units}));
     }
 
-    const handleNewCity = (newCity: string): void => {
+    const handleCityChange = (newCity: string) => {
         if (searchedCity === newCity) return;
         setStatus('isLoading')
         setWeatherData(null);
@@ -92,24 +86,18 @@ export function WeatherApp() {
         setShowAsideMenu(false);
     };
 
-    const handleSearchSubmit = (
-        e: React.FormEvent<HTMLFormElement>, 
-        inputRef: React.MutableRefObject<HTMLInputElement | null>
-        ): void => {
+    const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>, inputValue: string) => {
         e.preventDefault();
-        if (inputRef === null) return;
-        const searchValue = inputRef.current!.value;
-        if (searchValue.length < 1) return;
-        if (searchValue.length < 2) {
+        if (inputValue.trim() === "") return;
+        if (inputValue.length < 2) {
             setStatus('error');
             setMessage(minLetters)
-        }
-        else {
-            handleNewCity(searchValue)
+        } else {
+            handleCityChange(inputValue)
         }
     };
 
-    const handleErrorMsg = (message: string): void => {
+    const handleErrorMsg = (message: string) => {
         setMessage(message);
     };
 
@@ -132,7 +120,7 @@ export function WeatherApp() {
             />
             <main className={`weather-app`}>
                 <AsideMenu showAsideMenu={showAsideMenu}
-                    handleNewCity={handleNewCity}
+                    handleCityChange={handleCityChange}
                     bookmarks={bookmarks}
                     toggleCity={toggleCity}
                     basicData={basicData}
@@ -183,8 +171,8 @@ export function WeatherApp() {
                 }[status]}
             </main>
             <footer>
-                    <p>Powered by Dark Sky's API</p>
-                    <p><span>Weather Forecast</span> by D.J. &copy; {new Date().getFullYear()}</p>
+                    <p>Powered by Pirate Weather's API</p>
+                    <p><span>Weather Forecast</span>&ensp;by D.J. &copy; {new Date().getFullYear()}</p>
             </footer>
         </>
     );

@@ -17,6 +17,11 @@ const initialData: BasicData = {
     language: "en",
 };
 
+export const initialCity = {
+    searchedCity: "Belgrade", 
+    id: "274920360"
+};
+
 const findCityFromUrl = (pathname: string, storageString: string | null): BasicData => {
     const pathnameFirstPart = pathname.slice(0, requiredUrlPart.length);
     if (!pathnameFirstPart.includes(requiredUrlPart)) return initialData;
@@ -38,9 +43,7 @@ const findCityFromUrl = (pathname: string, storageString: string | null): BasicD
 export const findCityFromStorageOrUrl = (pathname: string): BasicData => {
     const storageString: string | null = localStorage.getItem("default-data");
     if (pathname === '/') {
-        if (storageString === null) return (
-            {...initialData, searchedCity: "Belgrade", id: "274920360"}
-        );
+        if (storageString === null) return ({...initialData, ...initialCity});
         const storageBdata: BasicData = JSON.parse(storageString);
         return storageBdata;
     }

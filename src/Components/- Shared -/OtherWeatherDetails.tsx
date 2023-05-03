@@ -2,6 +2,17 @@ import { useState } from 'react';
 import { otherDetails, unitsName } from "../../Fixtures/miscData";
 import { Languages, Units } from "../../Models/app.data.models";
 
+const {
+    pressureName,
+    humidityName,
+    windSpeedName,
+    uvIndexName,
+    visibilityName,
+    ozoneName,
+    cloudCoverName,
+    windDirectionName,
+} = otherDetails;
+
 interface OtherWeatherDetailsProps {
     [key: string]: string | number;
     humidity: number;
@@ -23,23 +34,11 @@ const OtherWeatherDetails = (props: OtherWeatherDetailsProps) => {
         windSpeed,
         uvIndex,
         visibility,
-        ozone,
         cloudCover,
         windBearing,
         language,
         units
     } = props;
-
-    const {
-    pressureName,
-    humidityName,
-    windSpeedName,
-    uvIndexName,
-    visibilityName,
-    ozoneName,
-    cloudCoverName,
-    windDirectionName,
-    } = otherDetails;
 
     const [showAllOtherDetails, setShowAllOtherDetails] = useState<boolean>(false);
 
@@ -58,7 +57,6 @@ const OtherWeatherDetails = (props: OtherWeatherDetailsProps) => {
                 <p>{windSpeedName[language]}:&ensp;<span>{rounded(windSpeed)} {unitsName.speed[units]}</span></p>
                 <p>{uvIndexName[language]}:&ensp;<span>{uvIndex}</span></p>
                 <p>{visibilityName[language]}:&ensp;<span>{rounded(visibility)} {unitsName.distance[units]}</span></p>
-                <p>{ozoneName[language]}:&ensp;<span>{rounded(ozone)} ppb</span></p>
                 <p>{cloudCoverName[language]}:&ensp;<span>{rounded(cloudCover)} Oktas</span></p>
                 <p>{windDirectionName[language]}:&ensp;<span>{windBearing}°</span></p>
             </div>

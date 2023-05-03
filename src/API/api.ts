@@ -6,11 +6,9 @@ interface LocatioIqFetchErr {
     error: string;
 }
 
-const BASE_DARKSKY_URL = "https://serene-basin-16003.herokuapp.com/https://api.darksky.net/forecast/";
-
+const BASE_URL = "https://api.pirateweather.net/forecast/";
 const GEODATA_KEY = import.meta.env.VITE_GEODATA_KEY;
-
-const DARKSKY_KEY = import.meta.env.VITE_DARKSKY_KEY;
+const PIRATEWEATHER_KEY = import.meta.env.VITE_PIRATEWEATHER_KEY;
 
 export const getWeather = async (
     basicData: BasicData,
@@ -36,10 +34,10 @@ export const getWeather = async (
         const searchedPlace = {cityID: place_id, city, country};
     
         const getWeather = await fetch(
-        `${BASE_DARKSKY_URL}${DARKSKY_KEY}/${lat + ',' + lon}?exclude=flags,alerts,minutely&&units=${units}&&extend=hourly&&lang=${language === 'rs' ? 'sr' : language}`
+        `${BASE_URL}${PIRATEWEATHER_KEY}/${lat + ',' + lon}?exclude=flags,alerts,minutely&units=${units}&extend=hourly`
         );
         const weatherResult: Omit<WeatherData, "city" | "country"> = await getWeather.json();
-        const fullWeatherData = {...weatherResult, ...searchedPlace}
+        const fullWeatherData: WeatherData = {...weatherResult, ...searchedPlace}
         
         return fullWeatherData;  
     }
