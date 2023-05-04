@@ -121,8 +121,8 @@ export const header = {
         rs: "Pretraži"
     },
     backLink: {
-        en: "Home page",
-        rs: "Početna"
+        en: "Home (Current weather)",
+        rs: "Početna (Trenutno vreme)"
     }
 };
 

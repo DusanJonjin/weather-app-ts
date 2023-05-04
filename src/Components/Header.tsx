@@ -61,7 +61,7 @@ const Header = (props: HeaderProps) => {
             </form>
             <div className={`back ${isHomeUrl ? "hide" : ""}`}>
                 <Link to="/" className="link">
-                    &#8618; ☼ {header.backLink[language]}
+                   &lt;&ensp;{header.backLink[language]}
                 </Link>
             </div>
             <div className="hamburger-wrap" onClick={() => toggleAsideMenu()}>
