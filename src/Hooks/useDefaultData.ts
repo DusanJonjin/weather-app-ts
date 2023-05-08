@@ -1,7 +1,7 @@
 import { useState, useLayoutEffect } from "react";
 import { BasicData } from "../Models/app.data.models";
 import { City } from '../Hooks/useBookmarks';
-import { initialCity } from "../Utilities/helperFunctions";
+import { initialCity } from "../Fixtures/initial.app.data";
 
 export type Key = "" | "searchedCity" | "language" | "units";
 

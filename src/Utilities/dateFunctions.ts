@@ -1,46 +1,9 @@
 import { Languages } from "../Models/app.data.models";
+import { days, months } from "../Fixtures/translation.objects";
 
 export const dayDate = (time: number, options: {[key:string]: string | boolean}): string => (
     new Date(time * 1000).toLocaleDateString('en', options)
 );
-
-
-type DaysEN = "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday" | "Sunday";
-
-type DaysRS = "Ponedeljak" | "Utorak" | "Sreda" | "Četvrtak" | "Petak" | "Subota" | "Nedelja";
-
-const days: {en: DaysEN; rs: DaysRS}[] = [
-    {en: "Monday", rs: "Ponedeljak"},
-    {en: "Tuesday", rs: "Utorak"},
-    {en: "Wednesday", rs: "Sreda"},
-    {en: "Thursday", rs: "Četvrtak"},
-    {en: "Friday", rs: "Petak"},
-    {en: "Saturday", rs: "Subota"},
-    {en: "Sunday", rs: "Nedelja"},
-]
-
-type MonthsEN = "January" | "February" | "March" | "April" | "May" | "June" | "July" |
-    "August" | "September" | "October" | "November" | "December"
-;
-
-type MonthsRS = "Januar" | "Februar" | "Mart" | "April" | "Maj" | "Jun" | "Jul" |
-    "Avgust" | "Septembar" | "Oktobar" | "Novembar" | "Decembar"
-;
-
-const months: {en: MonthsEN, rs: MonthsRS}[] =[
-    {en: "January", rs: "Januar"},
-    {en: "February", rs: "Februar"},
-    {en: "March", rs: "Mart"},
-    {en: "April", rs: "April"},
-    {en: "May", rs: "Maj"},
-    {en: "June", rs: "Jun"},
-    {en: "July", rs: "Jul"},
-    {en: "August", rs: "Avgust"},
-    {en: "September", rs: "Septembar"},
-    {en: "October", rs: "Oktobar"},
-    {en: "November", rs: "Novembar"},
-    {en: "December", rs: "Decembar"},
-];
 
 interface dateObj {
     day: string,

@@ -2,9 +2,9 @@ import { Bookmarks } from './Bookmarks';
 import { PopularCities } from './PopularCities';
 import { Settings } from './Settings';
 import { useDefaultData } from '../../Hooks/useDefaultData';
-import { BasicData, Languages, languagesList ,Units, unitsList } from '../../Models/app.data.models';
+import { BasicData, LanguageCode, UnitCode } from '../../Models/app.data.models';
 import { City, CityNameID } from '../../Hooks/useBookmarks';
-import { asideMenu } from '../../Fixtures/miscData';
+import { asideMenu } from '../../Fixtures/translation.objects';
 import { useLocation } from "react-router-dom";
 
 const { 
@@ -13,14 +13,16 @@ const {
     ...allSettings
 } = asideMenu;
 
+export const languagesList: LanguageCode[] = ["en", "rs"];
+
 interface AsideMenuProps {
     showAsideMenu: boolean;
     handleCityChange: (newValue: string) => void;
     bookmarks: CityNameID[];
     toggleCity: (name: string, id: string) => void;
     basicData: BasicData;
-    handleLanguageChange: (language: Languages) => void;
-    handleUnitsChange: (units: Units) => void;
+    handleLanguageChange: (language: LanguageCode) => void;
+    handleUnitsChange: (units: UnitCode) => void;
     city: City;
 }
 
@@ -37,17 +39,14 @@ const AsideMenu = (props: AsideMenuProps) => {
     } = props;
 
     const { pathname } = useLocation();
-
     const isHomeUrl = pathname === "/";
 
     const { toggleNewValue, defaultData } = useDefaultData(basicData, city);
 
-    const { language, units } = basicData;
+    const { language } = basicData;
 
     const lang = languagesList.includes(language) ? language : "en"; 
-
     const bmarksHeading = bmarks[lang]; 
-
     const popCitiesHeading = popCities[lang];
     
     return (

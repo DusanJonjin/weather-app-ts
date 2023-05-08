@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { popularCities, header } from "../Fixtures/miscData";
-import { Languages } from "../Models/app.data.models";
+import { popularCities } from "../Fixtures/miscData";
+import { header } from "../Fixtures/translation.objects";
+import { LanguageCode } from "../Models/app.data.models";
 
 interface HeaderProps {
     handleSearchSubmit: (e: React.FormEvent<HTMLFormElement>, inputValue: string) => void;
     toggleAsideMenu: () => void;
     showAsideMenu: boolean;
-    language: Languages;
+    language: LanguageCode;
 }
 
 const Header = (props: HeaderProps) => {

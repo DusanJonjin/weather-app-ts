@@ -1,12 +1,12 @@
-import { temp, unitsName } from "../../Fixtures/miscData";
-import { Languages, Units } from "../../Models/app.data.models";
+import { temp, unitsName } from "../../Fixtures/translation.objects";
+import { LanguageCode, UnitCode } from "../../Models/app.data.models";
 
 interface TempLowHighProps {
     tempLow: string;
     tempHigh: string;
     dayPage?: boolean;
-    language: Languages;
-    units: Units;
+    language: LanguageCode;
+    units: UnitCode;
 }
 
 const TempLowHigh = (props: TempLowHighProps) => {

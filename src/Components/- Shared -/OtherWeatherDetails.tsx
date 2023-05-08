@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { otherDetails, unitsName } from "../../Fixtures/miscData";
-import { Languages, Units } from "../../Models/app.data.models";
+import { otherDetails, unitsName } from "../../Fixtures/translation.objects";
+import { LanguageCode, UnitCode } from "../../Models/app.data.models";
 
 const {
     pressureName,
@@ -8,7 +8,6 @@ const {
     windSpeedName,
     uvIndexName,
     visibilityName,
-    ozoneName,
     cloudCoverName,
     windDirectionName,
 } = otherDetails;
@@ -23,8 +22,8 @@ interface OtherWeatherDetailsProps {
     ozone: number;
     cloudCover: number;
     windBearing: number;
-    language: Languages;
-    units: Units;
+    language: LanguageCode;
+    units: UnitCode;
 }
 
 const OtherWeatherDetails = (props: OtherWeatherDetailsProps) => {

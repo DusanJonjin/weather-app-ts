@@ -8,7 +8,7 @@ import {
     OtherWeatherDetails
 } from '../- Shared -/AllSharedComponents';
 import { DayData } from '../../Models/weather.data.models';
-import { Languages, Units } from '../../Models/app.data.models';
+import { LanguageCode, UnitCode } from '../../Models/app.data.models';
 import { dateObj } from '../../Utilities/dateFunctions';
 
 interface DayForecastProps {
@@ -16,8 +16,8 @@ interface DayForecastProps {
     city: string;
     country: string;
     timezone: string;
-    language: Languages;
-    units: Units;
+    language: LanguageCode;
+    units: UnitCode;
 }
 
 const DayForecast = (props: DayForecastProps) => {
@@ -39,7 +39,6 @@ const DayForecast = (props: DayForecastProps) => {
     } = chosenDay;
 
     const {day, date, year} = dateObj(time, language, timezone);
-
 
     return (
         <section id='day-forecast'>

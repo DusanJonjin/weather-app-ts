@@ -4,7 +4,7 @@ import Home from './Pages/Home';
 import DailyForecast from './Pages/DailyForecast';
 import AsideMenu from './Components/Aside Menu/AsideMenu';
 import { WeatherData } from './Models/weather.data.models';
-import { BasicData, Languages, Units } from './Models/app.data.models';
+import { BasicData, LanguageCode, UnitCode } from './Models/app.data.models';
 import { getWeather } from './API/api';
 import { messages } from './Fixtures/miscData';
 import { useScrollToTop } from './Hooks/useScrollToTop';
@@ -67,12 +67,12 @@ export function WeatherApp() {
         setShowAsideMenu(false);
     };
 
-    const handleLanguageChange = (language: Languages) => {
+    const handleLanguageChange = (language: LanguageCode) => {
         handleSettingsChange();
         setBasicData(prevBData => ({...prevBData, language}));
     };
 
-    const handleUnitsChange = (units: Units) => {
+    const handleUnitsChange = (units: UnitCode) => {
         handleSettingsChange();
         setBasicData(prevBData => ({...prevBData, units}));
     }

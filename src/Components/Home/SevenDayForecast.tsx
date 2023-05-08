@@ -1,16 +1,16 @@
 import  OneDayCard from './OneDayCard';
 import { DayData } from '../../Models/weather.data.models';
-import { Languages, Units } from '../../Models/app.data.models';
+import { LanguageCode, UnitCode } from '../../Models/app.data.models';
 import { dayDate } from '../../Utilities/dateFunctions';
-import { sevenDaysFcast } from '../../Fixtures/miscData';
+import { sevenDaysFcast } from '../../Fixtures/translation.objects';
 import { Link } from 'react-router-dom';
 
 interface SevenDayForecastProps {
     city: string;
     timezone: string;
     dailyData: DayData[];
-    language: Languages;
-    units: Units;
+    language: LanguageCode;
+    units: UnitCode;
 }
 
 const SevenDayForecast = (props: SevenDayForecastProps) => {

@@ -1,13 +1,13 @@
 import { Day, FullDate, Image, TempLowHigh } from '../- Shared -/AllSharedComponents';
 import { DayData } from '../../Models/weather.data.models';
-import { Languages, Units } from '../../Models/app.data.models';
+import { LanguageCode, UnitCode } from '../../Models/app.data.models';
 import { dateObj } from '../../Utilities/dateFunctions';
 
 interface OneDayCardProps {
     dayData: DayData;
     timezone: string;
-    language: Languages;
-    units: Units
+    language: LanguageCode;
+    units: UnitCode;
 }
 
 const OneDayCard = (props: OneDayCardProps) => {

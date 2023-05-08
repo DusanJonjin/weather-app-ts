@@ -8,10 +8,10 @@ import {
     HourForecast
 } from '../- Shared -/AllSharedComponents';
 import { Currently, HourData } from "../../Models/weather.data.models";
-import { Languages, Units } from '../../Models/app.data.models';
+import { LanguageCode, UnitCode } from '../../Models/app.data.models';
 import { CityNameID } from '../../Hooks/useBookmarks';
 import { dateObj } from '../../Utilities/dateFunctions';
-import { unitsName } from "../../Fixtures/miscData";
+import { unitsName } from "../../Fixtures/translation.objects";
 
 interface CurrentWeatherProps {
     cityID: string,
@@ -23,8 +23,8 @@ interface CurrentWeatherProps {
     toggleCity: (name: string, id:string) => void;
     bookmarks: CityNameID[];
     openAsideMenu: () => void;
-    language: Languages;
-    units: Units;
+    language: LanguageCode;
+    units: UnitCode;
 }
 
 const CurrentWeather = (props: CurrentWeatherProps) => {

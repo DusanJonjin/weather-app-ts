@@ -1,16 +1,16 @@
 import Image from './Image';
 import { getHour } from '../../Utilities/dateFunctions';
-import { hourlyFcast, unitsName } from '../../Fixtures/miscData';
+import { hourlyFcast, unitsName } from "../../Fixtures/translation.objects";
 import { HourData } from "../../Models/weather.data.models";
-import { Languages, Units } from "../../Models/app.data.models";
+import { LanguageCode, UnitCode } from "../../Models/app.data.models";
 
 const tableRowLabels = ['hour', 'icon', 'temperature'];
 
 interface HourForecastProps {
     chosenDayHours: HourData[];
     timezone: string;
-    language: Languages;
-    units: Units;
+    language: LanguageCode;
+    units: UnitCode;
 }
 
 const HourForecast = (props: HourForecastProps) => {

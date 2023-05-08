@@ -1,4 +1,6 @@
 import { BasicData } from "../Models/app.data.models";
+import { initialBasicData } from "../Fixtures/initial.app.data";
+import { initialCity } from "../Fixtures/initial.app.data";
 
 const requiredUrlPart = '/DailyForecast/';
 
@@ -10,30 +12,18 @@ export const insertNewCityInUrl = (newCity: string, pathname: string) => {
     return newUrl;
 };
 
-const initialData: BasicData = {
-    searchedCity: "",
-    id: "",
-    units: "ca",
-    language: "en",
-};
-
-export const initialCity = {
-    searchedCity: "Belgrade", 
-    id: "274920360"
-};
-
 const findCityFromUrl = (pathname: string, storageString: string | null): BasicData => {
-    const pathnameFirstPart = pathname.slice(0, requiredUrlPart.length);
-    if (!pathnameFirstPart.includes(requiredUrlPart)) return initialData;
+    const urlFirstPart = pathname.slice(0, requiredUrlPart.length);
+    if (!urlFirstPart.includes(requiredUrlPart)) return initialBasicData;
 
     const cityAndDatefromUrl = pathname.slice(requiredUrlPart.length);
-    if(!cityAndDatefromUrl) return initialData;
+    if(!cityAndDatefromUrl) return initialBasicData;
 
     const underscoreArr = cityAndDatefromUrl.match(/_/g);
-    if (!underscoreArr || underscoreArr.length > 1) return initialData;
+    if (!underscoreArr || underscoreArr.length > 1) return initialBasicData;
 
     const city = cityAndDatefromUrl.slice(0, cityAndDatefromUrl.indexOf('_'));
-    if (storageString === null) return {...initialData, searchedCity: city};
+    if (storageString === null) return {...initialBasicData, searchedCity: city};
 
     const storageBData: BasicData = JSON.parse(storageString);
     return {...storageBData, searchedCity: city};
@@ -43,7 +33,7 @@ const findCityFromUrl = (pathname: string, storageString: string | null): BasicD
 export const findCityFromStorageOrUrl = (pathname: string): BasicData => {
     const storageString: string | null = localStorage.getItem("default-data");
     if (pathname === '/') {
-        if (storageString === null) return ({...initialData, ...initialCity});
+        if (storageString === null) return ({...initialBasicData, ...initialCity});
         const storageBdata: BasicData = JSON.parse(storageString);
         return storageBdata;
     }

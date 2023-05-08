@@ -1,20 +1,10 @@
 import { Key } from "../../Hooks/useDefaultData";
-import { BasicData, Units, Languages } from "../../Models/app.data.models";
-
-interface Language {
-    name: string;
-    code: Languages;
-}
+import { BasicData, LanguageCode, UnitCode, Language, Unit } from "../../Models/app.data.models";
 
 const allLanguages: Language[] = [
     {name: "English", code: "en"}, 
     {name: "Srpski", code: 'rs'}
 ];
-
-interface Unit {
-    name: string;
-    code: Units;
-}
 
 const allUnits: Unit[] = [
     {name: "Metric", code: "ca"},
@@ -29,10 +19,10 @@ interface Setting {
 interface SettingsProps {
     defaultData: BasicData;
     toggleNewValue : (key: Key, value: string) => void;
-    handleLanguageChange: (language: Languages) => void;
-    handleUnitsChange: (units: Units) => void;
+    handleLanguageChange: (language: LanguageCode) => void;
+    handleUnitsChange: (units: UnitCode) => void;
     allSettings: {sett: Setting, settLang: Setting, settUnits: Setting};
-    lang: Languages;
+    lang: LanguageCode;
 }
 
 export const Settings = (props: SettingsProps) => {
