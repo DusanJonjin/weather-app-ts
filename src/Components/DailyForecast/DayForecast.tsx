@@ -42,8 +42,9 @@ const DayForecast = (props: DayForecastProps) => {
 
     return (
         <section id='day-forecast'>
-            <CityCountry city={city} 
-                         country={country}
+            <CityCountry 
+                city={city} 
+                country={country}
             />
             <p className='date-and-year'>
                 <Day day={day} />,&nbsp;
@@ -53,19 +54,22 @@ const DayForecast = (props: DayForecastProps) => {
             <p id='summary'>{summary}</p>
             <div className='day-wrapper'>
                 <div className='image-wrapper'>
-                    <Image imgSrc={`/Images/${icon}.png`}
+                    <Image 
+                        imgSrc={`/Images/${icon}.png`}
                         imgAlt={icon}
                     />
                 </div>
-                <TempLowHigh tempLow={temperatureMin.toFixed(1)}
+                <TempLowHigh 
+                    tempLow={temperatureMin.toFixed(1)}
                     tempHigh={temperatureMax.toFixed(1)}
                     dayPage={true}
                     language={language}
                     units={units}
                 />
-                <OtherWeatherDetails { ...otherDetails }
+                <OtherWeatherDetails
                     language={language}
                     units={units}
+                    { ...otherDetails }
                  />
             </div>
         </section>

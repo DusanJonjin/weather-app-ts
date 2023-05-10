@@ -58,7 +58,10 @@ const CurrentWeather = (props: CurrentWeatherProps) => {
     return (
         <section className='current-weather'>
             <div id='city-country-star-wrap'>
-                <CityCountry city={city} country={country}/>
+                <CityCountry 
+                    city={city} 
+                    country={country}
+                />
                 <p onClick={() => (
                         toggleCity(city, cityID), !isBookmarked && openAsideMenu()
                     )}
@@ -73,7 +76,8 @@ const CurrentWeather = (props: CurrentWeatherProps) => {
             </p>
             <div className='current-wrapper'>
                 <div className='image-wrapper'>
-                    <Image imgSrc={`/Images/${icon}.png`}
+                    <Image 
+                        imgSrc={`/Images/${icon}.png`}
                         imgAlt={icon} 
                     />
                 </div>
@@ -83,12 +87,14 @@ const CurrentWeather = (props: CurrentWeatherProps) => {
                     </p>
                     <p className='current-summary'>{summary}</p>
                 </div>
-                <OtherWeatherDetails { ...otherDetails } 
+                <OtherWeatherDetails 
                     language={language}
                     units={units}
+                    { ...otherDetails } 
                 />
             </div>
-            <HourForecast chosenDayHours={currHourForecast} 
+            <HourForecast 
+                chosenDayHours={currHourForecast} 
                 timezone={timezone} 
                 language={language}
                 units={units}

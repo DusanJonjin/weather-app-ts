@@ -52,7 +52,8 @@ const AsideMenu = (props: AsideMenuProps) => {
     return (
         <aside className={`aside ${showAsideMenu ? '' : 'hide-aside'}`}>
             <div>
-                <Bookmarks bookmarks={bookmarks}
+                <Bookmarks 
+                    bookmarks={bookmarks}
                     defaultData={defaultData}
                     toggleNewValue={toggleNewValue}
                     toggleCity={toggleCity}
@@ -61,12 +62,14 @@ const AsideMenu = (props: AsideMenuProps) => {
                     isHomeUrl={isHomeUrl}
                     bmarksHeading={bmarksHeading}
                 />
-                <PopularCities pathname={pathname}
+                <PopularCities 
+                    pathname={pathname}
                     isHomeUrl={isHomeUrl}
                     handleCityChange={handleCityChange}
                     popCitiesHeading={popCitiesHeading}
                 />
-                <Settings defaultData={defaultData}
+                <Settings 
+                    defaultData={defaultData}
                     toggleNewValue={toggleNewValue} 
                     handleLanguageChange={handleLanguageChange}
                     handleUnitsChange={handleUnitsChange}

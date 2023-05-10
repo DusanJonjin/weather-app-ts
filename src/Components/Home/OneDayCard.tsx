@@ -28,9 +28,12 @@ const OneDayCard = (props: OneDayCardProps) => {
                 <Day day={day} />
                 <FullDate fullDate={date} />
             </h4>
-            <Image imgSrc={`/Images/${icon}.png`}
-                   imgAlt={icon} />
-            <TempLowHigh tempLow={temperatureMin.toFixed(1)}
+            <Image 
+                imgSrc={`/Images/${icon}.png`}
+                imgAlt={icon} 
+            />
+            <TempLowHigh 
+                tempLow={temperatureMin.toFixed(1)}
                 tempHigh={temperatureMax.toFixed(1)}
                 language={language}
                 units={units}                

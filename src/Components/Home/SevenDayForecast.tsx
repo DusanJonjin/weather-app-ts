@@ -34,7 +34,8 @@ const SevenDayForecast = (props: SevenDayForecastProps) => {
                             to={{pathname:`/DailyForecast/${city + '_' + dayDate(dayData.time, {timeZone: timezone})}`}}
                             className='link'
                         >
-                            <OneDayCard dayData={dayData} 
+                            <OneDayCard 
+                                dayData={dayData} 
                                 timezone={timezone} 
                                 language={language}
                                 units={units}

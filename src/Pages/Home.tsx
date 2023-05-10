@@ -1,26 +1,14 @@
 import { useMemo } from 'react';
 import CurrentWeather from '../Components/Home/CurrentWeather';
 import SevenDayForecast from '../Components/Home/SevenDayForecast';
-import { WeatherData, HourData, DayData } from '../Models/weather.data.models';
-import { Languages, Units } from '../Models/app.data.models';
-import { CityNameID } from '../Hooks/useBookmarks';
+import { HourData, DayData } from '../Models/weather.data.models';
+import { AppFlowProps } from '../AppFlow';
 import { dayDate } from '../Utilities/dateFunctions';
 
-interface HomeProps {
-    weatherData: WeatherData | null;
-    message: string;
-    toggleCity: (name: string, id:string) => void;
-    bookmarks: CityNameID[];
-    openAsideMenu: () => void;
-    language: Languages;
-    units: Units;
-}
-
-const Home = (props: HomeProps) => {
-    
+const Home = (props: AppFlowProps) => {
     const { 
         weatherData, 
-        message, 
+        badHomeSearch, 
         toggleCity, 
         bookmarks,
         openAsideMenu,
@@ -30,7 +18,7 @@ const Home = (props: HomeProps) => {
 
     if (weatherData === null) return (
         <div className={`message sad`}>
-            <p>{message}</p>
+            <p>{badHomeSearch}</p>
         </div>
     );
 
@@ -61,7 +49,8 @@ const Home = (props: HomeProps) => {
     return (
         <article id='weather-forecast-home'>
             <div className='forecast-wrapper'>
-                <CurrentWeather cityID={cityID}
+                <CurrentWeather 
+                    cityID={cityID}
                     city={city}
                     country={country}
                     timezone={timezone}
@@ -73,7 +62,8 @@ const Home = (props: HomeProps) => {
                     language={language}
                     units={units}
                 />
-                <SevenDayForecast city={city}
+                <SevenDayForecast 
+                    city={city}
                     timezone={timezone}
                     dailyData={dailyData} 
                     language={language}

@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import Header from './Components/Header';
-import Home from './Pages/Home';
-import DailyForecast from './Pages/DailyForecast';
 import AsideMenu from './Components/Aside Menu/AsideMenu';
+import AppFlow from './AppFlow';
 import { WeatherData } from './Models/weather.data.models';
 import { BasicData, LanguageCode, UnitCode } from './Models/app.data.models';
 import { getWeather } from './API/api';
@@ -11,7 +10,6 @@ import { useScrollToTop } from './Hooks/useScrollToTop';
 import { useBookmarks } from './Hooks/useBookmarks';
 import { findCityFromStorageOrUrl } from './Utilities/helperFunctions';
 import { useLocation } from 'react-router-dom';
-import { Routes, Route } from 'react-router-dom';
 
 const { 
     loading,
@@ -35,6 +33,14 @@ const addMessageClass = (message: string): string => {
              return  'sad';
         default: return '';
     }
+};
+
+const AppMessage = ({ message }: { message: string }) => {
+    return (
+        <div className={`message ${addMessageClass(message)}`}>
+            <p>{message}</p>
+        </div>
+    );
 };
 
 export function WeatherApp() {
@@ -108,18 +114,20 @@ export function WeatherApp() {
     }, [searchedCity, units, language]);
 
     useEffect(() => {
-        document.body.classList.toggle("menu-open", showAsideMenu);
+        document.body.classList.toggle("aside-menu-open", showAsideMenu);
     }, [showAsideMenu])
 
     return (
         <>
-            <Header handleSearchSubmit={handleSearchSubmit}
+            <Header 
+                handleSearchSubmit={handleSearchSubmit}
                 toggleAsideMenu={toggleAsideMenu}
                 showAsideMenu={showAsideMenu}
                 language={language}
             />
             <main className={`weather-app`}>
-                <AsideMenu showAsideMenu={showAsideMenu}
+                <AsideMenu 
+                    showAsideMenu={showAsideMenu}
                     handleCityChange={handleCityChange}
                     bookmarks={bookmarks}
                     toggleCity={toggleCity}
@@ -129,45 +137,20 @@ export function WeatherApp() {
                     city={city}
                 />
                 {{
-                    'isLoading': 
-                        <div className={`message ${addMessageClass(message)}`}>
-                            <p>{message}</p>
-                        </div>,
-                    'error':
-                        <div className={`message ${addMessageClass(message)}`}>
-                            <p>{message}</p>
-                        </div>,
-                    'isLoaded':
-                        <>
-                            <Routes>
-                                <Route 
-                                    path='/' 
-                                    element={
-                                        <Home weatherData={weatherData} 
-                                            message={badHomeSearch}
-                                            toggleCity={toggleCity}
-                                            bookmarks={bookmarks}
-                                            openAsideMenu={openAsideMenu}
-                                            language={language}
-                                            units={units}
-                                        />
-                                    } 
-                                />
-                                <Route 
-                                    path='/DailyForecast/*' 
-                                    element={
-                                        <DailyForecast weatherData={weatherData}
-                                            language={language}
-                                            units={units}
-                                         />
-                                    } 
-                                />
-                                <Route 
-                                    path='*' 
-                                    element={<div>Bad URL!</div>} 
-                                />
-                            </Routes>
-                        </>
+                    isLoading: 
+                        <AppMessage message={message} />,
+                    error:
+                        <AppMessage message={message} />,
+                    isLoaded:
+                        <AppFlow
+                            weatherData={weatherData} 
+                            badHomeSearch={badHomeSearch}
+                            bookmarks={bookmarks}
+                            language={language}
+                            units={units}
+                            toggleCity={toggleCity}
+                            openAsideMenu={openAsideMenu}
+                        />
                 }[status]}
             </main>
             <footer>

@@ -2,17 +2,12 @@ import { useMemo } from 'react';
 import DayForecast from '../Components/DailyForecast/DayForecast';
 import HourForecast from '../Components/- Shared -/HourForecast';
 import Pagination from '../Components/DailyForecast/Pagination';
-import { WeatherData } from '../Models/weather.data.models';
-import { Languages, Units } from '../Models/app.data.models';
+import { AppFlowProps } from '../AppFlow';
 import { dayDate, dateObj } from '../Utilities/dateFunctions';
 import { useLocation } from 'react-router-dom';
 import { messages } from '../Fixtures/miscData';
 
-interface DailyForecastProps {
-    weatherData: WeatherData | null;
-    language: Languages;
-    units: Units;
-}
+type DailyForecastProps = Pick<AppFlowProps, "weatherData" | "language" | "units">;
 
 const DailyForecast = (props: DailyForecastProps) => {
     const { weatherData, language, units } = props;
@@ -65,19 +60,22 @@ const DailyForecast = (props: DailyForecastProps) => {
     return (
         <article id='daily-forecast'> 
             <div className='forecast-wrapper'>        
-                <DayForecast chosenDay={chosenDay}
+                <DayForecast 
+                    chosenDay={chosenDay}
                     city={city}
                     country={country}
                     timezone={timezone} 
                     language={language}
                     units={units}                  
                 />
-                <HourForecast chosenDayHours={chosenDayHours}
+                <HourForecast 
+                    chosenDayHours={chosenDayHours}
                     timezone={timezone}
                     language={language}
                     units={units}
                 /> 
-                <Pagination clickedDate={clickedDate}
+                <Pagination 
+                    clickedDate={clickedDate}
                     allDailyDatesArr={allDailyDatesArr}
                     city={city}
                 />
