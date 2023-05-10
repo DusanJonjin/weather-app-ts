@@ -21,7 +21,7 @@ const {
     settingsChange
 } = messages;
 
-const addMessageClass = (message: string): string => {
+const showSunBackground = (message: string): string => {
     switch (message) {
         case loading: 
         case searching:
@@ -33,14 +33,6 @@ const addMessageClass = (message: string): string => {
              return  'sad';
         default: return '';
     }
-};
-
-const AppMessage = ({ message }: { message: string }) => {
-    return (
-        <div className={`message ${addMessageClass(message)}`}>
-            <p>{message}</p>
-        </div>
-    );
 };
 
 export function WeatherApp() {
@@ -138,9 +130,13 @@ export function WeatherApp() {
                 />
                 {{
                     isLoading: 
-                        <AppMessage message={message} />,
+                        <div className={`message ${showSunBackground(message)}`}>
+                            <p>{message}</p>
+                        </div>,
                     error:
-                        <AppMessage message={message} />,
+                        <div className={`message ${showSunBackground(message)}`}>
+                            <p>{message}</p>
+                        </div>,
                     isLoaded:
                         <AppFlow
                             weatherData={weatherData} 
@@ -150,7 +146,7 @@ export function WeatherApp() {
                             units={units}
                             toggleCity={toggleCity}
                             openAsideMenu={openAsideMenu}
-                        />
+                        />,
                 }[status]}
             </main>
             <footer>
