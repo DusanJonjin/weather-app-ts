@@ -1,4 +1,4 @@
-import { Languages } from "../Models/app.data.models";
+import { LanguageCode } from "../Models/app.data.models";
 import { days, months } from "../Fixtures/translation.objects";
 
 export const dayDate = (time: number, options: {[key:string]: string | boolean}): string => (
@@ -12,7 +12,7 @@ interface dateObj {
     localTime: string
 }
 
-export const dateObj = (time: number, lang?: Languages, timezone?: string): dateObj => {
+export const dateObj = (time: number, lang?: LanguageCode, timezone?: string): dateObj => {
     const completeDateString: string = new Date(time * 1000).toLocaleDateString('en',
         {
             weekday: 'long',
