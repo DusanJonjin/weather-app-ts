@@ -1,8 +1,8 @@
-import Home from './Pages/Home';
-import DailyForecast from './Pages/DailyForecast';
-import { WeatherData } from './Models/weather.data.models';
-import { LanguageCode, UnitCode } from './Models/app.data.models';
-import { CityNameID } from './Hooks/useBookmarks';
+import Home from '../Pages/Home';
+import DailyForecast from '../Pages/DailyForecast';
+import { WeatherData } from '../Models/weather.data.models';
+import { LanguageCode, UnitCode } from '../Models/app.data.models';
+import { CityNameID } from '../Hooks/useBookmarks';
 import { Routes, Route } from 'react-router-dom';
 
 export interface AppFlowProps {

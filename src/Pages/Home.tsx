@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import CurrentWeather from '../Components/Home/CurrentWeather';
 import SevenDayForecast from '../Components/Home/SevenDayForecast';
 import { HourData, DayData } from '../Models/weather.data.models';
-import { AppFlowProps } from '../AppFlow';
+import { AppFlowProps } from '../App/AppFlow';
 import { dayDate } from '../Utilities/dateFunctions';
 
 const Home = (props: AppFlowProps) => {

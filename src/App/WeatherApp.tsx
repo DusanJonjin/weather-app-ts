@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
-import Header from './Components/Header';
-import AsideMenu from './Components/Aside Menu/AsideMenu';
+import AsideMenu from '../Components/Aside Menu/AsideMenu';
 import AppFlow from './AppFlow';
-import { WeatherData } from './Models/weather.data.models';
-import { BasicData, LanguageCode, UnitCode } from './Models/app.data.models';
-import { getWeather } from './API/api';
-import { messages } from './Fixtures/miscData';
-import { useScrollToTop } from './Hooks/useScrollToTop';
-import { useBookmarks } from './Hooks/useBookmarks';
-import { findCityFromStorageOrUrl } from './Utilities/helperFunctions';
+import { AppLayout } from './AppLayout';
+import { WeatherData } from '../Models/weather.data.models';
+import { BasicData, LanguageCode, UnitCode } from '../Models/app.data.models';
+import { getWeather } from '../API/api';
+import { messages } from '../Fixtures/miscData';
+import { useScrollToTop } from '../Hooks/useScrollToTop';
+import { useBookmarks } from '../Hooks/useBookmarks';
+import { getDataFromStorageOrUrl } from '../Utilities/helperFunctions';
 import { useLocation } from 'react-router-dom';
 
 const { 
@@ -42,7 +42,7 @@ export function WeatherApp() {
 
     const [status, setStatus] = useState<'isLoading' | 'error' | 'isLoaded'>('isLoading');
     // Passed function to useState will be executed only on the initial render:
-    const [basicData, setBasicData] = useState<BasicData>(() => findCityFromStorageOrUrl(pathname));
+    const [basicData, setBasicData] = useState<BasicData>(() => getDataFromStorageOrUrl(pathname));
     const { searchedCity, units, language } = basicData;
     const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
     const [message, setMessage] = useState<string>(loading);
@@ -111,13 +111,12 @@ export function WeatherApp() {
 
     return (
         <>
-            <Header 
+            <AppLayout
                 handleSearchSubmit={handleSearchSubmit}
                 toggleAsideMenu={toggleAsideMenu}
                 showAsideMenu={showAsideMenu}
                 language={language}
-            />
-            <main className={`weather-app`}>
+            >
                 <AsideMenu 
                     showAsideMenu={showAsideMenu}
                     handleCityChange={handleCityChange}
@@ -148,11 +147,7 @@ export function WeatherApp() {
                             openAsideMenu={openAsideMenu}
                         />,
                 }[status]}
-            </main>
-            <footer>
-                    <p>Powered by Pirate Weather's API</p>
-                    <p><span>Weather Forecast</span>&ensp;by D.J. &copy; {new Date().getFullYear()}</p>
-            </footer>
+            </AppLayout>
         </>
     );
 }

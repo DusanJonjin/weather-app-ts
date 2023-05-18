@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { WeatherApp } from './WeatherApp';
+import { WeatherApp } from './App/WeatherApp';
 import { BrowserRouter } from 'react-router-dom';
 import "./Styles/index.scss";
 

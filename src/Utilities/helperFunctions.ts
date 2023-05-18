@@ -30,7 +30,7 @@ const findCityFromUrl = (pathname: string, storageString: string | null): BasicD
 };
 
 // Do this on first App mount and home URL or DailyForecast URL page refresh
-export const findCityFromStorageOrUrl = (pathname: string): BasicData => {
+export const getDataFromStorageOrUrl = (pathname: string): BasicData => {
     const storageString: string | null = localStorage.getItem("default-data");
     if (pathname === '/') {
         if (storageString === null) return ({...initialBasicData, ...initialCity});

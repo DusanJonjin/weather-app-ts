@@ -2,14 +2,9 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { popularCities } from "../Fixtures/miscData";
 import { header } from "../Fixtures/translation.objects";
-import { LanguageCode } from "../Models/app.data.models";
+import { AppLayoutProps } from "../App/AppLayout";
 
-interface HeaderProps {
-    handleSearchSubmit: (e: React.FormEvent<HTMLFormElement>, inputValue: string) => void;
-    toggleAsideMenu: () => void;
-    showAsideMenu: boolean;
-    language: LanguageCode;
-}
+type HeaderProps = Omit<AppLayoutProps, "children">;
 
 const Header = (props: HeaderProps) => {
     const { 
@@ -43,17 +38,19 @@ const Header = (props: HeaderProps) => {
 
     return(
         <header id="header">
-            <h1><img src={"/Images/icon.png"} alt="weather_app_icon"/>
+            <h1>
+                <img src={"/Images/icon.png"} alt="weather_app_icon"/>
                 Weather Forecast
             </h1>
-
-            <form onSubmit={e => (handleSearchSubmit(e, inputValue), setShowSuggestions(false))} 
-                  className={isHomeUrl ? "" : "hide"}
+            <form 
+                onSubmit={e => (handleSearchSubmit(e, inputValue), setShowSuggestions(false))} 
+                className={isHomeUrl ? "" : "hide"}
             >
-                <input type="search"  
-                       placeholder={`${header.input[language]}...`}
-                       onChange={e => handleInputChange(e)}
-                       value={inputValue} 
+                <input 
+                    type="search"  
+                    placeholder={`${header.input[language]}...`}
+                    onChange={e => handleInputChange(e)}
+                    value={inputValue} 
                 />
                 <div>
                     {showSuggestions ? searchSuggestions : <></>}
@@ -65,7 +62,10 @@ const Header = (props: HeaderProps) => {
                    &lt;&ensp;{header.backLink[language]}
                 </Link>
             </div>
-            <div className="hamburger-wrap" onClick={() => toggleAsideMenu()}>
+            <div 
+                className="hamburger-wrap" 
+                onClick={() => toggleAsideMenu()}
+            >
                 <div className={`hamburger ${showAsideMenu ? "hamb-open" : ""}`}></div>
             </div>
         </header>

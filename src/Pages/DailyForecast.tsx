@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import DayForecast from '../Components/DailyForecast/DayForecast';
 import HourForecast from '../Components/- Shared -/HourForecast';
 import Pagination from '../Components/DailyForecast/Pagination';
-import { AppFlowProps } from '../AppFlow';
+import { AppFlowProps } from '../App/AppFlow';
 import { dayDate, dateObj } from '../Utilities/dateFunctions';
 import { useLocation } from 'react-router-dom';
 import { messages } from '../Fixtures/miscData';
