@@ -18,12 +18,8 @@ export interface AppFlowProps {
 const AppFlow = (props: AppFlowProps) => {
     const {
         weatherData,
-        badHomeSearch,
-        bookmarks,
         language,
         units,
-        openAsideMenu,
-        toggleCity,
     } = props;
 
     return (
@@ -32,15 +28,7 @@ const AppFlow = (props: AppFlowProps) => {
                 <Route 
                     path='/' 
                     element={
-                        <Home 
-                            weatherData={weatherData} 
-                            badHomeSearch={badHomeSearch}
-                            toggleCity={toggleCity}
-                            bookmarks={bookmarks}
-                            openAsideMenu={openAsideMenu}
-                            language={language}
-                            units={units}
-                        />
+                        <Home {...props} />
                     } 
                 />
                 <Route 

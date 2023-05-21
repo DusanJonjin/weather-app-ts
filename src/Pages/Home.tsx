@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import Message from '../Components/- Shared -/Message';
 import CurrentWeather from '../Components/Home/CurrentWeather';
 import SevenDayForecast from '../Components/Home/SevenDayForecast';
 import { HourData, DayData } from '../Models/weather.data.models';
@@ -17,9 +18,7 @@ const Home = (props: AppFlowProps) => {
     } = props;
 
     if (weatherData === null) return (
-        <div className={`message sad`}>
-            <p>{badHomeSearch}</p>
-        </div>
+        <Message message={badHomeSearch} />
     );
 
     const { 

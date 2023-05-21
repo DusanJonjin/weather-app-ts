@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import Message from '../Components/- Shared -/Message';
 import DayForecast from '../Components/DailyForecast/DayForecast';
 import HourForecast from '../Components/- Shared -/HourForecast';
 import Pagination from '../Components/DailyForecast/Pagination';
@@ -11,23 +12,17 @@ type DailyForecastProps = Pick<AppFlowProps, "weatherData" | "language" | "units
 
 const DailyForecast = (props: DailyForecastProps) => {
     const { weatherData, language, units } = props;
-
+    const { pathname } =  useLocation();
     const { badHomeSearch, networkError, badDate } = messages;
 
-    const { pathname } =  useLocation();
-
     if (weatherData === null) return (
-        <div className={`message sad`}>
-            <p>{badHomeSearch}</p>
-        </div>
+        <Message message={badHomeSearch} />
     );
 
     const { city, country, timezone, hourly, daily } = weatherData;
 
     if (!daily || !hourly) return (
-        <p className='message sad'>
-            {networkError}
-        </p>
+        <Message message={networkError} />
     );
 
     const clickedDateArray = pathname.match(/(?<=_).*/);
@@ -42,9 +37,7 @@ const DailyForecast = (props: DailyForecastProps) => {
     });
 
     if (!clickedDate || !allDailyDatesArr.some(dateObj => dateObj.fullDate === clickedDate)) return (
-        <p className='message sad'>
-            {badDate}
-        </p>
+        <Message message={badDate} />
     );
 
     const chosenDay = useMemo(() => daily.data.filter(

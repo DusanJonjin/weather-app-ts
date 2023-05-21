@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import AsideMenu from '../Components/Aside Menu/AsideMenu';
 import AppFlow from './AppFlow';
+import Message from '../Components/- Shared -/Message';
 import { AppLayout } from './AppLayout';
 import { WeatherData } from '../Models/weather.data.models';
 import { BasicData, LanguageCode, UnitCode } from '../Models/app.data.models';
@@ -11,32 +12,16 @@ import { useBookmarks } from '../Hooks/useBookmarks';
 import { getDataFromStorageOrUrl } from '../Utilities/helperFunctions';
 import { useLocation } from 'react-router-dom';
 
-const { 
-    loading,
-    searching,
-    badHomeSearch,
-    badUrlSearch,
-    networkError,
-    minLetters,
-    settingsChange
-} = messages;
-
-const showSunBackground = (message: string): string => {
-    switch (message) {
-        case loading: 
-        case searching:
-        case settingsChange:
-            return 'happy';
-        case badUrlSearch:
-        case networkError:
-        case minLetters:
-             return  'sad';
-        default: return '';
-    }
-};
-
 export function WeatherApp() {
-
+    const { 
+        loading,
+        searching,
+        badHomeSearch,
+        badUrlSearch,
+        networkError,
+        minLetters,
+        settingsChange
+    } = messages;
     const { pathname } = useLocation();
     const { bookmarks, city, toggleCity } = useBookmarks();
 
@@ -129,13 +114,9 @@ export function WeatherApp() {
                 />
                 {{
                     isLoading: 
-                        <div className={`message ${showSunBackground(message)}`}>
-                            <p>{message}</p>
-                        </div>,
+                        <Message message={message} />,
                     error:
-                        <div className={`message ${showSunBackground(message)}`}>
-                            <p>{message}</p>
-                        </div>,
+                        <Message message={message} />,
                     isLoaded:
                         <AppFlow
                             weatherData={weatherData} 
