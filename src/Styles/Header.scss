@@ -45,7 +45,7 @@
 
         input[type=search] {
             font-size: 16px;
-            margin: 0 5px;
+            margin: 0 9px 0 5px;
             width: 185px;
             height: 28px;
             padding-left: 12px;
@@ -77,7 +77,7 @@
                 display: block;
                 text-align: left;
                 padding: 8px 7px;
-                margin:  0;
+                margin: 0;
                 color: hsl(220, 3%, 17%);
                 border: none;
                 width: 100%
@@ -97,7 +97,7 @@
             border-radius: 4px;
             width: 67px;
             height: 23px;
-            margin-left: 4px;
+            margin: 0;
             background-color:hsl(214, 86%, 58%);
             box-shadow: 0 0 0 2px hsl(197, 48%, 83%);
             color: hsl(240, 20%, 95%);
