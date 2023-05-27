@@ -64,6 +64,28 @@
             color: rgb(78, 78, 80);
         }
 
+        #search-button {
+            font-size: 15px;
+            font-family: var.$roboto-font;
+            text-align: center;
+            border: none; 
+            border-radius: 4px;
+            width: 67px;
+            height: 23px;
+            margin: 0;
+            background-color:hsl(214, 86%, 58%);
+            box-shadow: 0 0 0 2px hsl(197, 48%, 83%);
+            color: hsl(240, 20%, 95%);
+            transition: .3s ease;
+        }
+
+        #search-button:hover {
+            cursor: pointer;
+            background-color:hsl(214, 86%, 67%);
+            color: hsl(220, 4%, 12%);
+            box-shadow: 0 0 0 1px rgb(200, 237, 252);
+        }
+
         div {
             position: absolute;
             top: 90%;
@@ -87,28 +109,6 @@
                 background-color: hsl(240, 10%, 84%);
                 cursor: pointer;
             }
-        }
-
-        #search-button {
-            font-size: 15px;
-            font-family: var.$roboto-font;
-            text-align: center;
-            border: none; 
-            border-radius: 4px;
-            width: 67px;
-            height: 23px;
-            margin: 0;
-            background-color:hsl(214, 86%, 58%);
-            box-shadow: 0 0 0 2px hsl(197, 48%, 83%);
-            color: hsl(240, 20%, 95%);
-            transition: .3s ease;
-        }
-
-        #search-button:hover {
-            cursor: pointer;
-            background-color:hsl(214, 86%, 67%);
-            color: hsl(220, 4%, 12%);
-            box-shadow: 0 0 0 1px rgb(200, 237, 252);
         }
     }
     

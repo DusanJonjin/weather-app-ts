@@ -52,10 +52,10 @@ const Header = (props: HeaderProps) => {
                     onChange={e => handleInputChange(e)}
                     value={inputValue} 
                 />
+                <button id="search-button" type="submit">{header.button[language]}</button>
                 <div>
                     {showSuggestions ? searchSuggestions : <></>}
                 </div>
-                <button id="search-button" type="submit">{header.button[language]}</button>
             </form>
             <div className={`back ${isHomeUrl ? "hide" : ""}`}>
                 <Link to="/" className="link">
