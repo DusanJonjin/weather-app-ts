@@ -34,14 +34,6 @@ export function WeatherApp() {
     const [showAsideMenu, setShowAsideMenu] = useState<boolean>(false);
 
     useScrollToTop(pathname, showAsideMenu);
- 
-    const toggleAsideMenu = () => {
-        setShowAsideMenu(prevAside => !prevAside);
-    };
-
-    const openAsideMenu = () => {
-        setShowAsideMenu(true);
-    }
 
     const handleSettingsChange = () => {
         setStatus('isLoading');
@@ -100,7 +92,7 @@ export function WeatherApp() {
         <>
             <AppLayout
                 handleSearchSubmit={handleSearchSubmit}
-                toggleAsideMenu={toggleAsideMenu}
+                toggleAsideMenu={() => setShowAsideMenu(prevAside => !prevAside)}
                 showAsideMenu={showAsideMenu}
                 language={language}
             >
@@ -133,7 +125,7 @@ export function WeatherApp() {
                             language={language}
                             units={units}
                             toggleCity={toggleCity}
-                            openAsideMenu={openAsideMenu}
+                            openAsideMenu={() => setShowAsideMenu(true)}
                         />,
                 }[status]}
             </AppLayout>
