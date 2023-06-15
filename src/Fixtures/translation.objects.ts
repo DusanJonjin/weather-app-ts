@@ -1,26 +1,86 @@
 import { DaysEN, DaysRS, MonthsEN, MonthsRS } from "../Models/date.models";
 
-export const asideMenu = {
-    bmarks: {
+export const messages = {
+    loading: {
+        en: "Loading weather data. \nPlease wait...",
+        rs: "Podaci o vremenu se učitavaju. \nMolim Vas sačekajte..."
+    },
+    searching: {
+        en: `Searching for weather data. \nPlease wait...`,
+        rs: "Podaci o vremenu se traže. \nMolim Vas sačekajte...",
+    },
+    settingsChange: {
+        en: "Applying settings changes. \nPlease wait...",
+        rs: "Promene u podešavanjima se primenjuju. \nMolim Vas sačekajte...",
+    },
+    badHomeUrl: {
+        en: "Refresh the browser or enter a new search, to see the current weather data and forecast.",
+        rs: "Osvežite pregledač ili unesite novu pretragu da bi ste videli trenutno vreme i prognozu.",
+    },
+    badUrl: {
+        en: "Invalid URL. Enter a new search, or go back to the weather home page and refresh the browser.",
+        rs: "Neispravan URL. Unesite novu pretragu, ili se vratite na početnu stranicu i osvežite pregledač.",
+    },
+    badHomeSearch: {
+        en: "The city you have entered cannot be found, or it doesn\'t exist. Enter a new search or refresh the browser for real weather data.",
+        rs: "Naselje koje ste uneli ne može da se pronađe, ili ne postoji. Unesite novu pretragu ili osvežite pregledač za stvarne podatke o vremenu."
+    },
+    badUrlSearch: {
+        en: "You have entered invalid city name. Go to the home page and enter a new search value, or refresh the browser for any city\'s weather.",
+        rs: "Uneli ste neispravno ime mesta. Idite na početnu stranicu i unesite novu pretragu, ili osvežite pregledač za vreme bilo kojeg mesta.",
+    },
+    badDate: {
+        en: "Weather forecast for chosen date doesn\'t exist. Go back to the home page and choose another date.",
+        rs: "Vremenska prognoza za izabrani datum ne postoji. Vratite se na početnu stranicu i izaberite neki drugi datum.",
+    },
+    networkError: {
+        en: "Network error. \nPlease try again later.",
+        rs: "Greška na mreži. \nMolim Vas pokušajte kasnije.",
+    },
+    minLetters: {
+        en: "At least two letters are required to display the search result!",
+        rs: "Potrebno je uneti najmanje dva slova da bi se prikazao rezultat pretrage!",
+    }
+};
+
+// Aside Menu labels translation objects:
+export const bookmarksLabels =  {
+    heading: {
         en: "Bookmarked places",
-        rs: "Obeležena mesta"
+        rs: "Obeležena mesta",
     },
-    popCities: {
-        en: "Popular cities",
-        rs: "Popularni gradovi"
+    default: {
+        en: "Set as default",
+        rs: "Postaviti kao podrazumevano",
     },
-    sett: {
+    remove: {
+        en: "Remove bookmark",
+        rs: "Ukloniti iz obeleženih",
+    },
+    empty: {
+        en: "No bookmarks yet",
+        rs: "Nema obeleženih mesta",
+    }
+};
+
+export const popCitiesLabels =  {
+    en: "Popular cities",
+    rs: "Popularni gradovi",
+};
+
+export const settingsLabels = {
+    main: {
         en: "Settings",
-        rs: "Podešavanja"
+        rs: "Podešavanja",
     },
-    settLang: {
+    language: {
         en: "Language",
         rs: "Jezik",
     },
-    settUnits: {
+    units: {
         en: "Units",
-        rs: "Jedinice"
-    }
+        rs: "Jedinice",
+    },
 };
 
 export const otherDetails = {
@@ -47,26 +107,26 @@ export const sevenDaysFcast = {
 export const temp = {
     low: {
         en: "Low",
-        rs: "Najniže"
+        rs: "Najniže",
     },
     high: {
         en: "High",
-        rs: "Najviše"
+        rs: "Najviše",
     }
 };
 
 export const header = {
     input: {
-        en: "Enter a town name",
-        rs: "Unesite ime naselja"
+        en: "Enter a place name",
+        rs: "Unesite ime mesta",
     },
     button: {
         en: "Search",
-        rs: "Pretraži"
+        rs: "Pretraži",
     },
     backLink: {
         en: "Home (Current weather)",
-        rs: "Početna (Trenutno vreme)"
+        rs: "Početna (Trenutno vreme)",
     }
 };
 
@@ -74,15 +134,15 @@ export const header = {
 export const unitsName = {
     temp: {
         ca: "°C",
-        us: "°F"
+        us: "°F",
     },
     speed: {
         ca: "km/h",
-        us: "mph"
+        us: "mph",
     },
     distance: {
         ca: "km",
-        us: "mi"
+        us: "mi",
     }
 };
 

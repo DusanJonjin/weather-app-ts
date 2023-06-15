@@ -1,8 +1,15 @@
+import { LanguageCode } from '../../Models/app.data.models';
 import { showSunBackground } from '../../Utilities/helperFunctions';
 
-const Message = ({ message }: { message : string }) => {
+interface MessageProps {
+    message: string;
+    language: LanguageCode;
+}
+
+const Message = (props: MessageProps) => {
+    const { message, language } = props;
     return (
-        <div className={`message ${showSunBackground(message)}`}>
+        <div className={`message ${showSunBackground(message, language)}`}>
             <p>{message}</p>
         </div>
     );

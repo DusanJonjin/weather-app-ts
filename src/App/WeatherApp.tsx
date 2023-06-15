@@ -6,7 +6,7 @@ import { AppLayout } from './AppLayout';
 import { WeatherData } from '../Models/weather.data.models';
 import { BasicData, LanguageCode, UnitCode } from '../Models/app.data.models';
 import { getWeather } from '../API/api';
-import { messages } from '../Fixtures/miscData';
+import { messages } from '../Fixtures/translation.objects';
 import { useScrollToTop } from '../Hooks/useScrollToTop';
 import { useBookmarks } from '../Hooks/useBookmarks';
 import { getDataFromStorageOrUrl } from '../Utilities/helperFunctions';
@@ -30,7 +30,7 @@ export function WeatherApp() {
     const [basicData, setBasicData] = useState<BasicData>(() => getDataFromStorageOrUrl(pathname));
     const { searchedCity, units, language } = basicData;
     const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
-    const [message, setMessage] = useState<string>(loading);
+    const [message, setMessage] = useState<string>(loading[language]);
     const [showAsideMenu, setShowAsideMenu] = useState<boolean>(false);
 
     useScrollToTop(pathname, showAsideMenu);
@@ -46,7 +46,7 @@ export function WeatherApp() {
     const handleSettingsChange = () => {
         setStatus('isLoading');
         setWeatherData(null);
-        setMessage(settingsChange);
+        setMessage(settingsChange[language]);
         setShowAsideMenu(false);
     };
 
@@ -65,7 +65,7 @@ export function WeatherApp() {
         setStatus('isLoading')
         setWeatherData(null);
         setBasicData(prevBData => ({...prevBData, searchedCity: newCity, id: ""}));
-        setMessage(searching);
+        setMessage(searching[language]);
         setShowAsideMenu(false);
     };
 
@@ -74,7 +74,7 @@ export function WeatherApp() {
         if (inputValue.trim() === "") return;
         if (inputValue.length < 2) {
             setStatus('error');
-            setMessage(minLetters)
+            setMessage(minLetters[language])
         } else {
             handleCityChange(inputValue)
         }
@@ -85,9 +85,11 @@ export function WeatherApp() {
     };
 
     useEffect(() => {
-        getWeather(basicData, badUrlSearch, networkError, handleErrorMsg).then(res => 
-            (setWeatherData(res), setStatus(res === null ? 'error' : 'isLoaded'))
-        )
+        getWeather(basicData, badUrlSearch[language], networkError[language], handleErrorMsg)
+        .then(res => {
+            setWeatherData(res);
+            setStatus(res === null ? 'error' : 'isLoaded');
+        });
     }, [searchedCity, units, language]);
 
     useEffect(() => {
@@ -114,13 +116,19 @@ export function WeatherApp() {
                 />
                 {{
                     isLoading: 
-                        <Message message={message} />,
+                        <Message 
+                            message={message} 
+                            language={language}
+                        />,
                     error:
-                        <Message message={message} />,
+                        <Message 
+                            message={message}
+                            language={language}
+                        />,
                     isLoaded:
                         <AppFlow
                             weatherData={weatherData} 
-                            badHomeSearch={badHomeSearch}
+                            badHomeSearch={badHomeSearch[language]}
                             bookmarks={bookmarks}
                             language={language}
                             units={units}

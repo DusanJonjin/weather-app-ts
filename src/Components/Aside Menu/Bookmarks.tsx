@@ -1,7 +1,8 @@
 import { Key } from "../../Hooks/useDefaultData";
-import { BasicData } from "../../Models/app.data.models";
+import { BasicData, LanguageCode } from "../../Models/app.data.models";
 import { insertNewCityInUrl } from '../../Utilities/helperFunctions';
 import { CityNameID } from '../../Hooks/useBookmarks';
+import { bookmarksLabels } from "../../Fixtures/translation.objects";
 import { Link } from "react-router-dom";
 
 interface BookmarksProps {
@@ -12,7 +13,7 @@ interface BookmarksProps {
     handleCityChange: (newValue: string) => void;
     pathname: string;
     isHomeUrl: boolean;
-    bmarksHeading: string;
+    lang: LanguageCode;
 }
 
 export const Bookmarks = (props: BookmarksProps) => {
@@ -24,14 +25,21 @@ export const Bookmarks = (props: BookmarksProps) => {
         handleCityChange,
         pathname,
         isHomeUrl,
-        bmarksHeading
+        lang,
     } = props;
 
     const { id } = defaultData;
 
     return (
         <section className='bookmarked-cities'>
-            <h2>{bmarksHeading}</h2>
+            <h2>{bookmarksLabels.heading[lang]}</h2>
+            {bookmarks.length < 1
+                ? <p>
+                    <span>{'\u2606'} </span>
+                    {bookmarksLabels.empty[lang]}
+                </p>
+                : <></>
+            }
             <div className='bm-cities-wrap'>
                 {bookmarks.map(bookmark =>
                     <article key={bookmark.id} id="bookmark">
@@ -45,12 +53,12 @@ export const Bookmarks = (props: BookmarksProps) => {
                         </h3>
                         <div>
                             <button onClick={() => toggleNewValue("searchedCity", bookmark.name, bookmark.id)}
-                                title="Set as default"
+                                title={bookmarksLabels.default[lang]}
                                 className={`default ${bookmark.id === id ? "checked" : ""}`}>
                                 {'\u2713'}
                             </button>
                             <button onClick={() => toggleCity(bookmark.name, bookmark.id)}
-                                title="Remove bookmark"
+                                title={bookmarksLabels.remove[lang]}
                                 id="remove">
                             {'\u2715'}
                             </button>

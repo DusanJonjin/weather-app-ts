@@ -4,16 +4,8 @@ import { Settings } from './Settings';
 import { useDefaultData } from '../../Hooks/useDefaultData';
 import { BasicData, LanguageCode, UnitCode } from '../../Models/app.data.models';
 import { City, CityNameID } from '../../Hooks/useBookmarks';
-import { asideMenu } from '../../Fixtures/translation.objects';
+import { languagesList } from '../../Fixtures/initial.app.data';
 import { useLocation } from "react-router-dom";
-
-const { 
-    bmarks, 
-    popCities, 
-    ...allSettings
-} = asideMenu;
-
-export const languagesList: LanguageCode[] = ["en", "rs"];
 
 interface AsideMenuProps {
     showAsideMenu: boolean;
@@ -42,12 +34,8 @@ const AsideMenu = (props: AsideMenuProps) => {
     const isHomeUrl = pathname === "/";
 
     const { toggleNewValue, defaultData } = useDefaultData(basicData, city);
-
     const { language } = basicData;
-
     const lang = languagesList.includes(language) ? language : "en"; 
-    const bmarksHeading = bmarks[lang]; 
-    const popCitiesHeading = popCities[lang];
     
     return (
         <aside className={`aside ${showAsideMenu ? '' : 'hide-aside'}`}>
@@ -60,20 +48,19 @@ const AsideMenu = (props: AsideMenuProps) => {
                     handleCityChange={handleCityChange}
                     pathname={pathname}
                     isHomeUrl={isHomeUrl}
-                    bmarksHeading={bmarksHeading}
+                    lang={lang}
                 />
                 <PopularCities 
                     pathname={pathname}
                     isHomeUrl={isHomeUrl}
                     handleCityChange={handleCityChange}
-                    popCitiesHeading={popCitiesHeading}
+                    lang={lang}
                 />
                 <Settings 
                     defaultData={defaultData}
                     toggleNewValue={toggleNewValue} 
                     handleLanguageChange={handleLanguageChange}
                     handleUnitsChange={handleUnitsChange}
-                    allSettings={allSettings}
                     lang={lang}
                 />
             </div>

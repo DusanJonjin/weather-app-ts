@@ -1,7 +1,6 @@
-import { BasicData } from "../Models/app.data.models";
-import { initialBasicData } from "../Fixtures/initial.app.data";
-import { initialCity } from "../Fixtures/initial.app.data";
-import { messages } from "../Fixtures/miscData";
+import { BasicData, LanguageCode } from "../Models/app.data.models";
+import { initialBasicData, initialCity } from "../Fixtures/initial.app.data";
+import { messages } from "../Fixtures/translation.objects";
 
 const requiredUrlPart = '/DailyForecast/';
 
@@ -42,19 +41,20 @@ export const getDataFromStorageOrUrl = (pathname: string): BasicData => {
 };
 
 
-export const showSunBackground = (message: string): string => {
+export const showSunBackground = (message: string, language: LanguageCode): string => {
     switch (message) {
-        case messages.loading: 
-        case messages.searching:
-        case messages.settingsChange:
+        case messages.loading[language]:
+        case messages.searching[language]:
+        case messages.settingsChange["en"]:
+        case messages.settingsChange["rs"]:
             return 'happy';
-        case messages.badHomeUrl:
-        case messages.badUrl:
-        case messages.badHomeSearch:
-        case messages.badUrlSearch:
-        case messages.badDate:
-        case messages.networkError:
-        case messages.minLetters:
+        case messages.badHomeUrl[language]:
+        case messages.badUrl[language]:
+        case messages.badHomeSearch[language]:
+        case messages.badUrlSearch[language]:
+        case messages.badDate[language]:
+        case messages.networkError[language]:
+        case messages.minLetters[language]:
              return  'sad';
         default: return '';
     }

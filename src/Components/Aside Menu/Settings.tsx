@@ -1,5 +1,6 @@
 import { Key } from "../../Hooks/useDefaultData";
 import { BasicData, LanguageCode, UnitCode, Language, Unit } from "../../Models/app.data.models";
+import { settingsLabels } from "../../Fixtures/translation.objects";
 
 const allLanguages: Language[] = [
     {name: "English", code: "en"}, 
@@ -21,7 +22,6 @@ interface SettingsProps {
     toggleNewValue : (key: Key, value: string) => void;
     handleLanguageChange: (language: LanguageCode) => void;
     handleUnitsChange: (units: UnitCode) => void;
-    allSettings: {sett: Setting, settLang: Setting, settUnits: Setting};
     lang: LanguageCode;
 }
 
@@ -30,19 +30,16 @@ export const Settings = (props: SettingsProps) => {
         defaultData, 
         toggleNewValue, 
         handleLanguageChange, 
-        handleUnitsChange, 
-        allSettings, 
-        lang 
+        handleUnitsChange,
+        lang,
     } = props;
 
     const { units, language } = defaultData;
 
-    const { sett, settLang, settUnits } = allSettings;
-
     return (
         <section className='settings'>
-            <h2>{sett[lang]}</h2>
-            <h3>{settLang[lang]}</h3>
+            <h2>{settingsLabels.main[lang]}</h2>
+            <h3>{settingsLabels.language[lang]}</h3>
             <div>
                 {allLanguages.map(({ name, code }) => 
                     <p key={code}>
@@ -57,7 +54,7 @@ export const Settings = (props: SettingsProps) => {
                     </p> 
                 )}
             </div>
-            <h3>{settUnits[lang]}</h3>
+            <h3>{settingsLabels.units[lang]}</h3>
             <div>
                 {allUnits.map(({ name, code }) => 
                     <p key={code}>

@@ -18,7 +18,10 @@ const Home = (props: AppFlowProps) => {
     } = props;
 
     if (weatherData === null) return (
-        <Message message={badHomeSearch} />
+        <Message
+            message={badHomeSearch} 
+            language={language}
+        />
     );
 
     const { 

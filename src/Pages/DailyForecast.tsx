@@ -6,7 +6,7 @@ import Pagination from '../Components/DailyForecast/Pagination';
 import { AppFlowProps } from '../App/AppFlow';
 import { dayDate, dateObj } from '../Utilities/dateFunctions';
 import { useLocation } from 'react-router-dom';
-import { messages } from '../Fixtures/miscData';
+import { messages } from '../Fixtures/translation.objects';
 
 type DailyForecastProps = Pick<AppFlowProps, "weatherData" | "language" | "units">;
 
@@ -16,13 +16,19 @@ const DailyForecast = (props: DailyForecastProps) => {
     const { badHomeSearch, networkError, badDate } = messages;
 
     if (weatherData === null) return (
-        <Message message={badHomeSearch} />
+        <Message 
+            message={badHomeSearch[language]} 
+            language={language}
+        />
     );
 
     const { city, country, timezone, hourly, daily } = weatherData;
 
     if (!daily || !hourly) return (
-        <Message message={networkError} />
+        <Message
+            message={networkError[language]}
+            language={language}
+        />
     );
 
     const clickedDateArray = pathname.match(/(?<=_).*/);
@@ -37,7 +43,10 @@ const DailyForecast = (props: DailyForecastProps) => {
     });
 
     if (!clickedDate || !allDailyDatesArr.some(dateObj => dateObj.fullDate === clickedDate)) return (
-        <Message message={badDate} />
+        <Message 
+            message={badDate[language]} 
+            language={language}
+        />
     );
 
     const chosenDay = useMemo(() => daily.data.filter(
