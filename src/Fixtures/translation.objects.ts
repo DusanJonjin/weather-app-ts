@@ -22,12 +22,12 @@ export const messages = {
         rs: "Neispravan URL. Unesite novu pretragu, ili se vratite na početnu stranicu i osvežite pregledač.",
     },
     badHomeSearch: {
-        en: "The city you have entered cannot be found, or it doesn\'t exist. Enter a new search or refresh the browser for real weather data.",
-        rs: "Naselje koje ste uneli ne može da se pronađe, ili ne postoji. Unesite novu pretragu ili osvežite pregledač za stvarne podatke o vremenu."
+        en: "The place you have entered cannot be found, or it doesn\'t exist. Enter a new search or refresh the browser for real weather data.",
+        rs: "Mesto koje ste uneli ne može da se pronađe ili ne postoji. Unesite novu pretragu ili osvežite pregledač za stvarne podatke o vremenu."
     },
     badUrlSearch: {
-        en: "You have entered invalid city name. Go to the home page and enter a new search value, or refresh the browser for any city\'s weather.",
-        rs: "Uneli ste neispravno ime mesta. Idite na početnu stranicu i unesite novu pretragu, ili osvežite pregledač za vreme bilo kojeg mesta.",
+        en: "You have entered invalid place name. Go to the home page and enter a new search value, or refresh the browser for any city\'s weather.",
+        rs: "Uneli ste neispravan naziv mesta. Idite na početnu stranicu i unesite novu pretragu, ili osvežite pregledač za vreme bilo kojeg mesta.",
     },
     badDate: {
         en: "Weather forecast for chosen date doesn\'t exist. Go back to the home page and choose another date.",
@@ -118,7 +118,7 @@ export const temp = {
 export const header = {
     input: {
         en: "Enter a place name",
-        rs: "Unesite ime mesta",
+        rs: "Unesite naziv mesta",
     },
     button: {
         en: "Search",
