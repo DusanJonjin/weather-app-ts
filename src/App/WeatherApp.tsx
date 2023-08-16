@@ -8,6 +8,7 @@ import { BasicData, LanguageCode, UnitCode } from '../Models/app.data.models';
 import { getWeather } from '../API/api';
 import { messages } from '../Fixtures/translation.objects';
 import { useScrollToTop } from '../Hooks/useScrollToTop';
+import { useBodyClassToggle } from '../Hooks/useBodyClassToggle';
 import { useBookmarks } from '../Hooks/useBookmarks';
 import { getDataFromStorageOrUrl } from '../Utilities/helperFunctions';
 import { useLocation } from 'react-router-dom';
@@ -34,6 +35,7 @@ export function WeatherApp() {
     const [showAsideMenu, setShowAsideMenu] = useState<boolean>(false);
 
     useScrollToTop(pathname, showAsideMenu);
+    useBodyClassToggle("aside-menu-open", showAsideMenu);
 
     const handleSettingsChange = () => {
         setStatus('isLoading');
@@ -83,10 +85,6 @@ export function WeatherApp() {
             setStatus(res === null ? 'error' : 'isLoaded');
         });
     }, [searchedCity, units, language]);
-
-    useEffect(() => {
-        document.body.classList.toggle("aside-menu-open", showAsideMenu);
-    }, [showAsideMenu])
 
     return (
         <>

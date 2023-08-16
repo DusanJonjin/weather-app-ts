@@ -18,13 +18,13 @@ body {
 }
 
 .aside-menu-open {
-    overflow-y: visible;
+    overflow-y: hidden;
 }
 
 #root {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    min-height: 100dvh;
 }
 
 
