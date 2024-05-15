@@ -1,4 +1,5 @@
 import { DaysEN, DaysRS, MonthsEN, MonthsRS } from "../Models/date.models";
+import { SummaryObj } from "../Models/translation.models";
 
 export const messages = {
     loading: {
@@ -128,6 +129,17 @@ export const header = {
         en: "Home (Current weather)",
         rs: "Početna (Trenutno vreme)",
     }
+};
+
+export const summaryObj: SummaryObj = {
+    clear: "Vedro",
+    cloudy: "Oblačno",
+    fog: "Magla",
+    partly_cloudy: "Delimično oblačno",
+    rain: "Kiša",
+    sleet: "Susnežica",
+    snow: "Sneg",
+    wind: "Vetrovito",
 };
 
 // Translation object used for different units options 

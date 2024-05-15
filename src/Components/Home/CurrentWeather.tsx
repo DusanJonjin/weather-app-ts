@@ -11,6 +11,7 @@ import { Currently, HourData } from "../../Models/weather.data.models";
 import { LanguageCode, UnitCode } from '../../Models/app.data.models';
 import { CityNameID } from '../../Hooks/useBookmarks';
 import { dateObj } from '../../Utilities/dateFunctions';
+import { translateSummary } from '../../Utilities/helperFunctions';
 import { unitsName } from "../../Fixtures/translation.objects";
 
 interface CurrentWeatherProps {
@@ -85,7 +86,7 @@ const CurrentWeather = (props: CurrentWeatherProps) => {
                     <p id='temp-now'>
                         {temperature.toFixed(1)}<sup>{unitsName.temp[units]}</sup>
                     </p>
-                    <p className='current-summary'>{summary}</p>
+                    <p className='current-summary'>{translateSummary(summary, language)}</p>
                 </div>
                 <OtherWeatherDetails 
                     language={language}

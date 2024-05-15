@@ -1,6 +1,6 @@
 import { BasicData, LanguageCode } from "../Models/app.data.models";
 import { initialBasicData, initialCity } from "../Fixtures/initial.app.data";
-import { messages } from "../Fixtures/translation.objects";
+import { messages, summaryObj } from "../Fixtures/translation.objects";
 
 const requiredUrlPart = '/DailyForecast/';
 
@@ -58,4 +58,12 @@ export const showSunBackground = (message: string, language: LanguageCode): stri
              return  'sad';
         default: return '';
     }
+};
+
+export const translateSummary = (summary: string, language: LanguageCode) => {
+    const convertedSummary = summary === "Partly Cloudy" ? "partly_cloudy" : summary.toLowerCase();
+    if (language === "rs" && summaryObj.hasOwnProperty(convertedSummary)) {
+        return summaryObj[convertedSummary];
+    }
+    return summary;
 };
