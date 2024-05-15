@@ -29,6 +29,7 @@
     background-color: hsl(240, 26%, 22%);
     padding: 1em 0;
     margin: 0 0 20px 0;
+    border-radius: 6px;
 }
 
 .day-wrapper {
@@ -235,6 +236,7 @@
 
     #summary {
         font-size: 18px;
+        border-radius: 0;
     }
 
     .day-wrapper {
