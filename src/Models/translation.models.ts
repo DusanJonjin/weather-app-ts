@@ -1,12 +1,12 @@
 export interface SummaryObj {
-    clear: "Vedro",
-    cloudy: "Oblačno",
-    fog: "Magla",
-    partly_cloudy: "Delimično oblačno",
-    rain: "Kiša",
-    sleet: "Susnežica",
-    snow: "Sneg",
-    wind: "Vetrovito",
+    "Clear": "Vedro",
+    "Cloudy": "Oblačno",
+    "Fog": "Magla",
+    "Partly Cloudy": "Delimično oblačno",
+    "Rain": "Kiša",
+    "Sleet": "Susnežica",
+    "Snow": "Sneg",
+    "Wind": "Vetrovito",
     [key: string]: string;
 }
 

@@ -61,9 +61,8 @@ export const showSunBackground = (message: string, language: LanguageCode): stri
 };
 
 export const translateSummary = (summary: string, language: LanguageCode) => {
-    const convertedSummary = summary === "Partly Cloudy" ? "partly_cloudy" : summary.toLowerCase();
-    if (language === "rs" && summaryObj.hasOwnProperty(convertedSummary)) {
-        return summaryObj[convertedSummary];
+    if (language === "rs" && summaryObj.hasOwnProperty(summary)) {
+        return summaryObj[summary];
     }
     return summary;
 };
