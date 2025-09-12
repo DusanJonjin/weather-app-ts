@@ -131,17 +131,6 @@ export const header = {
     }
 };
 
-export const summaryObj: SummaryObj = {
-    "Clear": "Vedro",
-    "Cloudy": "Oblačno",
-    "Fog": "Magla",
-    "Partly Cloudy": "Delimično oblačno",
-    "Rain": "Kiša",
-    "Sleet": "Susnežica",
-    "Snow": "Sneg",
-    "Wind": "Vetrovito",
-};
-
 // Translation object used for different units options 
 export const unitsName = {
     temp: {

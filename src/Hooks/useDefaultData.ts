@@ -31,7 +31,8 @@ export const useDefaultData = (basicData: BasicData, city: City) => {
                 key,
                 value, 
                 id: key === "searchedCity" ? id : prevValue.id, 
-                toggle: !prevValue.toggle}
+                toggle: !prevValue.toggle
+            }
         ));
     };
 

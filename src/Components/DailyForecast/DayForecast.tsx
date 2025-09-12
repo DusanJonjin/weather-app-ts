@@ -10,7 +10,6 @@ import {
 import { DayData } from '../../Models/weather.data.models';
 import { LanguageCode, UnitCode } from '../../Models/app.data.models';
 import { dateObj } from '../../Utilities/dateFunctions';
-import { translateSummary } from '../../Utilities/helperFunctions';
 
 interface DayForecastProps {
     chosenDay: DayData;
@@ -52,7 +51,7 @@ const DayForecast = (props: DayForecastProps) => {
                 <FullDate fullDate={date} />&nbsp;
                 <Year year={year}/>
             </p>
-            <p id='summary'>{translateSummary(summary, language)}</p>
+            <p id='summary'>{summary}</p>
             <div className='day-wrapper'>
                 <div className='image-wrapper'>
                     <Image 
