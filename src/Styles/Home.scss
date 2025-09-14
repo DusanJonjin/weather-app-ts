@@ -146,7 +146,7 @@
                 #day-date{
                     font-family: var.$roboto-font;
                     color: hsla(60, 70%, 85%);
-                    padding: 3px 7px 0 7px;
+                    padding: 3px 7px;
                     margin: 5px 0;
                     line-height: 1.3em;
                     height: 60px;
@@ -171,7 +171,7 @@
                 }
 
                 img {                           
-                    width: 62px;
+                    width: 56px;
                     position: relative;
                     bottom: 0;
                     transition: .3s ease;
@@ -182,7 +182,7 @@
                     p {
                         display: inline-block;
                         padding: 0 6px;
-                        margin: 12px 0 13px 0;
+                        margin: 15px 0 14px 0;
 
                         span {
                             font-size: 1rem;
