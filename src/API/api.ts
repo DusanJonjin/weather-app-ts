@@ -17,9 +17,10 @@ export const getWeather = async (
     handleErrorMsg: (message: string) => void
     ): Promise<WeatherData | null> => {
     const { searchedCity, units, language } = basicData;
+    const lang = language === "rs" ? "sr" : language;
     try {
         const getGeoLocation = await fetch(
-        `https://us1.locationiq.com/v1/search.php?key=${GEODATA_KEY}&q=${searchedCity}&format=json&limit=1&accept-language=${language}`
+        `https://us1.locationiq.com/v1/search.php?key=${GEODATA_KEY}&q=${searchedCity}&format=json&limit=1&accept-language=${lang}`
         );
         const geoLocationResult: LocatioIqFetchErr | GeoLocationIq = await getGeoLocation.json();
         if (!Array.isArray(geoLocationResult)) {
@@ -32,7 +33,6 @@ export const getWeather = async (
         const city = displayNameInArr[0];
         const country = displayNameInArr[displayNameInArr.length - 1];
         const searchedPlace = {cityID: place_id, city, country};
-        const lang = language === "rs" ? "sr" : language;
     
         const getWeather = await fetch(
         `${BASE_URL}${PIRATEWEATHER_KEY}/${lat + ',' + lon}?exclude=flags,alerts,minutely&units=${units}&extend=hourly&lang=${lang}`

@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { LanguageCode } from "../../Models/app.data.models";
-import { popularCities } from "../../Fixtures/miscData";
 import { insertNewCityInUrl } from '../../Utilities/helperFunctions';
-import { popCitiesLabels } from "../../Fixtures/translation.objects";
+import { popCitiesLabels, popularCities } from "../../Fixtures/translation.objects";
 import { Link } from "react-router-dom";
 
 interface PopularCitiesProps {
@@ -21,7 +20,7 @@ export const PopularCities = (props: PopularCitiesProps) => {
         <section className={`popular-cities`}>
             <h2>{popCitiesLabels[lang]}</h2>
             <ul className={`cities-ul ${showAllCities ? 'all-cities-ul' : ''}`}>
-                {popularCities.map(city => 
+                {popularCities[lang].map(city => 
                     <li key={city} >
                         <Link to={`${isHomeUrl ? "/" : insertNewCityInUrl(city, pathname)}`}
                             className='link'

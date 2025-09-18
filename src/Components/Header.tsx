@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { popularCities } from "../Fixtures/miscData";
-import { header } from "../Fixtures/translation.objects";
+import { header, popularCities } from "../Fixtures/translation.objects";
 import { AppLayoutProps } from "../App/AppLayout";
 
 type HeaderProps = Omit<AppLayoutProps, "children">;
@@ -22,7 +21,7 @@ const Header = (props: HeaderProps) => {
 
     const isHomeUrl = pathname === "/";
 
-    const searchSuggestions = popularCities.reduce<JSX.Element[]>((acc, city) => 
+    const searchSuggestions = popularCities[language].reduce<JSX.Element[]>((acc, city) => 
         inputValue && city.toLowerCase().startsWith(inputValue.toLowerCase()) 
             ? [...acc, 
                 <button key={city} type="submit" onClick={() => setInputValue(city)}>

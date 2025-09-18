@@ -61,6 +61,7 @@ const CurrentWeather = (props: CurrentWeatherProps) => {
                 <CityCountry 
                     city={city} 
                     country={country}
+                    language={language}
                 />
                 <p onClick={() => (
                         toggleCity(city, cityID), !isBookmarked && openAsideMenu()

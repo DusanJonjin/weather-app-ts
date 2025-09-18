@@ -1,6 +1,6 @@
 import { BasicData, LanguageCode } from "../Models/app.data.models";
 import { initialBasicData, initialCity } from "../Fixtures/initial.app.data";
-import { messages } from "../Fixtures/translation.objects";
+import { messages, cyrillicToLatinMap, CyrillicLetters } from "../Fixtures/translation.objects";
 
 const requiredUrlPart = '/DailyForecast/';
 
@@ -59,3 +59,34 @@ export const showSunBackground = (message: string, language: LanguageCode): stri
         default: return '';
     }
 };
+
+
+export function cyrillicToLatin(str: string): string {
+    // Replace Cyrillic letters with Latin letters
+    const convertCyrillicToLatin = (input: string): string => {
+        let result = '';
+        for (let i = 0; i < input.length; i++) {
+            const char = input[i];
+            const lowerChar = char.toLowerCase();
+            if (cyrillicToLatinMap[lowerChar as CyrillicLetters]) {
+                // If the character is Cyrillic, convert it
+                const latinChar = cyrillicToLatinMap[lowerChar as CyrillicLetters];
+                result += char === char.toUpperCase() ? latinChar.toUpperCase() : latinChar;
+            } else {
+                // If not Cyrillic, keep the character as is
+                result += char;
+            }
+        }
+        return result;
+    };
+    // Check if the string contains a comma (indicating city and country)
+    if (str.includes(',')) {
+        const [city, country] = str.split(', ');
+        // Convert both city and country parts
+        const convertedCity = convertCyrillicToLatin(city);
+        const convertedCountry = convertCyrillicToLatin(country);
+        return `${convertedCity}, ${convertedCountry}`;
+    }
+    // If only a city (no country), simply convert the city
+    return convertCyrillicToLatin(str);
+}
