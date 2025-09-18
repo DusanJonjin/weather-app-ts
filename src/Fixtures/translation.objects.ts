@@ -255,7 +255,7 @@ export const popularCities = {
         "Oklend",
         "Kairo",
         "Kejp Taun",
-        "Dubaji",
+        "Dubai",
     ],
 };
 
