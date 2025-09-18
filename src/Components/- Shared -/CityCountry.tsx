@@ -9,7 +9,7 @@ interface CityCountryProps {
 
 const CityCountry = ({ city, country = '', language }: CityCountryProps) => {
     const cityAndCountryRaw = `${city}${country ? `, ${country}` : ''}`;
-    const cityAndCountry = language === 'en' ? cityAndCountryRaw : cyrillicToLatin(cityAndCountryRaw);
+    const cityAndCountry = language === 'rs' ? cyrillicToLatin(cityAndCountryRaw): cityAndCountryRaw;
 
     return (
         <h2 className='city-country'>
