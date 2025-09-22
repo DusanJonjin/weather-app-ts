@@ -79,14 +79,10 @@ export function cyrillicToLatin(str: string): string {
         }
         return result;
     };
-    // Check if the string contains a comma (indicating city and country)
-    if (str.includes(',')) {
-        const [city, country] = str.split(', ');
-        // Convert both city and country parts
-        const convertedCity = convertCyrillicToLatin(city);
-        const convertedCountry = convertCyrillicToLatin(country);
-        return `${convertedCity}, ${convertedCountry}`;
-    }
-    // If only a city (no country), simply convert the city
-    return convertCyrillicToLatin(str);
+
+    const convertedStr = convertCyrillicToLatin(str);
+    // if there are no Cyrillic letters found, return original string
+    if (convertedStr === str) return str; 
+
+    return convertedStr;
 }
