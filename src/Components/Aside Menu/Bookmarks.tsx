@@ -1,6 +1,6 @@
 import { Key } from "../../Hooks/useDefaultData";
 import { BasicData, LanguageCode } from "../../Models/app.data.models";
-import { insertNewCityInUrl } from '../../Utilities/helperFunctions';
+import { insertNewCityInUrl, cyrillicToLatin } from '../../Utilities/helperFunctions';
 import { CityNameID } from '../../Hooks/useBookmarks';
 import { bookmarksLabels } from "../../Fixtures/translation.objects";
 import { Link } from "react-router-dom";
@@ -48,7 +48,7 @@ export const Bookmarks = (props: BookmarksProps) => {
                                 className='link'
                                 onClick={() => handleCityChange(bookmark.name)}
                             >
-                                {bookmark.name}
+                                {cyrillicToLatin(bookmark.name)}
                             </Link>
                         </h3>
                         <div>
