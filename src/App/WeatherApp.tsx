@@ -79,7 +79,7 @@ export function WeatherApp() {
     };
 
     useEffect(() => {
-        getWeather(basicData, badUrlSearch[language], networkError[language], handleErrorMsg)
+        getWeather(basicData, badUrlSearch, networkError, handleErrorMsg)
         .then(res => {
             setWeatherData(res);
             setStatus(res === null ? 'error' : 'isLoaded');

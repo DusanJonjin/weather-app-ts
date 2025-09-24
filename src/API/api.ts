@@ -6,14 +6,19 @@ interface LocatioIqFetchErr {
     error: string;
 }
 
+interface ErrorStringObj {
+    en: string;
+    rs: string;
+}
+
 const BASE_URL = "https://api.pirateweather.net/forecast/";
 const GEODATA_KEY = import.meta.env.VITE_GEODATA_KEY;
 const PIRATEWEATHER_KEY = import.meta.env.VITE_PIRATEWEATHER_KEY;
 
 export const getWeather = async (
     basicData: BasicData,
-    badUrlSearch: string,
-    networkError: string,
+    badUrlSearch: ErrorStringObj,
+    networkError: ErrorStringObj,
     handleErrorMsg: (message: string) => void
     ): Promise<WeatherData | null> => {
     const { searchedCity, units, language } = basicData;
@@ -24,7 +29,7 @@ export const getWeather = async (
         );
         const geoLocationResult: LocatioIqFetchErr | GeoLocationIq = await getGeoLocation.json();
         if (!Array.isArray(geoLocationResult)) {
-            handleErrorMsg(badUrlSearch);
+            handleErrorMsg(badUrlSearch[language]);
             return null;
         }
         const geoLocationData = geoLocationResult[0];
@@ -37,13 +42,13 @@ export const getWeather = async (
         const getWeather = await fetch(
         `${BASE_URL}${PIRATEWEATHER_KEY}/${lat + ',' + lon}?exclude=flags,alerts,minutely&units=${units}&extend=hourly&lang=${lang}`
         );
-        const weatherResult: Omit<WeatherData, "city" | "country"> = await getWeather.json();
+        const weatherResult: Omit<WeatherData, "city" | "country" | "cityID"> = await getWeather.json();
         const fullWeatherData: WeatherData = {...weatherResult, ...searchedPlace}
         
         return fullWeatherData;  
     }
     catch (err) {
-        handleErrorMsg(networkError);
+        handleErrorMsg(networkError[language]);
         return null;
     }
 };
