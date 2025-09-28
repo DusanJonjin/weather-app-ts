@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import Message from '../Components/- Shared -/Message';
+import { Message } from '../Components/- Shared -/SmallUiParts';
 import CurrentWeather from '../Components/Home/CurrentWeather';
 import SevenDayForecast from '../Components/Home/SevenDayForecast';
 import { HourData, DayData } from '../Models/weather.data.models';

@@ -1,4 +1,4 @@
-import { Day, FullDate, Image, TempLowHigh } from '../- Shared -/AllSharedComponents';
+import { Day, FullDate, Image, TempLowHigh } from '../- Shared -/SmallUiParts';
 import { DayData } from '../../Models/weather.data.models';
 import { LanguageCode, UnitCode } from '../../Models/app.data.models';
 import { dateObj } from '../../Utilities/dateFunctions';

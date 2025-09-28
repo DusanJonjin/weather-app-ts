@@ -4,9 +4,9 @@ import {
     FullDate, 
     Year,
     Image, 
-    OtherWeatherDetails,
-    HourForecast
-} from '../- Shared -/AllSharedComponents';
+} from '../- Shared -/SmallUiParts';
+import { HourForecast } from '../- Shared -/HourForecast';
+import { OtherWeatherDetails } from '../- Shared -/OtherWeatherDetails';
 import { Currently, HourData } from "../../Models/weather.data.models";
 import { LanguageCode, UnitCode } from '../../Models/app.data.models';
 import { CityNameID } from '../../Hooks/useBookmarks';

@@ -5,8 +5,8 @@ import {
     Year,
     Image, 
     TempLowHigh,
-    OtherWeatherDetails
-} from '../- Shared -/AllSharedComponents';
+} from '../- Shared -/SmallUiParts';
+import { OtherWeatherDetails } from '../- Shared -/OtherWeatherDetails';
 import { DayData } from '../../Models/weather.data.models';
 import { LanguageCode, UnitCode } from '../../Models/app.data.models';
 import { dateObj } from '../../Utilities/dateFunctions';

@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
-import Message from '../Components/- Shared -/Message';
+import { Message } from '../Components/- Shared -/SmallUiParts';
 import DayForecast from '../Components/DailyForecast/DayForecast';
-import HourForecast from '../Components/- Shared -/HourForecast';
+import { HourForecast } from '../Components/- Shared -/HourForecast';
 import Pagination from '../Components/DailyForecast/Pagination';
 import { AppFlowProps } from '../App/AppFlow';
 import { dayDate, dateObj } from '../Utilities/dateFunctions';

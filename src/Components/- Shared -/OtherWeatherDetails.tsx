@@ -26,7 +26,7 @@ interface OtherWeatherDetailsProps {
     units: UnitCode;
 }
 
-const OtherWeatherDetails = (props: OtherWeatherDetailsProps) => {
+export const OtherWeatherDetails = (props: OtherWeatherDetailsProps) => {
     const {
         pressure,
         humidity,
@@ -66,5 +66,3 @@ const OtherWeatherDetails = (props: OtherWeatherDetailsProps) => {
         </div>
     )
 }
-
-export default OtherWeatherDetails;

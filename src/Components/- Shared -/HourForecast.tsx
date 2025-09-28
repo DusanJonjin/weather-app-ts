@@ -1,4 +1,4 @@
-import Image from './Image';
+import { Image } from "./SmallUiParts";
 import { getHour } from '../../Utilities/dateFunctions';
 import { hourlyFcast, unitsName } from "../../Fixtures/translation.objects";
 import { HourData } from "../../Models/weather.data.models";
@@ -13,12 +13,14 @@ interface HourForecastProps {
     units: UnitCode;
 }
 
-const HourForecast = (props: HourForecastProps) => {
+export const HourForecast = (props: HourForecastProps) => {
     const { chosenDayHours, timezone, language, units } = props;
 
     const tableDataValue = (rowLabel: string, hour: HourData) => {
         switch (rowLabel) {
-            case 'hour': return (getHour(hour.time, timezone) + 'h');
+            case 'hour': return (
+                <>{getHour(hour.time, timezone) + 'h'}</>
+            );
             case 'icon': return (
                 <Image 
                     imgSrc={`/Images/${hour.icon}.png`}
@@ -26,9 +28,9 @@ const HourForecast = (props: HourForecastProps) => {
                 />
             );
             case 'temperature': return (
-                hour?.temperature.toFixed(1) + `${unitsName.temp[units]}`
+                <>{hour?.temperature.toFixed(1) + `${unitsName.temp[units]}`}</>
             );
-            default: //do nothing;
+            default: return <></>;
         }
     };
 
@@ -53,5 +55,3 @@ const HourForecast = (props: HourForecastProps) => {
         </section>
     );
 }
-
-export default HourForecast;

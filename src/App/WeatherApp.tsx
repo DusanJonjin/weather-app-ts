@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import AsideMenu from '../Components/Aside Menu/AsideMenu';
 import AppFlow from './AppFlow';
-import Message from '../Components/- Shared -/Message';
+import { Message } from '../Components/- Shared -/SmallUiParts';
 import { AppLayout } from './AppLayout';
 import { WeatherData } from '../Models/weather.data.models';
 import { BasicData, LanguageCode, UnitCode } from '../Models/app.data.models';
