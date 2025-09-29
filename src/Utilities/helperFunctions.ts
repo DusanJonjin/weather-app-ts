@@ -1,6 +1,6 @@
 import { BasicData, LanguageCode } from "../Models/app.data.models";
 import { initialBasicData, initialCity } from "../Fixtures/initial.app.data";
-import { messages, cyrillicToLatinMap, CyrillicLetters } from "../Fixtures/translation.objects";
+import { messages, cyrillicToLatinMap, CyrillicLetter } from "../Fixtures/translation.objects";
 
 const requiredUrlPart = '/DailyForecast/';
 
@@ -61,28 +61,13 @@ export const showSunBackground = (message: string, language: LanguageCode): stri
 };
 
 
-export function cyrillicToLatin(str: string): string {
-    // Replace Cyrillic letters with Latin letters
-    const convertCyrillicToLatin = (input: string): string => {
-        let result = '';
-        for (let i = 0; i < input.length; i++) {
-            const char = input[i];
-            const lowerChar = char.toLowerCase();
-            if (cyrillicToLatinMap[lowerChar as CyrillicLetters]) {
-                // If the character is Cyrillic, convert it
-                const latinChar = cyrillicToLatinMap[lowerChar as CyrillicLetters];
-                result += char === char.toUpperCase() ? latinChar.toUpperCase() : latinChar;
-            } else {
-                // If not Cyrillic, keep the character as is
-                result += char;
-            }
-        }
-        return result;
-    };
-
-    const convertedStr = convertCyrillicToLatin(str);
+export const cyrillicToLatin = (str: string): string => {
+    const strArray = str.split('');
+    const latinStrArray = strArray.map(char =>
+        cyrillicToLatinMap[char as CyrillicLetter] ? cyrillicToLatinMap[char as CyrillicLetter] : char
+    );
+    const latinStr = latinStrArray.join('');
     // if there are no Cyrillic letters found, return original string
-    if (convertedStr === str) return str; 
-
-    return convertedStr;
-}
+    if (latinStr === str) return str;
+    return latinStr;
+};
