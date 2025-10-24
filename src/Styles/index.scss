@@ -54,12 +54,12 @@ body {
 
 footer {
     font-family: var.$open-sans-font;
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 500;
     color: hsl(206, 16%, 85%);
-    background-color: rgb(137, 153, 206);
-    background-image: linear-gradient(to bottom,hsl(229, 92%, 32%), hsl(212, 88%, 35%));
-    padding: 1.6em 0;
+    background: rgb(42, 89, 139);
+    background-image: linear-gradient(to bottom,rgb(20, 73, 129), rgb(74, 74, 105));
+    padding: 1.5em 0;
     margin: 0 auto 0 auto;
     display: flex;
     justify-content: space-around; 

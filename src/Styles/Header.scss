@@ -1,9 +1,8 @@
 @use './variables.scss' as var;
 
 #header { 
-    background-color: rgb(137, 153, 206);
-    background-image: linear-gradient(to top,hsl(229, 92%, 34%), hsl(212, 88%, 37%));
-    text-align: left;
+    background: rgb(42, 89, 139);
+    background-image: linear-gradient(to bottom,rgb(20, 73, 129), rgb(74, 74, 105));
     width: 100%;
     margin: 0 auto;
     display: flex;
