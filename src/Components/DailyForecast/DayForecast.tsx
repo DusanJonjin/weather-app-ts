@@ -56,8 +56,8 @@ const DayForecast = (props: DayForecastProps) => {
             <div className='day-wrapper'>
                 <div className='image-wrapper'>
                     <Image 
-                        imgSrc={`/Images/${icon}.png`}
-                        imgAlt={icon}
+                        imgName={icon}
+                        imgFormat='png'
                     />
                 </div>
                 <TempLowHigh 

@@ -23,8 +23,8 @@ export const HourForecast = (props: HourForecastProps) => {
             );
             case 'icon': return (
                 <Image 
-                    imgSrc={`/Images/${hour.icon}.png`}
-                    imgAlt={hour.icon} 
+                    imgName={hour.icon}
+                    imgFormat='png'
                 />
             );
             case 'temperature': return (

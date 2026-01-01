@@ -78,8 +78,8 @@ const CurrentWeather = (props: CurrentWeatherProps) => {
             <div className='current-wrapper'>
                 <div className='image-wrapper'>
                     <Image 
-                        imgSrc={`/Images/${icon}.png`}
-                        imgAlt={icon} 
+                        imgName={icon}
+                        imgFormat='png'
                     />
                 </div>
                 <div className='temp-summary-wrapper'>

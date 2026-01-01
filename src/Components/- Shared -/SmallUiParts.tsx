@@ -21,7 +21,7 @@ const CityCountry = ({ city, country = '', language }: CityCountryProps) => {
 };
 
 
-const Day = ({ day }: {day: string}) => {
+const Day = ({ day }: { day: string }) => {
     return (
         <span>
             {day}
@@ -30,7 +30,7 @@ const Day = ({ day }: {day: string}) => {
 };
 
 
-const FullDate = ({ fullDate }: {fullDate: string}) => {
+const FullDate = ({ fullDate }: { fullDate: string }) => {
     return (
         <span>
             {fullDate}
@@ -40,13 +40,18 @@ const FullDate = ({ fullDate }: {fullDate: string}) => {
 
 
 interface ImageProps {
-    imgSrc: string,
-    imgAlt: string
+    imgName: string;
+    imgFormat: string;
 }
 
-const Image = ({ imgSrc, imgAlt }: ImageProps) => {
+const Image = (props: ImageProps) => {
+    const { imgName, imgFormat } = props;
+
+    const iconSrc = imgName ==="mixed" ? "sleet" : imgName;
+    const imgSrc = `/Images/${iconSrc}.${imgFormat}`;
+
     return (
-        <img src={imgSrc} alt={imgAlt} />
+        <img src={imgSrc} alt={imgName} />
     );
 };
 
