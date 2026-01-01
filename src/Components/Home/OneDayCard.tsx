@@ -20,7 +20,9 @@ const OneDayCard = (props: OneDayCardProps) => {
         temperatureMax 
     } = dayData; 
 
-    const { day, date } = dateObj(time, language, timezone); 
+    const { day, date } = dateObj(time, language, timezone);
+
+    const iconSrc = icon ==="mixed" ? "sleet" : icon;
 
     return (
         <article className='one-day-card'>
@@ -29,7 +31,7 @@ const OneDayCard = (props: OneDayCardProps) => {
                 <FullDate fullDate={date} />
             </h4>
             <Image 
-                imgSrc={`/Images/${icon}.png`}
+                imgSrc={`/Images/${iconSrc}.png`}
                 imgAlt={icon} 
             />
             <TempLowHigh 
