@@ -1,4 +1,3 @@
-import { cyrillicToLatin } from "../../Utilities/helperFunctions";
 import { LanguageCode, UnitCode } from "../../Models/app.data.models";
 import { showSunBackground } from '../../Utilities/helperFunctions';
 import { temp, unitsName } from "../../Fixtures/translation.objects";
@@ -6,12 +5,10 @@ import { temp, unitsName } from "../../Fixtures/translation.objects";
 interface CityCountryProps {
     city: string,
     country: string,
-    language: LanguageCode
 }
 
-const CityCountry = ({ city, country = '', language }: CityCountryProps) => {
-    const cityAndCountryRaw = `${city}${country ? `, ${country}` : ''}`;
-    const cityAndCountry = language === 'rs' ? cyrillicToLatin(cityAndCountryRaw): cityAndCountryRaw;
+const CityCountry = ({ city, country = '' }: CityCountryProps) => {
+    const cityAndCountry = `${city}${country ? `, ${country}` : ''}`;
 
     return (
         <h2 className='city-country'>

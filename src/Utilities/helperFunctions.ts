@@ -61,7 +61,8 @@ export const showSunBackground = (message: string, language: LanguageCode): stri
 };
 
 
-export const cyrillicToLatin = (str: string): string => {
+export const cyrillicToLatin = (str: string, language: LanguageCode): string => {
+    if (language !== 'rs') return str;
     const strArray = str.split('');
     const latinStrArray = strArray.map(char =>
         cyrillicToLatinMap[char as CyrillicLetter] ? cyrillicToLatinMap[char as CyrillicLetter] : char

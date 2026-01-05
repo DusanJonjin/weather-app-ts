@@ -45,7 +45,6 @@ const DayForecast = (props: DayForecastProps) => {
             <CityCountry 
                 city={city} 
                 country={country}
-                language={language}
             />
             <p className='date-and-year'>
                 <Day day={day} />,&nbsp;

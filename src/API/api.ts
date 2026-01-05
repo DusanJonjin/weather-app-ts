@@ -1,6 +1,7 @@
 import { WeatherData } from "../Models/weather.data.models";
 import { GeoLocationIq } from "../Models/location.data.models";
 import { BasicData } from "../Models/app.data.models";
+import { cyrillicToLatin } from "../Utilities/helperFunctions";
 
 interface LocatioIqFetchErr {
     error: string;
@@ -25,7 +26,7 @@ export const getWeather = async (
     const lang = language === "rs" ? "sr" : language;
     try {
         const getGeoLocation = await fetch(
-        `https://us1.locationiq.com/v1/search.php?key=${GEODATA_KEY}&q=${searchedCity}&format=json&limit=1&accept-language=${lang}`
+            `https://us1.locationiq.com/v1/search.php?key=${GEODATA_KEY}&q=${searchedCity}&format=json&limit=1&accept-language=${lang}`
         );
         const geoLocationResult: LocatioIqFetchErr | GeoLocationIq = await getGeoLocation.json();
         if (!Array.isArray(geoLocationResult)) {
@@ -35,8 +36,8 @@ export const getWeather = async (
         const geoLocationData = geoLocationResult[0];
         const { place_id, lat, lon, display_name } = geoLocationData;
         const displayNameInArr = display_name.split(', ');
-        const city = displayNameInArr[0];
-        const country = displayNameInArr[displayNameInArr.length - 1];
+        const city = cyrillicToLatin(displayNameInArr[0], language);
+        const country = cyrillicToLatin(displayNameInArr[displayNameInArr.length - 1], language);
         const searchedPlace = {cityID: place_id, city, country};
     
         const getWeather = await fetch(
