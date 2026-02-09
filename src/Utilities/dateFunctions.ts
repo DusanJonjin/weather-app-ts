@@ -48,9 +48,7 @@ export const dateObj = (time: number, lang?: LanguageCode, timezone?: string): d
         const monthLangObj = months.find(month => month.en === monthNameEN);
         const monthLang = monthLangObj ? monthLangObj[lang] : monthNameEN;
         date = `${dateNum} ${monthLang}`;
-    }
-
-    else {
+    } else {
         day = dayEN;
         date = dateEN;
     }
@@ -62,8 +60,7 @@ export const dateObj = (time: number, lang?: LanguageCode, timezone?: string): d
         const yearAndTimeArr: string[] = completeDateArr[2].split(' ');
         year = yearAndTimeArr[0];
         localTime = yearAndTimeArr[2];
-    }
-    else {
+    } else {
         year = completeDateArr[2];
         localTime = completeDateArr[3]
     }
