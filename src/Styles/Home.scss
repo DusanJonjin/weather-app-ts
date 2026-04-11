@@ -38,7 +38,7 @@
         flex-wrap: wrap;
         justify-content: space-around;
         align-items: center;
-        padding-top: 15px;
+        padding-top: 20px;
 
         .temp-summary-wrapper {
             width: 300px;
@@ -280,6 +280,7 @@
         }
         
         .current-wrapper {
+            padding-top: 15px;
 
             .other-details-wrapper {
                 margin: 1.7em 0 .5em 0;
